@@ -18,6 +18,15 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+# Inject Streamlit secrets into environment variables for backend modules
+import os
+try:
+    for k, v in st.secrets.items():
+        if isinstance(v, str) and k not in os.environ:
+            os.environ[k] = v
+except Exception:
+    pass
+
 # Load core modules
 from backend.app import rule_engine as engine
 from backend.app import models, i18n, pii, intake
