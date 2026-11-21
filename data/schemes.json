@@ -1,0 +1,2780 @@
+{
+  "meta": {
+    "product": "SchemeSetu",
+    "state": "Telangana",
+    "segment": "Low-income households - students, farmers, senior citizens, daily-wage and unorganised workers",
+    "curated_on": "2026-11-20",
+    "curated_by": "Team SchemeSetu (Codebenders ACE Builders Hackathon 2026, Problem Statement 5)",
+    "disclaimer": "Rules are stored as editable data, curated from publicly available official sources on the dates shown. Scheme rules change often. SchemeSetu says 'likely eligible' - never a guarantee. Always confirm on the official portal before applying, and never share Aadhaar numbers or OTPs with anyone.",
+    "data_quality_policy": "Every scheme carries source_url, source_name and verified_on. provenance=EXTRACTED means the rule was read from the official source page; INFERRED means we derived it (e.g. from a press release or circular); AMBIGUOUS means the rule changed recently and a human must re-verify.",
+    "categories": {
+      "farmer_income": "Farmer income support",
+      "crop_insurance": "Crop insurance",
+      "health": "Health cover",
+      "education": "Scholarships and education",
+      "pension": "Pensions",
+      "housing": "Housing",
+      "energy": "Clean cooking fuel",
+      "savings": "Small savings",
+      "credit": "Credit and loans",
+      "enterprise": "Livelihood and enterprise",
+      "insurance": "Life and accident cover",
+      "employment": "Worker registration",
+      "marriage": "Marriage assistance"
+    }
+  },
+  "schemes": [
+    {
+      "id": "pm-kisan",
+      "name": "PM-KISAN Samman Nidhi",
+      "name_local": {
+        "hi": "प्रधानमंत्री किसान सम्मान निधि",
+        "te": "పీఎం కిసాన్ సమ్మాన్ నిధి"
+      },
+      "level": "central",
+      "category": "farmer_income",
+      "summary": "Direct income support of Rs 6,000 per year to landholding farmer families, paid in three instalments of Rs 2,000 into the bank account.",
+      "benefit": "Rs 6,000 per year (3 instalments of Rs 2,000)",
+      "benefit_value_inr": 6000,
+      "apply_url": "https://pmkisan.gov.in/",
+      "portal_name": "PM-KISAN portal (Ministry of Agriculture)",
+      "apply_steps": [
+        "Keep your land record (Pahani / Record of Rights) and bank passbook ready.",
+        "Open pmkisan.gov.in and choose 'New Farmer Registration'.",
+        "Fill state, district and the land-record details. Enter the Aadhaar number only on the official portal - never in a third-party app or with a middleman.",
+        "Complete e-KYC at the nearest CSC or through the portal.",
+        "Save the registration number and check 'Know Your Status' after 2-3 weeks."
+      ],
+      "deadline": {
+        "type": "rolling",
+        "note": "Registration is continuous; instalments follow the cut-off dates announced per cycle."
+      },
+      "verified_on": "2026-11-12",
+      "source_url": "https://pmkisan.gov.in/",
+      "source_name": "PM-KISAN official portal",
+      "tags": [
+        "farmer",
+        "income_support",
+        "central"
+      ],
+      "provenance": "EXTRACTED",
+      "rules": [
+        {
+          "id": "kisan.landholding",
+          "field": "land_acres",
+          "op": "gt",
+          "value": 0,
+          "text": "Family must own cultivable land (landholding farmer family)",
+          "hard": true,
+          "weight": 2.0,
+          "source_note": "Scheme guidelines: landholding farmer families"
+        },
+        {
+          "id": "kisan.occupation",
+          "field": "occupation",
+          "op": "in",
+          "value": [
+            "farmer",
+            "farm_labour"
+          ],
+          "text": "Main occupation is farming or farm work",
+          "hard": true,
+          "weight": 1.0
+        },
+        {
+          "id": "kisan.age",
+          "field": "age",
+          "op": "gte",
+          "value": 18,
+          "text": "Applicant is 18 years or older",
+          "hard": true,
+          "weight": 1.0
+        },
+        {
+          "id": "kisan.no-incometax",
+          "field": "income_tax_payer",
+          "op": "false",
+          "text": "No family member pays income tax (exclusion criterion)",
+          "hard": true,
+          "weight": 1.5,
+          "source_note": "Exclusion list in the scheme guidelines"
+        },
+        {
+          "id": "kisan.not-govt",
+          "field": "is_govt_employee",
+          "op": "false",
+          "text": "No family member is a government employee (exclusion criterion)",
+          "hard": true,
+          "weight": 1.5
+        },
+        {
+          "id": "kisan.bank",
+          "field": "has_bank_account",
+          "op": "true",
+          "text": "Bank account in the applicant's own name",
+          "hard": true,
+          "weight": 1.0
+        }
+      ],
+      "documents": [
+        {
+          "id": "aadhaar_masked",
+          "label": "Aadhaar (masked / last 4 digits only - SchemeSetu never stores the number)",
+          "mandatory": true,
+          "how_to_get": "Download the masked Aadhaar from uidai.gov.in or use your e-Aadhaar."
+        },
+        {
+          "id": "land_record",
+          "label": "Land record (Pahani / RoR)",
+          "mandatory": true,
+          "how_to_get": "Download from the Telangana Dharani portal (dharani.telangana.gov.in)."
+        },
+        {
+          "id": "bank_passbook",
+          "label": "Bank passbook first page",
+          "mandatory": true
+        },
+        {
+          "id": "ration_card",
+          "label": "Ration card / MGNREGA or UPI linkage proof",
+          "mandatory": false
+        }
+      ]
+    },
+    {
+      "id": "pmjay",
+      "name": "Ayushman Bharat PM-JAY",
+      "name_local": {
+        "hi": "आयुष्मान भारत प्रधानमंत्री जन आरोग्य योजना",
+        "te": "ఆయుష్మాన్ భారత్ పీఎం-జయ్"
+      },
+      "level": "central",
+      "category": "health",
+      "summary": "Cashless hospital treatment cover of Rs 5 lakh per family per year at empanelled hospitals, for families identified as deprived or holding a white ration card.",
+      "benefit": "Up to Rs 5 lakh per family per year, cashless at empanelled hospitals",
+      "benefit_value_inr": 500000,
+      "apply_url": "https://beneficiary.nha.gov.in/",
+      "portal_name": "NHA Ayushman Bharat beneficiary portal",
+      "apply_steps": [
+        "Check whether your family is on the beneficiary list - on the Ayushman portal, or at the nearest CSC / Aarogyasri office.",
+        "Generate the Ayushman card using the family identity proof and ration card.",
+        "At hospital admission, show the card at the Ayushman Mitra desk.",
+        "Keep the discharge summary and treatment papers for your own records."
+      ],
+      "deadline": {
+        "type": "rolling",
+        "note": "No deadline - check eligibility and generate the card any time."
+      },
+      "verified_on": "2026-11-14",
+      "source_url": "https://nha.gov.in/PM-JAY",
+      "source_name": "National Health Authority - PM-JAY",
+      "tags": [
+        "health",
+        "hospital",
+        "central"
+      ],
+      "provenance": "EXTRACTED",
+      "rules": [
+        {
+          "id": "pmjay.deprivation",
+          "field": "income_band",
+          "op": "in",
+          "value": [
+            "bpl",
+            "low"
+          ],
+          "text": "Household falls in the deprived / low-income group used for eligibility",
+          "hard": true,
+          "weight": 1.5
+        },
+        {
+          "id": "pmjay.ration",
+          "field": "has_ration_card",
+          "op": "true",
+          "text": "Family holds a ration card (used to identify the household)",
+          "hard": false,
+          "weight": 1.0
+        },
+        {
+          "id": "pmjay.no-cover-yet",
+          "field": "has_health_insurance",
+          "op": "false",
+          "text": "Helps most if the family has no other health cover yet",
+          "hard": false,
+          "weight": 0.5
+        },
+        {
+          "id": "pmjay.rural",
+          "field": "is_rural",
+          "op": "true",
+          "text": "Rural households form the majority of the eligibility list",
+          "hard": false,
+          "weight": 0.5
+        }
+      ],
+      "documents": [
+        {
+          "id": "aadhaar_masked",
+          "label": "Aadhaar (masked - the portal verifies it directly)",
+          "mandatory": true
+        },
+        {
+          "id": "ration_card",
+          "label": "Ration card",
+          "mandatory": true
+        },
+        {
+          "id": "mobile",
+          "label": "Mobile number registered in a family member's name for OTP",
+          "mandatory": true
+        }
+      ]
+    },
+    {
+      "id": "nsp-pre-matric-sc",
+      "name": "Pre-Matric Scholarship for SC students (Class 9-10)",
+      "name_local": {
+        "hi": "अनुसूचित जाति प्री-मैट्रिक छात्रवृत्ति",
+        "te": "ఎస్సీ ప్రీ-మెట్రిక్ స్కాలర్‌షిప్"
+      },
+      "level": "central",
+      "category": "education",
+      "summary": "Scholarship for SC students in Class 9 and 10, covering a monthly maintenance allowance and books grant, to stop dropout after Class 8.",
+      "benefit": "Monthly maintenance allowance + books / ad-hoc grant (rates differ for day-scholars and hostellers)",
+      "benefit_value_inr": 7000,
+      "apply_url": "https://scholarships.gov.in/",
+      "portal_name": "National Scholarship Portal (NSP)",
+      "apply_steps": [
+        "Get your SC caste certificate and family income certificate first - both are compulsory.",
+        "Register on scholarships.gov.in (or through the Telangana ePASS portal for state-linked scholarships).",
+        "Upload the marksheet, bonafide certificate and bank passbook.",
+        "Submit before the NSP closing date and note down the application ID.",
+        "The institute and the state welfare department verify the application - track the status on the portal."
+      ],
+      "deadline": {
+        "type": "annual",
+        "month_day": "10-31",
+        "note": "NSP usually closes around end October; the exact date is announced each year on the portal."
+      },
+      "verified_on": "2026-11-08",
+      "source_url": "https://scholarships.gov.in/",
+      "source_name": "National Scholarship Portal - Pre-Matric SC",
+      "tags": [
+        "student",
+        "sc",
+        "scholarship",
+        "central"
+      ],
+      "provenance": "EXTRACTED",
+      "rules": [
+        {
+          "id": "prematric.student",
+          "field": "is_student",
+          "op": "true",
+          "text": "Applicant is currently studying",
+          "hard": true,
+          "weight": 1.5
+        },
+        {
+          "id": "prematric.class",
+          "field": "class_level",
+          "op": "class_between",
+          "value": [
+            9,
+            10
+          ],
+          "text": "Studying in Class 9 or Class 10",
+          "hard": true,
+          "weight": 2.0
+        },
+        {
+          "id": "prematric.category",
+          "field": "social_category",
+          "op": "in",
+          "value": [
+            "sc"
+          ],
+          "text": "Belongs to a Scheduled Caste",
+          "hard": true,
+          "weight": 2.0
+        },
+        {
+          "id": "prematric.income",
+          "field": "annual_income_inr",
+          "op": "lt",
+          "value": 250000,
+          "text": "Parental annual income within the scheme ceiling (Rs 2.5 lakh)",
+          "hard": true,
+          "weight": 1.5,
+          "source_note": "Income ceiling as printed in the NSP scheme guidelines"
+        },
+        {
+          "id": "prematric.school-level",
+          "field": "education_level",
+          "op": "in",
+          "value": [
+            "below_8",
+            "class_8",
+            "class_10"
+          ],
+          "text": "Consistent with a school-level learner profile",
+          "hard": false,
+          "weight": 0.5
+        }
+      ],
+      "documents": [
+        {
+          "id": "caste_certificate",
+          "label": "SC caste certificate",
+          "mandatory": true,
+          "how_to_get": "Apply on the Telangana MeeSeva portal or at your district e-District office."
+        },
+        {
+          "id": "income_certificate",
+          "label": "Family income certificate",
+          "mandatory": true,
+          "how_to_get": "MeeSeva / Dharani is the fastest route."
+        },
+        {
+          "id": "marksheet",
+          "label": "Previous class marksheet",
+          "mandatory": true
+        },
+        {
+          "id": "bonafide",
+          "label": "Bonafide certificate from the school",
+          "mandatory": true
+        },
+        {
+          "id": "bank_passbook",
+          "label": "Bank passbook in the student's own name",
+          "mandatory": true
+        },
+        {
+          "id": "aadhaar_masked",
+          "label": "Aadhaar (masked)",
+          "mandatory": true
+        }
+      ]
+    },
+    {
+      "id": "nsp-post-matric-sc",
+      "name": "Post-Matric Scholarship for SC students",
+      "name_local": {
+        "hi": "अनुसूचित जाति पोस्ट-मैट्रिक छात्रवृत्ति",
+        "te": "ఎస్సీ పోస్ట్-మెట్రిక్ స్కాలర్‌షిప్"
+      },
+      "level": "central",
+      "category": "education",
+      "summary": "Scholarship for SC students who passed Class 10 and are studying in Class 11, ITI, polytechnic, degree or professional courses, with maintenance, fee and book grants.",
+      "benefit": "Maintenance allowance + non-refundable fees + books grant, disbursed through the institute",
+      "benefit_value_inr": 12000,
+      "apply_url": "https://scholarships.gov.in/",
+      "portal_name": "National Scholarship Portal (NSP)",
+      "apply_steps": [
+        "Confirm your institute is registered on NSP (most government colleges are).",
+        "Complete NSP registration and link a bank account enabled for DBT.",
+        "Upload the caste certificate, income certificate, Class 10/12 marksheet and fee receipt.",
+        "Track the institute and state verification stages on your portal dashboard."
+      ],
+      "deadline": {
+        "type": "annual",
+        "month_day": "11-30",
+        "note": "Announced per academic year; renew before the portal closes."
+      },
+      "verified_on": "2026-11-08",
+      "source_url": "https://scholarships.gov.in/",
+      "source_name": "National Scholarship Portal - Post-Matric SC",
+      "tags": [
+        "student",
+        "sc",
+        "scholarship",
+        "college",
+        "central"
+      ],
+      "provenance": "EXTRACTED",
+      "rules": [
+        {
+          "id": "postmatric.category",
+          "field": "social_category",
+          "op": "in",
+          "value": [
+            "sc"
+          ],
+          "text": "Belongs to a Scheduled Caste",
+          "hard": true,
+          "weight": 2.0
+        },
+        {
+          "id": "postmatric.class",
+          "field": "class_level",
+          "op": "class_gte",
+          "value": 11,
+          "text": "Studying in Class 11 or above (or a post-Class-10 course)",
+          "hard": true,
+          "weight": 2.0
+        },
+        {
+          "id": "postmatric.student",
+          "field": "is_student",
+          "op": "true",
+          "text": "Applicant is currently studying",
+          "hard": true,
+          "weight": 1.5
+        },
+        {
+          "id": "postmatric.income",
+          "field": "annual_income_inr",
+          "op": "lt",
+          "value": 250000,
+          "text": "Family income within the ceiling (Rs 2.5 lakh)",
+          "hard": true,
+          "weight": 1.5
+        },
+        {
+          "id": "postmatric.income-band",
+          "field": "income_band",
+          "op": "in",
+          "value": [
+            "bpl",
+            "low"
+          ],
+          "text": "Low-income household",
+          "hard": false,
+          "weight": 0.75
+        }
+      ],
+      "documents": [
+        {
+          "id": "caste_certificate",
+          "label": "SC caste certificate",
+          "mandatory": true
+        },
+        {
+          "id": "income_certificate",
+          "label": "Family income certificate",
+          "mandatory": true
+        },
+        {
+          "id": "class10_marksheet",
+          "label": "Class 10 / Class 12 marksheet",
+          "mandatory": true
+        },
+        {
+          "id": "fee_receipt",
+          "label": "Admission / fee receipt from the institute",
+          "mandatory": true
+        },
+        {
+          "id": "bank_passbook",
+          "label": "Bank passbook enabled for DBT",
+          "mandatory": true
+        }
+      ]
+    },
+    {
+      "id": "nmmss",
+      "name": "National Means-cum-Merit Scholarship (NMMSS)",
+      "name_local": {
+        "hi": "राष्ट्रीय साधन-सह-मेधा छात्रवृत्ति",
+        "te": "నేషనల్ మీన్స్-కమ్-మెరిట్ స్కాలర్‌షిప్"
+      },
+      "level": "central",
+      "category": "education",
+      "summary": "Rs 12,000 a year for meritorious Class 9-12 students from low-income families, selected through the NMMS test taken in Class 8.",
+      "benefit": "Rs 1,000 per month (Rs 12,000 a year) from Class 9 to Class 12",
+      "benefit_value_inr": 12000,
+      "apply_url": "https://scholarships.gov.in/",
+      "portal_name": "National Scholarship Portal (NSP) - NMMSS",
+      "apply_steps": [
+        "In Class 8, appear for the state-level NMMS selection test (your school announces it).",
+        "Score at least 55% in Class 8 (50% for SC/ST students).",
+        "After selection, register on scholarships.gov.in and renew the scholarship every year.",
+        "Keep at least 60% marks in later classes to continue receiving it."
+      ],
+      "deadline": {
+        "type": "window",
+        "opens_month_day": "08-01",
+        "month_day": "11-30",
+        "note": "Test and renewal windows are announced each year."
+      },
+      "verified_on": "2026-10-30",
+      "source_url": "https://scholarships.gov.in/",
+      "source_name": "National Scholarship Portal - NMMSS",
+      "tags": [
+        "student",
+        "merit",
+        "scholarship",
+        "central"
+      ],
+      "provenance": "EXTRACTED",
+      "rules": [
+        {
+          "id": "nmmss.student",
+          "field": "is_student",
+          "op": "true",
+          "text": "Applicant is a school student",
+          "hard": true,
+          "weight": 1.5
+        },
+        {
+          "id": "nmmss.class",
+          "field": "class_level",
+          "op": "class_between",
+          "value": [
+            9,
+            12
+          ],
+          "text": "Studying in Class 9 to Class 12",
+          "hard": true,
+          "weight": 2.0
+        },
+        {
+          "id": "nmmss.income",
+          "field": "annual_income_inr",
+          "op": "lt",
+          "value": 350000,
+          "text": "Family income within Rs 3.5 lakh (revised ceiling)",
+          "hard": true,
+          "weight": 1.5
+        },
+        {
+          "id": "nmmss.school-level",
+          "field": "education_level",
+          "op": "in",
+          "value": [
+            "class_8",
+            "class_10",
+            "class_12"
+          ],
+          "text": "Usually a government / local-body / aided school student",
+          "hard": false,
+          "weight": 0.5
+        }
+      ],
+      "documents": [
+        {
+          "id": "income_certificate",
+          "label": "Family income certificate",
+          "mandatory": true
+        },
+        {
+          "id": "class8_marksheet",
+          "label": "Class 8 marksheet showing 55% or more",
+          "mandatory": true
+        },
+        {
+          "id": "bonafide",
+          "label": "Bonafide certificate",
+          "mandatory": true
+        },
+        {
+          "id": "bank_passbook",
+          "label": "Bank passbook",
+          "mandatory": true
+        }
+      ]
+    },
+    {
+      "id": "ts-epass-rtf",
+      "name": "Telangana ePASS - Reimbursement of Tuition Fee (RTF)",
+      "name_local": {
+        "hi": "तेलंगाना ईपास - ट्यूशन फीस प्रतिपूर्ति",
+        "te": "తెలంగాణ ఈపాస్ - ట్యూషన్ ఫీజు రీయింబర్స్మెంట్"
+      },
+      "level": "state",
+      "category": "education",
+      "summary": "Full tuition fee reimbursement for SC/ST/BC/EBC/Minority students of Telangana studying degree, engineering, polytechnic and other post-matric courses, plus hostel and mess charges where applicable.",
+      "benefit": "Tuition fee reimbursement for the approved course duration",
+      "benefit_value_inr": 35000,
+      "apply_url": "https://telanganaepass.cgg.gov.in/",
+      "portal_name": "Telangana ePASS",
+      "apply_steps": [
+        "Get the caste certificate and income certificate issued in Telangana (MeeSeva).",
+        "Register on the Telangana ePASS portal with your SSC / Intermediate hall ticket number.",
+        "Choose 'Fee Reimbursement' and fill the course and institute details.",
+        "Submit and take a printout; the college then verifies and forwards it.",
+        "Track the sanction status on ePASS - the amount is credited to the college / your account."
+      ],
+      "deadline": {
+        "type": "annual",
+        "month_day": "11-15",
+        "note": "The ePASS window opens with the admission season and closes around mid-November."
+      },
+      "verified_on": "2026-11-16",
+      "source_url": "https://telanganaepass.cgg.gov.in/",
+      "source_name": "Telangana ePASS official portal",
+      "tags": [
+        "student",
+        "college",
+        "fee_reimbursement",
+        "telangana"
+      ],
+      "provenance": "EXTRACTED",
+      "rules": [
+        {
+          "id": "rtf.state",
+          "field": "state",
+          "op": "in",
+          "value": [
+            "telangana",
+            "ts"
+          ],
+          "text": "Student is a resident of Telangana",
+          "hard": true,
+          "weight": 2.5
+        },
+        {
+          "id": "rtf.student",
+          "field": "is_student",
+          "op": "true",
+          "text": "Currently studying in a recognised institution",
+          "hard": true,
+          "weight": 1.5
+        },
+        {
+          "id": "rtf.class",
+          "field": "class_level",
+          "op": "class_gte",
+          "value": 11,
+          "text": "Post-matric course (Intermediate or above)",
+          "hard": true,
+          "weight": 1.5
+        },
+        {
+          "id": "rtf.category",
+          "field": "social_category",
+          "op": "in",
+          "value": [
+            "sc",
+            "st",
+            "bc",
+            "obc",
+            "minority",
+            "ebc"
+          ],
+          "text": "SC / ST / BC / EBC / Minority category",
+          "hard": true,
+          "weight": 2.0
+        },
+        {
+          "id": "rtf.income",
+          "field": "annual_income_inr",
+          "op": "lt",
+          "value": 250000,
+          "text": "Family income within the RTF ceiling",
+          "hard": true,
+          "weight": 1.5,
+          "source_note": "Ceilings differ by course - the portal shows the applicable limit"
+        },
+        {
+          "id": "rtf.income-band",
+          "field": "income_band",
+          "op": "in",
+          "value": [
+            "bpl",
+            "low"
+          ],
+          "text": "Low-income household",
+          "hard": false,
+          "weight": 0.5
+        }
+      ],
+      "documents": [
+        {
+          "id": "caste_certificate",
+          "label": "Caste certificate (Telangana)",
+          "mandatory": true,
+          "how_to_get": "MeeSeva service, or apply online at the e-District portal."
+        },
+        {
+          "id": "income_certificate",
+          "label": "Income certificate (Telangana)",
+          "mandatory": true
+        },
+        {
+          "id": "ssc_inter_marks",
+          "label": "SSC / Intermediate marks memo with hall ticket number",
+          "mandatory": true
+        },
+        {
+          "id": "admission_proof",
+          "label": "Admission letter / fee receipt",
+          "mandatory": true
+        },
+        {
+          "id": "bonafide",
+          "label": "Bonafide certificate from the college",
+          "mandatory": true
+        },
+        {
+          "id": "bank_passbook",
+          "label": "Bank passbook",
+          "mandatory": true
+        }
+      ]
+    },
+    {
+      "id": "ts-aasara-oldage",
+      "name": "Telangana Aasara Pension - Old Age",
+      "name_local": {
+        "hi": "तेलंगाना आसारा पेंशन - वृद्धावस्था",
+        "te": "తెలంగాణ ఆసరా పెన్షన్ - వృద్ధాప్యం"
+      },
+      "level": "state",
+      "category": "pension",
+      "summary": "Monthly social security pension for senior citizens of Telangana who do not have another pension, credited by DBT on the first of every month.",
+      "benefit": "Monthly pension of about Rs 2,016 credited by DBT (rate is revised from time to time)",
+      "benefit_value_inr": 24192,
+      "apply_url": "https://pension.telangana.gov.in/",
+      "portal_name": "Telangana Aasara pensions portal / Gram Panchayat or MRO office",
+      "apply_steps": [
+        "Collect the application form from the Gram Panchayat / Ward office, or apply online on the Aasara pensions portal.",
+        "Attach the age proof, residence proof and bank passbook.",
+        "The Gram Panchayat verifies and forwards it to the MRO / Tahsildar.",
+        "After sanction, the pension is credited to your bank account on the 1st of each month.",
+        "If the pension stops, ask at the MeeSeva / MRO office - it is usually a bank or Aadhaar re-verification."
+      ],
+      "deadline": {
+        "type": "rolling",
+        "note": "Applications are accepted through the year; sanctions are processed monthly."
+      },
+      "verified_on": "2026-11-05",
+      "source_url": "https://pension.telangana.gov.in/",
+      "source_name": "Telangana Aasara pensions portal",
+      "tags": [
+        "pension",
+        "senior_citizen",
+        "telangana",
+        "dbt"
+      ],
+      "provenance": "AMBIGUOUS",
+      "provenance_note": "The monthly pension rate has been revised repeatedly at state budget time. The eligibility rules below are stable, but the amount must be re-verified against the latest state order before quoting it to a citizen.",
+      "rules": [
+        {
+          "id": "aasara.age",
+          "field": "age",
+          "op": "gte",
+          "value": 57,
+          "text": "Age 57 years or above (Telangana Aasara threshold)",
+          "hard": true,
+          "weight": 2.5,
+          "source_note": "Aasara old-age pension age criterion"
+        },
+        {
+          "id": "aasara.state",
+          "field": "state",
+          "op": "in",
+          "value": [
+            "telangana",
+            "ts"
+          ],
+          "text": "Resident of Telangana",
+          "hard": true,
+          "weight": 2.0
+        },
+        {
+          "id": "aasara.income",
+          "field": "income_band",
+          "op": "in",
+          "value": [
+            "bpl",
+            "low"
+          ],
+          "text": "Household income within the prescribed limit (white / low-income ration card)",
+          "hard": true,
+          "weight": 1.5
+        },
+        {
+          "id": "aasara.no-other-pension",
+          "field": "receives_other_pension",
+          "op": "false",
+          "text": "Not already receiving another government pension",
+          "hard": true,
+          "weight": 1.5
+        },
+        {
+          "id": "aasara.govt-exclusion",
+          "field": "is_govt_employee",
+          "op": "false",
+          "text": "Not a government employee or retired government employee",
+          "hard": true,
+          "weight": 1.0
+        },
+        {
+          "id": "aasara.bank",
+          "field": "has_bank_account",
+          "op": "true",
+          "text": "Bank account for DBT credit",
+          "hard": true,
+          "weight": 1.0
+        }
+      ],
+      "documents": [
+        {
+          "id": "age_proof",
+          "label": "Age proof (Aadhaar, voter ID or school certificate)",
+          "mandatory": true
+        },
+        {
+          "id": "ration_card",
+          "label": "Ration card",
+          "mandatory": true
+        },
+        {
+          "id": "residence_proof",
+          "label": "Residence proof of the Telangana address",
+          "mandatory": true
+        },
+        {
+          "id": "bank_passbook",
+          "label": "Bank passbook (DBT-enabled)",
+          "mandatory": true
+        },
+        {
+          "id": "aadhaar_masked",
+          "label": "Aadhaar (masked)",
+          "mandatory": true
+        }
+      ]
+    },
+    {
+      "id": "ts-aasara-widow",
+      "name": "Telangana Aasara Pension - Widow",
+      "name_local": {
+        "hi": "तेलंगाना आसारा पेंशन - विधवा",
+        "te": "తెలంగాణ ఆసరా పెన్షన్ - విధవ"
+      },
+      "level": "state",
+      "category": "pension",
+      "summary": "Monthly pension for widows in Telangana aged 18 and above from low-income households, credited by DBT.",
+      "benefit": "Monthly pension of about Rs 2,016 credited by DBT (rate revised from time to time)",
+      "benefit_value_inr": 24192,
+      "apply_url": "https://pension.telangana.gov.in/",
+      "portal_name": "Telangana Aasara pensions portal / Gram Panchayat or MRO office",
+      "apply_steps": [
+        "Apply at the Gram Panchayat / Ward office, or on the Aasara pensions portal.",
+        "Attach the spouse's death certificate, age proof, ration card and bank passbook.",
+        "Verification happens at the Gram Panchayat / MRO level.",
+        "Pension is credited on the 1st of every month after sanction."
+      ],
+      "deadline": {
+        "type": "rolling",
+        "note": "Open through the year."
+      },
+      "verified_on": "2026-11-05",
+      "source_url": "https://pension.telangana.gov.in/",
+      "source_name": "Telangana Aasara pensions portal",
+      "tags": [
+        "pension",
+        "widow",
+        "women",
+        "telangana"
+      ],
+      "provenance": "AMBIGUOUS",
+      "provenance_note": "Pension rate is revised at state budget time; the eligibility criteria below are stable.",
+      "rules": [
+        {
+          "id": "widow.is-widow",
+          "field": "is_widow",
+          "op": "true",
+          "text": "Applicant is a widow",
+          "hard": true,
+          "weight": 3.0
+        },
+        {
+          "id": "widow.age",
+          "field": "age",
+          "op": "gte",
+          "value": 18,
+          "text": "Age 18 years or above",
+          "hard": true,
+          "weight": 1.0
+        },
+        {
+          "id": "widow.state",
+          "field": "state",
+          "op": "in",
+          "value": [
+            "telangana",
+            "ts"
+          ],
+          "text": "Resident of Telangana",
+          "hard": true,
+          "weight": 2.0
+        },
+        {
+          "id": "widow.income",
+          "field": "income_band",
+          "op": "in",
+          "value": [
+            "bpl",
+            "low"
+          ],
+          "text": "Low-income household",
+          "hard": true,
+          "weight": 1.5
+        },
+        {
+          "id": "widow.no-other-pension",
+          "field": "receives_other_pension",
+          "op": "false",
+          "text": "Not already receiving another government pension",
+          "hard": true,
+          "weight": 1.0
+        },
+        {
+          "id": "widow.bank",
+          "field": "has_bank_account",
+          "op": "true",
+          "text": "Bank account for DBT credit",
+          "hard": true,
+          "weight": 1.0
+        }
+      ],
+      "documents": [
+        {
+          "id": "death_certificate",
+          "label": "Spouse's death certificate",
+          "mandatory": true,
+          "how_to_get": "MeeSeva or the municipal registrar."
+        },
+        {
+          "id": "age_proof",
+          "label": "Age proof",
+          "mandatory": true
+        },
+        {
+          "id": "ration_card",
+          "label": "Ration card",
+          "mandatory": true
+        },
+        {
+          "id": "bank_passbook",
+          "label": "Bank passbook (DBT-enabled)",
+          "mandatory": true
+        }
+      ]
+    },
+    {
+      "id": "ts-aasara-disability",
+      "name": "Telangana Aasara Pension - Persons with Disability",
+      "name_local": {
+        "hi": "तेलंगाना आसारा पेंशन - दिव्यांगजन",
+        "te": "తెలంగాణ ఆసరా పెన్షన్ - దివ్యాంగులు"
+      },
+      "level": "state",
+      "category": "pension",
+      "summary": "Higher-rate monthly pension for persons with disability in Telangana, plus a free bus pass and other concessions, credited by DBT.",
+      "benefit": "Monthly disability pension (a higher rate than the old-age rate) credited by DBT",
+      "benefit_value_inr": 36192,
+      "apply_url": "https://pension.telangana.gov.in/",
+      "portal_name": "Telangana Aasara pensions portal / SADAREM / MRO office",
+      "apply_steps": [
+        "Get the SADAREM disability assessment done (district SADAREM camp or hospital).",
+        "Apply at the Gram Panchayat / MRO office with the SADAREM certificate and bank passbook.",
+        "Ask about the free travel pass and any assistive-device scheme at the same office.",
+        "After sanction, the pension is credited monthly by DBT."
+      ],
+      "deadline": {
+        "type": "rolling",
+        "note": "Open through the year; SADAREM camps are held district-wise."
+      },
+      "verified_on": "2026-11-05",
+      "source_url": "https://pension.telangana.gov.in/",
+      "source_name": "Telangana Aasara pensions portal (disability category)",
+      "tags": [
+        "pension",
+        "disability",
+        "telangana"
+      ],
+      "provenance": "AMBIGUOUS",
+      "provenance_note": "Disability pension rate is revised at state budget time - re-verify before quoting the amount.",
+      "rules": [
+        {
+          "id": "disability.percent",
+          "field": "disability_percent",
+          "op": "gte",
+          "value": 40,
+          "text": "Disability assessed at 40% or more (SADAREM)",
+          "hard": true,
+          "weight": 3.0,
+          "source_note": "SADAREM certificate is the proof"
+        },
+        {
+          "id": "disability.age",
+          "field": "age",
+          "op": "gte",
+          "value": 18,
+          "text": "Age 18 years or above",
+          "hard": true,
+          "weight": 1.0
+        },
+        {
+          "id": "disability.state",
+          "field": "state",
+          "op": "in",
+          "value": [
+            "telangana",
+            "ts"
+          ],
+          "text": "Resident of Telangana",
+          "hard": true,
+          "weight": 2.0
+        },
+        {
+          "id": "disability.income",
+          "field": "income_band",
+          "op": "in",
+          "value": [
+            "bpl",
+            "low"
+          ],
+          "text": "Low-income household",
+          "hard": true,
+          "weight": 1.5
+        },
+        {
+          "id": "disability.bank",
+          "field": "has_bank_account",
+          "op": "true",
+          "text": "Bank account for DBT credit",
+          "hard": true,
+          "weight": 1.0
+        }
+      ],
+      "documents": [
+        {
+          "id": "sadarem_certificate",
+          "label": "SADAREM disability certificate",
+          "mandatory": true,
+          "how_to_get": "Attend a SADAREM assessment camp at the district hospital."
+        },
+        {
+          "id": "age_proof",
+          "label": "Age proof",
+          "mandatory": true
+        },
+        {
+          "id": "ration_card",
+          "label": "Ration card",
+          "mandatory": true
+        },
+        {
+          "id": "bank_passbook",
+          "label": "Bank passbook (DBT-enabled)",
+          "mandatory": true
+        }
+      ]
+    },
+    {
+      "id": "ts-kalyana-lakshmi",
+      "name": "Kalyana Lakshmi / Shaadi Mubarak marriage assistance",
+      "name_local": {
+        "hi": "कल्याण लक्ष्मी विवाह सहायता",
+        "te": "కళ్యాణ లక్ష్మి వివాహ సహాయం"
+      },
+      "level": "state",
+      "category": "marriage",
+      "summary": "One-time financial assistance for the marriage of a bride from a poor household in Telangana, paid to the bride's bank account through the ePASS portal.",
+      "benefit": "One-time assistance of about Rs 1,00,116 for the bride of an eligible household",
+      "benefit_value_inr": 100116,
+      "apply_url": "https://telanganaepass.cgg.gov.in/",
+      "portal_name": "Telangana ePASS (Kalyana Lakshmi / Shaadi Mubarak)",
+      "apply_steps": [
+        "Register on the ePASS portal under Kalyana Lakshmi before or around the marriage date.",
+        "Attach the bride's age proof, caste and income certificates, the wedding invitation card and the bride's bank passbook.",
+        "The application goes to the district welfare officer for verification.",
+        "The sanctioned amount is credited to the bride's own bank account - so open or link her account first.",
+        "Apply early: late applications need special approval and are often rejected."
+      ],
+      "deadline": {
+        "type": "one_time",
+        "note": "Apply before the wedding date; submissions after the marriage are usually rejected unless the district officer allows a late case."
+      },
+      "verified_on": "2026-11-16",
+      "source_url": "https://telanganaepass.cgg.gov.in/",
+      "source_name": "Telangana ePASS - Kalyana Lakshmi / Shaadi Mubarak",
+      "tags": [
+        "marriage",
+        "women",
+        "telangana",
+        "one_time"
+      ],
+      "provenance": "EXTRACTED",
+      "rules": [
+        {
+          "id": "kalyana.bride",
+          "field": "gender",
+          "op": "in",
+          "value": [
+            "female"
+          ],
+          "text": "Assistance is for the bride",
+          "hard": true,
+          "weight": 2.0
+        },
+        {
+          "id": "kalyana.age",
+          "field": "age",
+          "op": "gte",
+          "value": 18,
+          "text": "Bride is 18 years or above (legal marriage age)",
+          "hard": true,
+          "weight": 2.5
+        },
+        {
+          "id": "kalyana.unmarried",
+          "field": "marital_status",
+          "op": "in",
+          "value": [
+            "single"
+          ],
+          "text": "First marriage - not already married",
+          "hard": true,
+          "weight": 2.0
+        },
+        {
+          "id": "kalyana.planned",
+          "field": "marriage_planned",
+          "op": "true",
+          "text": "A marriage is being planned now (apply before the wedding)",
+          "hard": false,
+          "weight": 1.5
+        },
+        {
+          "id": "kalyana.state",
+          "field": "state",
+          "op": "in",
+          "value": [
+            "telangana",
+            "ts"
+          ],
+          "text": "Bride's family resides in Telangana",
+          "hard": true,
+          "weight": 2.0
+        },
+        {
+          "id": "kalyana.income",
+          "field": "income_band",
+          "op": "in",
+          "value": [
+            "bpl",
+            "low"
+          ],
+          "text": "Household income within the scheme limit",
+          "hard": true,
+          "weight": 1.5
+        },
+        {
+          "id": "kalyana.income-cert",
+          "field": "annual_income_inr",
+          "op": "lt",
+          "value": 200000,
+          "text": "White ration card / BPL household, or income proof within the limit",
+          "hard": false,
+          "weight": 1.0
+        }
+      ],
+      "documents": [
+        {
+          "id": "age_proof",
+          "label": "Bride's age proof (SSC certificate / Aadhaar / voter ID)",
+          "mandatory": true
+        },
+        {
+          "id": "wedding_invitation",
+          "label": "Wedding invitation card or the marriage registration proof",
+          "mandatory": true
+        },
+        {
+          "id": "income_certificate",
+          "label": "Family income certificate or white ration card",
+          "mandatory": true
+        },
+        {
+          "id": "caste_certificate",
+          "label": "Caste certificate (for SC/ST/BC/Minority categories)",
+          "mandatory": false
+        },
+        {
+          "id": "bank_passbook",
+          "label": "Bank passbook in the bride's own name",
+          "mandatory": true
+        }
+      ]
+    },
+    {
+      "id": "ts-rythu-bharosa",
+      "name": "Rythu Bharosa investment support (Telangana)",
+      "name_local": {
+        "hi": "रायथु भरोसा निवेश सहायता",
+        "te": "రైతు భరోసా పెట్టుబడి సహాయం"
+      },
+      "level": "state",
+      "category": "farmer_income",
+      "summary": "Season-wise investment support paid by the Telangana government to farmer families for every acre they cultivate, credited directly before the sowing season.",
+      "benefit": "Season-wise per-acre investment support for cultivated land (rate set by the state order)",
+      "benefit_value_inr": 20000,
+      "apply_url": "https://rythubandhu.telangana.gov.in/",
+      "portal_name": "Telangana agriculture portal / Agriculture Extension Officer (AEO)",
+      "apply_steps": [
+        "Ensure your land details in Dharani match the land you actually cultivate.",
+        "Check the passbook entry / bank statement after the season's release.",
+        "If the amount has not arrived, contact your village Agriculture Extension Officer with the Pahani copy.",
+        "For leased-in land, keep the lease agreement ready - it is needed to update the record.",
+        "Update any change of bank account or Aadhaar seeding before the season cut-off."
+      ],
+      "deadline": {
+        "type": "window",
+        "opens_month_day": "05-01",
+        "month_day": "07-31",
+        "note": "Two windows a year, ahead of the kharif and rabi seasons."
+      },
+      "verified_on": "2026-11-10",
+      "source_url": "https://rythubandhu.telangana.gov.in/",
+      "source_name": "Telangana Rythu Bharosa / agriculture department",
+      "tags": [
+        "farmer",
+        "income_support",
+        "telangana"
+      ],
+      "provenance": "AMBIGUOUS",
+      "provenance_note": "The per-acre rate and the scheme name have changed across state orders; the land and residency rules are stable but the rate must be re-checked.",
+      "rules": [
+        {
+          "id": "rb.state",
+          "field": "state",
+          "op": "in",
+          "value": [
+            "telangana",
+            "ts"
+          ],
+          "text": "Farmer family is in Telangana",
+          "hard": true,
+          "weight": 2.5
+        },
+        {
+          "id": "rb.land",
+          "field": "land_acres",
+          "op": "gt",
+          "value": 0,
+          "text": "Cultivates land (owner or recorded lease)",
+          "hard": true,
+          "weight": 2.5
+        },
+        {
+          "id": "rb.occupation",
+          "field": "occupation",
+          "op": "in",
+          "value": [
+            "farmer",
+            "farm_labour"
+          ],
+          "text": "Occupation is farming",
+          "hard": true,
+          "weight": 1.0
+        },
+        {
+          "id": "rb.bank",
+          "field": "has_bank_account",
+          "op": "true",
+          "text": "Bank account for the DBT credit",
+          "hard": true,
+          "weight": 1.0
+        },
+        {
+          "id": "rb.no-incometax",
+          "field": "income_tax_payer",
+          "op": "false",
+          "text": "Not an income-tax paying household (exclusion rule)",
+          "hard": false,
+          "weight": 1.0
+        }
+      ],
+      "documents": [
+        {
+          "id": "land_record",
+          "label": "Pahani / land record from Dharani",
+          "mandatory": true,
+          "how_to_get": "dharani.telangana.gov.in."
+        },
+        {
+          "id": "bank_passbook",
+          "label": "Bank passbook showing the DBT credit",
+          "mandatory": true
+        },
+        {
+          "id": "aadhaar_masked",
+          "label": "Aadhaar (masked) linked to the bank account",
+          "mandatory": true
+        },
+        {
+          "id": "lease_agreement",
+          "label": "Lease agreement (only if you cultivate leased-in land)",
+          "mandatory": false
+        }
+      ]
+    },
+    {
+      "id": "arogyasri-te",
+      "name": "Telangana Aarogyasri health scheme",
+      "name_local": {
+        "hi": "तेलंगाना आरोग्यश्री स्वास्थ्य योजना",
+        "te": "తెలంగాణ ఆరోగ్యశ్రీ పథకం"
+      },
+      "level": "state",
+      "category": "health",
+      "summary": "Cashless treatment for listed diseases and surgeries at network hospitals for white ration card families of Telangana, beyond the PM-JAY cover.",
+      "benefit": "Cashless treatment up to the scheme limit per family per year at network hospitals",
+      "benefit_value_inr": 1000000,
+      "apply_url": "https://aarogyasri.telangana.gov.in/",
+      "portal_name": "Telangana Aarogyasri Health Care Trust",
+      "apply_steps": [
+        "Carry the white ration card and the Aarogyasri / Ayushman card to the hospital.",
+        "At the hospital, go to the Aarogyasri help desk before admission to get pre-authorisation.",
+        "For a listed procedure the hospital files the claim - you pay nothing if it is covered.",
+        "Keep the discharge summary and the sanction slip for follow-up treatment.",
+        "If the hospital refuses, call the Aarogyasri helpline number printed on the card."
+      ],
+      "deadline": {
+        "type": "rolling",
+        "note": "No deadline - cover is available through the year at network hospitals."
+      },
+      "verified_on": "2026-11-14",
+      "source_url": "https://aarogyasri.telangana.gov.in/",
+      "source_name": "Telangana Aarogyasri Health Care Trust",
+      "tags": [
+        "health",
+        "hospital",
+        "telangana"
+      ],
+      "provenance": "EXTRACTED",
+      "rules": [
+        {
+          "id": "aarogyasri.state",
+          "field": "state",
+          "op": "in",
+          "value": [
+            "telangana",
+            "ts"
+          ],
+          "text": "Family is a resident of Telangana",
+          "hard": true,
+          "weight": 2.5
+        },
+        {
+          "id": "aarogyasri.ration",
+          "field": "has_ration_card",
+          "op": "true",
+          "text": "Holds a ration card (white / low-income card is required)",
+          "hard": true,
+          "weight": 2.0
+        },
+        {
+          "id": "aarogyasri.income",
+          "field": "income_band",
+          "op": "in",
+          "value": [
+            "bpl",
+            "low"
+          ],
+          "text": "Low-income household",
+          "hard": true,
+          "weight": 1.5
+        },
+        {
+          "id": "aarogyasri.family-size",
+          "field": "family_size",
+          "op": "gte",
+          "value": 1,
+          "text": "Cover applies to the whole family",
+          "hard": false,
+          "weight": 0.5
+        }
+      ],
+      "documents": [
+        {
+          "id": "ration_card",
+          "label": "White ration card",
+          "mandatory": true
+        },
+        {
+          "id": "aarogyasri_card",
+          "label": "Aarogyasri / Ayushman card",
+          "mandatory": true,
+          "how_to_get": "Generate at the nearest Aarogyasri office or MeeSeva with the ration card."
+        },
+        {
+          "id": "hospital_referral",
+          "label": "Doctor's referral or investigation reports",
+          "mandatory": false
+        }
+      ]
+    },
+    {
+      "id": "pmfby",
+      "name": "Pradhan Mantri Fasal Bima Yojana (crop insurance)",
+      "name_local": {
+        "hi": "प्रधानमंत्री फसल बीमा योजना",
+        "te": "ప్రధానమంత్రి ఫసల్ బీమా యోజన"
+      },
+      "level": "central",
+      "category": "crop_insurance",
+      "summary": "Low-premium crop insurance for farmers: if the crop fails because of drought, flood, pests or unseasonal rain, the claim is paid to the bank account.",
+      "benefit": "Sum insured based on the crop and area; farmer pays only 1.5-2% of the premium",
+      "benefit_value_inr": 30000,
+      "apply_url": "https://pmfby.gov.in/",
+      "portal_name": "PMFBY portal / bank, CSC or Agriculture Extension Officer",
+      "apply_steps": [
+        "Sow the crop first - enrolment is allowed only before the notified cut-off date.",
+        "Enrol at the bank where the crop loan is taken, or at a CSC, or on pmfby.gov.in.",
+        "Keep the sowing certificate and land record (Pahani) handy.",
+        "For loanee farmers the bank enrols you automatically - check the premium debit.",
+        "If the crop is damaged, inform the bank / agriculture office within 72 hours and keep photographs."
+      ],
+      "deadline": {
+        "type": "window",
+        "opens_month_day": "06-01",
+        "month_day": "07-31",
+        "note": "Separate cut-off dates for kharif and rabi seasons are notified each year."
+      },
+      "verified_on": "2026-11-11",
+      "source_url": "https://pmfby.gov.in/",
+      "source_name": "PMFBY official portal (Ministry of Agriculture)",
+      "tags": [
+        "farmer",
+        "insurance",
+        "crop",
+        "central"
+      ],
+      "provenance": "EXTRACTED",
+      "rules": [
+        {
+          "id": "pmfby.land",
+          "field": "land_acres",
+          "op": "gt",
+          "value": 0,
+          "text": "Cultivates a notified crop (owner, tenant or sharecropper)",
+          "hard": true,
+          "weight": 2.5
+        },
+        {
+          "id": "pmfby.occupation",
+          "field": "occupation",
+          "op": "in",
+          "value": [
+            "farmer",
+            "farm_labour"
+          ],
+          "text": "Occupation is farming",
+          "hard": true,
+          "weight": 1.5
+        },
+        {
+          "id": "pmfby.rural",
+          "field": "is_rural",
+          "op": "true",
+          "text": "Farming household in a rural area",
+          "hard": false,
+          "weight": 0.5
+        },
+        {
+          "id": "pmfby.bank",
+          "field": "has_bank_account",
+          "op": "true",
+          "text": "Bank account for claim settlement",
+          "hard": true,
+          "weight": 1.0
+        }
+      ],
+      "documents": [
+        {
+          "id": "land_record",
+          "label": "Land record - Pahani / RoR",
+          "mandatory": true
+        },
+        {
+          "id": "sowing_certificate",
+          "label": "Sowing certificate from the village agriculture officer",
+          "mandatory": true
+        },
+        {
+          "id": "bank_passbook",
+          "label": "Bank passbook linked for the claim",
+          "mandatory": true
+        },
+        {
+          "id": "crop_loan",
+          "label": "Crop loan / KCC papers (if enrolled through the bank)",
+          "mandatory": false
+        }
+      ]
+    },
+    {
+      "id": "pmayg",
+      "name": "Pradhan Mantri Awaas Yojana - Gramin (rural housing)",
+      "name_local": {
+        "hi": "प्रधानमंत्री आवास योजना - ग्रामीण",
+        "te": "ప్రధానమంత్రి ఆవాస్ యోజన - గ్రామీణ"
+      },
+      "level": "central",
+      "category": "housing",
+      "summary": "Financial help in instalments to build a pucca house for rural households that have no house or only a kucha house, with toilet and water connection support.",
+      "benefit": "Assistance of about Rs 1.2 lakh in instalments (plus toilet and MGNREGA wage support)",
+      "benefit_value_inr": 120000,
+      "apply_url": "https://pmayg.nic.in/",
+      "portal_name": "AwaasSoft / Gram Panchayat",
+      "apply_steps": [
+        "Check the permanent wait list in AwaasSoft at your Gram Panchayat - priority is by deprivation score.",
+        "Give the bank account, Aadhaar-seeded details and the job card number to the Gram Panchayat.",
+        "The house is geo-tagged in stages; each stage releases the next instalment.",
+        "Photographs at plinth, lintel and roof level are mandatory for instalments.",
+        "Do the work through MGNREGA (mate/bill system) to also earn wage support."
+      ],
+      "deadline": {
+        "type": "rolling",
+        "note": "Selection is from the permanent wait list; the list is reviewed each year."
+      },
+      "verified_on": "2026-11-02",
+      "source_url": "https://pmayg.nic.in/",
+      "source_name": "PMAY-Gramin official portal",
+      "tags": [
+        "housing",
+        "rural",
+        "central"
+      ],
+      "provenance": "EXTRACTED",
+      "rules": [
+        {
+          "id": "pmayg.rural",
+          "field": "is_rural",
+          "op": "true",
+          "text": "Rural household",
+          "hard": true,
+          "weight": 2.0
+        },
+        {
+          "id": "pmayg.no-house",
+          "field": "has_pucca_house",
+          "op": "false",
+          "text": "Does not already own a pucca house",
+          "hard": true,
+          "weight": 3.0
+        },
+        {
+          "id": "pmayg.income",
+          "field": "income_band",
+          "op": "in",
+          "value": [
+            "bpl",
+            "low"
+          ],
+          "text": "Low-income / deprived household",
+          "hard": true,
+          "weight": 2.0
+        },
+        {
+          "id": "pmayg.house-type",
+          "field": "house_type",
+          "op": "in",
+          "value": [
+            "homeless",
+            "kucha",
+            "rented"
+          ],
+          "text": "Currently homeless, in a kucha house or renting",
+          "hard": false,
+          "weight": 1.5
+        },
+        {
+          "id": "pmayg.bank",
+          "field": "has_bank_account",
+          "op": "true",
+          "text": "Bank account for the instalments",
+          "hard": true,
+          "weight": 1.0
+        }
+      ],
+      "documents": [
+        {
+          "id": "job_card",
+          "label": "MGNREGA job card",
+          "mandatory": true
+        },
+        {
+          "id": "bank_passbook",
+          "label": "Bank passbook (Aadhaar-seeded)",
+          "mandatory": true
+        },
+        {
+          "id": "ration_card",
+          "label": "Ration card / SECC deprivation proof",
+          "mandatory": true
+        }
+      ]
+    },
+    {
+      "id": "ts-2bhk",
+      "name": "Telangana Double Bedroom Housing (2BHK)",
+      "name_local": {
+        "hi": "तेलंगाना दो बेडरूम आवास",
+        "te": "తెలంగాణ డబుల్ బెడ్‌రూమ్ ఇళ్లు"
+      },
+      "level": "state",
+      "category": "housing",
+      "summary": "Free 2BHK flats in multi-storey colonies for poor and homeless families of Telangana, allotted by the housing department through a draw.",
+      "benefit": "A free 2BHK flat (about 560 sq ft) in a government housing colony",
+      "benefit_value_inr": 800000,
+      "apply_url": "https://housing.telangana.gov.in/",
+      "portal_name": "Telangana Housing Department / MeeSeva",
+      "apply_steps": [
+        "Watch for the notification in your municipality or Gram Panchayat.",
+        "Apply with the ration card and income proof - a beneficiary survey is also conducted.",
+        "Attach the Aadhaar-seeded bank details and the existing house photo (if any).",
+        "Selection is by lottery / draw; the list is published and displayed locally.",
+        "After allotment the flat is registered in the beneficiary's name after a 10-year lock-in."
+      ],
+      "deadline": {
+        "type": "window",
+        "opens_month_day": "01-15",
+        "month_day": "03-31",
+        "note": "Allotments follow state notifications; watch the housing department site."
+      },
+      "verified_on": "2026-11-06",
+      "source_url": "https://housing.telangana.gov.in/",
+      "source_name": "Telangana Housing Department",
+      "tags": [
+        "housing",
+        "telangana",
+        "urban"
+      ],
+      "provenance": "INFERRED",
+      "provenance_note": "Eligibility conditions are derived from state housing department notifications; the notification wording changes per phase.",
+      "rules": [
+        {
+          "id": "ts2bhk.state",
+          "field": "state",
+          "op": "in",
+          "value": [
+            "telangana",
+            "ts"
+          ],
+          "text": "Resident of Telangana",
+          "hard": true,
+          "weight": 2.5
+        },
+        {
+          "id": "ts2bhk.no-house",
+          "field": "has_pucca_house",
+          "op": "false",
+          "text": "Does not own a pucca house",
+          "hard": true,
+          "weight": 3.0
+        },
+        {
+          "id": "ts2bhk.income",
+          "field": "income_band",
+          "op": "in",
+          "value": [
+            "bpl",
+            "low"
+          ],
+          "text": "Poor / low-income household",
+          "hard": true,
+          "weight": 2.0
+        },
+        {
+          "id": "ts2bhk.house-type",
+          "field": "house_type",
+          "op": "in",
+          "value": [
+            "homeless",
+            "kucha",
+            "rented"
+          ],
+          "text": "Homeless, in a kucha house or renting",
+          "hard": false,
+          "weight": 1.5
+        },
+        {
+          "id": "ts2bhk.ration",
+          "field": "has_ration_card",
+          "op": "true",
+          "text": "Ration card in the family",
+          "hard": true,
+          "weight": 1.0
+        }
+      ],
+      "documents": [
+        {
+          "id": "ration_card",
+          "label": "Ration card",
+          "mandatory": true
+        },
+        {
+          "id": "income_certificate",
+          "label": "Income certificate",
+          "mandatory": true
+        },
+        {
+          "id": "bank_passbook",
+          "label": "Bank passbook (Aadhaar-seeded)",
+          "mandatory": true
+        },
+        {
+          "id": "residence_proof",
+          "label": "Residence proof of the ward / village",
+          "mandatory": true
+        }
+      ]
+    },
+    {
+      "id": "nsap-ignoaps",
+      "name": "Indira Gandhi National Old Age Pension (NSAP)",
+      "name_local": {
+        "hi": "इंदिरा गांधी राष्ट्रीय वृद्धावस्था पेंशन",
+        "te": "ఇందిరా గాంధీ జాతీయ వృద్ధాప్య పెన్షన్"
+      },
+      "level": "central",
+      "category": "pension",
+      "summary": "Central monthly pension for BPL persons aged 60 and above, in addition to any state top-up, credited to the bank account.",
+      "benefit": "Central share of the monthly old-age pension, plus the state government's top-up",
+      "benefit_value_inr": 24000,
+      "apply_url": "https://nsap.nic.in/",
+      "portal_name": "NSAP portal / Gram Panchayat, MRO or MeeSeva centre",
+      "apply_steps": [
+        "Apply at the Gram Panchayat / MRO office or through the state pensions portal.",
+        "Attach the age proof, BPL / ration card proof and bank passbook.",
+        "The state then uploads the sanction to the NSAP portal.",
+        "If the pension stops, ask for the annual life certificate / Aadhaar re-verification."
+      ],
+      "deadline": {
+        "type": "rolling",
+        "note": "Applications are received through the year and sanctioned monthly."
+      },
+      "verified_on": "2026-10-28",
+      "source_url": "https://nsap.nic.in/",
+      "source_name": "National Social Assistance Programme portal",
+      "tags": [
+        "pension",
+        "senior_citizen",
+        "central",
+        "bpl"
+      ],
+      "provenance": "EXTRACTED",
+      "rules": [
+        {
+          "id": "ignoaps.age",
+          "field": "age",
+          "op": "gte",
+          "value": 60,
+          "text": "Age 60 years or above",
+          "hard": true,
+          "weight": 3.0
+        },
+        {
+          "id": "ignoaps.bpl",
+          "field": "income_band",
+          "op": "in",
+          "value": [
+            "bpl",
+            "low"
+          ],
+          "text": "Household below the poverty line",
+          "hard": true,
+          "weight": 2.0
+        },
+        {
+          "id": "ignoaps.no-other-pension",
+          "field": "receives_other_pension",
+          "op": "false",
+          "text": "Not already drawing another government pension for the same purpose",
+          "hard": true,
+          "weight": 1.5
+        },
+        {
+          "id": "ignoaps.ration",
+          "field": "has_ration_card",
+          "op": "true",
+          "text": "BPL / ration card proof",
+          "hard": false,
+          "weight": 1.0
+        },
+        {
+          "id": "ignoaps.bank",
+          "field": "has_bank_account",
+          "op": "true",
+          "text": "Bank or post-office account for DBT",
+          "hard": true,
+          "weight": 1.0
+        }
+      ],
+      "documents": [
+        {
+          "id": "age_proof",
+          "label": "Age proof",
+          "mandatory": true
+        },
+        {
+          "id": "bpl_proof",
+          "label": "BPL / white ration card",
+          "mandatory": true
+        },
+        {
+          "id": "bank_passbook",
+          "label": "Bank passbook",
+          "mandatory": true
+        }
+      ]
+    },
+    {
+      "id": "ssy",
+      "name": "Sukanya Samriddhi Yojana (girl child savings)",
+      "name_local": {
+        "hi": "सुकन्या समृद्धि योजना",
+        "te": "సుకన్య సమృద్ధి యోజన"
+      },
+      "level": "central",
+      "category": "savings",
+      "summary": "Small-savings account for a girl child below 10 years, with the highest government-set interest rate and tax-free maturity for her education or marriage.",
+      "benefit": "Government-backed savings account at the notified rate (currently the best small-savings rate) for 21 years",
+      "benefit_value_inr": 50000,
+      "apply_url": "https://www.indiapost.gov.in/",
+      "portal_name": "Any post office or authorised bank branch",
+      "apply_steps": [
+        "Visit a post office or bank branch with the girl's birth certificate.",
+        "Fill the account-opening form and deposit the minimum amount (Rs 250).",
+        "Attach the guardian's identity and address proof.",
+        "Deposit every year - the maximum is Rs 1.5 lakh per year.",
+        "Partial withdrawal is allowed for higher education after she turns 18."
+      ],
+      "deadline": {
+        "type": "rolling",
+        "note": "Open any time before the girl turns 10."
+      },
+      "verified_on": "2026-10-22",
+      "source_url": "https://www.indiapost.gov.in/Financial/Pages/Content/Post-Office-Saving-Schemes.aspx",
+      "source_name": "India Post - small savings schemes",
+      "tags": [
+        "savings",
+        "girl_child",
+        "central"
+      ],
+      "provenance": "EXTRACTED",
+      "rules": [
+        {
+          "id": "ssy.girl-child",
+          "field": "children_girl_under10",
+          "op": "gte",
+          "value": 1,
+          "text": "A daughter below 10 years in the family",
+          "hard": true,
+          "weight": 3.0
+        },
+        {
+          "id": "ssy.bank",
+          "field": "has_bank_account",
+          "op": "true",
+          "text": "An account in the child's or guardian's name to manage it",
+          "hard": false,
+          "weight": 0.5
+        },
+        {
+          "id": "ssy.income",
+          "field": "income_band",
+          "op": "in",
+          "value": [
+            "bpl",
+            "low",
+            "middle"
+          ],
+          "text": "Most useful for households that can save a little each year",
+          "hard": false,
+          "weight": 0.5
+        }
+      ],
+      "documents": [
+        {
+          "id": "birth_certificate",
+          "label": "Girl's birth certificate",
+          "mandatory": true
+        },
+        {
+          "id": "guardian_id",
+          "label": "Guardian's Aadhaar (masked) or voter ID",
+          "mandatory": true
+        },
+        {
+          "id": "photo",
+          "label": "Passport-size photographs",
+          "mandatory": true
+        }
+      ]
+    },
+    {
+      "id": "pmuy",
+      "name": "Pradhan Mantri Ujjwala Yojana (free LPG connection)",
+      "name_local": {
+        "hi": "प्रधानमंत्री उज्ज्वला योजना",
+        "te": "ప్రధానమంత్రి ఉజ్జ్వల యోజన"
+      },
+      "level": "central",
+      "category": "energy",
+      "summary": "A free LPG gas connection with the first refill and stove subsidy for women from poor households, so cooking does not happen on firewood.",
+      "benefit": "Free LPG connection: deposit waived, first refill and stove included",
+      "benefit_value_inr": 3200,
+      "apply_url": "https://www.pmuy.gov.in/",
+      "portal_name": "PMUY portal / nearest LPG distributor",
+      "apply_steps": [
+        "Go to the nearest Indane / HP / Bharat gas distributor with the ration card and identity proof.",
+        "Fill the Ujjwala form - the deposit is waived under the scheme.",
+        "Give the bank account details for the refill subsidy.",
+        "Collect the connection and complete the KYC for a second cylinder if needed."
+      ],
+      "deadline": {
+        "type": "rolling",
+        "note": "Open through the year at any LPG distributor."
+      },
+      "verified_on": "2026-10-18",
+      "source_url": "https://www.pmuy.gov.in/",
+      "source_name": "PMUY official portal",
+      "tags": [
+        "energy",
+        "lpg",
+        "women",
+        "central"
+      ],
+      "provenance": "EXTRACTED",
+      "rules": [
+        {
+          "id": "pmuy.no-lpg",
+          "field": "has_lpg_connection",
+          "op": "false",
+          "text": "Household does not already have an LPG connection",
+          "hard": true,
+          "weight": 3.0
+        },
+        {
+          "id": "pmuy.income",
+          "field": "income_band",
+          "op": "in",
+          "value": [
+            "bpl",
+            "low"
+          ],
+          "text": "Poor household (BPL / SECC list)",
+          "hard": true,
+          "weight": 2.0
+        },
+        {
+          "id": "pmuy.woman",
+          "field": "gender",
+          "op": "in",
+          "value": [
+            "female"
+          ],
+          "text": "Connection is issued in a woman's name",
+          "hard": false,
+          "weight": 1.5
+        },
+        {
+          "id": "pmuy.ration",
+          "field": "has_ration_card",
+          "op": "true",
+          "text": "Ration card / family identity",
+          "hard": false,
+          "weight": 1.0
+        }
+      ],
+      "documents": [
+        {
+          "id": "ration_card",
+          "label": "Ration card or family identity proof",
+          "mandatory": true
+        },
+        {
+          "id": "aadhaar_masked",
+          "label": "Aadhaar (masked) of the woman applicant",
+          "mandatory": true
+        },
+        {
+          "id": "bank_passbook",
+          "label": "Bank passbook for the subsidy",
+          "mandatory": true
+        }
+      ]
+    },
+    {
+      "id": "mudra-shishu",
+      "name": "Pradhan Mantri MUDRA Yojana - Shishu loan",
+      "name_local": {
+        "hi": "प्रधानमंत्री मुद्रा योजना",
+        "te": "ప్రధానమంత్రి ముద్రా యోజన"
+      },
+      "level": "central",
+      "category": "credit",
+      "summary": "Collateral-free bank loan up to Rs 50,000 for a small shop, tailoring unit, food cart or any micro-enterprise, with no processing fee in the Shishu category.",
+      "benefit": "Loan up to Rs 50,000 (Shishu) with no collateral; larger Kisht and Tarun categories available",
+      "benefit_value_inr": 50000,
+      "apply_url": "https://www.mudra.org.in/",
+      "portal_name": "Any bank / RRB / MFI branch, or the Jan Samarth portal",
+      "apply_steps": [
+        "Decide the business and write a one-page rough plan (what you buy, what you sell, expected daily sales).",
+        "Approach your bank or an MFI with the MUDRA application form.",
+        "Give identity, address and the quotation for machinery / stock.",
+        "For Shishu no collateral is needed - do not pay any agent.",
+        "Repay on time: on-time repayment makes the next, bigger loan easier."
+      ],
+      "deadline": {
+        "type": "rolling",
+        "note": "Applications are accepted at any time through banks."
+      },
+      "verified_on": "2026-10-25",
+      "source_url": "https://www.mudra.org.in/",
+      "source_name": "MUDRA official portal",
+      "tags": [
+        "loan",
+        "business",
+        "micro_enterprise",
+        "central"
+      ],
+      "provenance": "EXTRACTED",
+      "rules": [
+        {
+          "id": "mudra.wants-loan",
+          "field": "wants_loan",
+          "op": "true",
+          "text": "Looking for a loan for a business or shop",
+          "hard": true,
+          "weight": 3.0
+        },
+        {
+          "id": "mudra.income",
+          "field": "income_band",
+          "op": "in",
+          "value": [
+            "bpl",
+            "low",
+            "middle"
+          ],
+          "text": "Targets micro and small borrowers",
+          "hard": false,
+          "weight": 1.0
+        },
+        {
+          "id": "mudra.age",
+          "field": "age",
+          "op": "gte",
+          "value": 18,
+          "text": "Applicant is 18 or older",
+          "hard": true,
+          "weight": 1.5
+        },
+        {
+          "id": "mudra.not-default",
+          "field": "is_govt_employee",
+          "op": "false",
+          "text": "Not restricted to salaried government staff (income-generating activity required)",
+          "hard": false,
+          "weight": 0.5
+        },
+        {
+          "id": "mudra.bank",
+          "field": "has_bank_account",
+          "op": "true",
+          "text": "Bank account in the applicant's name",
+          "hard": true,
+          "weight": 1.0
+        }
+      ],
+      "documents": [
+        {
+          "id": "id_proof",
+          "label": "Identity proof (Aadhaar masked, voter ID)",
+          "mandatory": true
+        },
+        {
+          "id": "address_proof",
+          "label": "Address proof",
+          "mandatory": true
+        },
+        {
+          "id": "quotation",
+          "label": "Quotation for stock, machine or equipment",
+          "mandatory": true
+        },
+        {
+          "id": "bank_passbook",
+          "label": "Bank statement / passbook",
+          "mandatory": true
+        }
+      ]
+    },
+    {
+      "id": "pm-svanidhi",
+      "name": "PM SVANidhi - street vendor working capital loan",
+      "name_local": {
+        "hi": "पीएम स्वनिधि - रेहड़ी पटरी ऋण",
+        "te": "పీఎం స్వనిధి - వీధి వ్యాపారుల రుణం"
+      },
+      "level": "central",
+      "category": "credit",
+      "summary": "Working-capital loan of Rs 10,000 (then Rs 20,000 and Rs 50,000 on timely repayment) for street vendors, with interest subsidy and digital-transaction cashback.",
+      "benefit": "Rs 10,000 first loan, escalating to Rs 20,000 and Rs 50,000, with 7% interest subsidy",
+      "benefit_value_inr": 10000,
+      "apply_url": "https://pmsvanidhi.mohua.gov.in/",
+      "portal_name": "PM SVANidhi portal / Urban Local Body (municipal office)",
+      "apply_steps": [
+        "Get a certificate of vending or a letter of recommendation from the Urban Local Body / market association.",
+        "Apply on the PM SVANidhi portal or at your municipal office / CSC.",
+        "Choose a bank branch; the ticket number tracks the application.",
+        "Repay within the year to become eligible for the next higher loan.",
+        "Use UPI for sales to earn the monthly cash-back."
+      ],
+      "deadline": {
+        "type": "rolling",
+        "note": "Open through the year; new rounds are announced by the ministry."
+      },
+      "verified_on": "2026-10-26",
+      "source_url": "https://pmsvanidhi.mohua.gov.in/",
+      "source_name": "PM SVANidhi official portal (Ministry of Housing & Urban Affairs)",
+      "tags": [
+        "loan",
+        "street_vendor",
+        "urban",
+        "central"
+      ],
+      "provenance": "EXTRACTED",
+      "rules": [
+        {
+          "id": "svanidhi.vendor",
+          "field": "occupation",
+          "op": "in",
+          "value": [
+            "street_vendor",
+            "self_employed"
+          ],
+          "text": "Works as a street vendor / hawker",
+          "hard": true,
+          "weight": 3.0
+        },
+        {
+          "id": "svanidhi.wants-loan",
+          "field": "wants_loan",
+          "op": "true",
+          "text": "Needs working capital for the business",
+          "hard": false,
+          "weight": 1.5
+        },
+        {
+          "id": "svanidhi.age",
+          "field": "age",
+          "op": "gte",
+          "value": 18,
+          "text": "Applicant is 18 or older",
+          "hard": true,
+          "weight": 1.0
+        },
+        {
+          "id": "svanidhi.bank",
+          "field": "has_bank_account",
+          "op": "true",
+          "text": "Bank account for the loan",
+          "hard": true,
+          "weight": 1.0
+        }
+      ],
+      "documents": [
+        {
+          "id": "vending_certificate",
+          "label": "Certificate of vending / letter of recommendation",
+          "mandatory": true,
+          "how_to_get": "Apply at your municipality or the vendors' association."
+        },
+        {
+          "id": "id_proof",
+          "label": "Identity proof",
+          "mandatory": true
+        },
+        {
+          "id": "bank_passbook",
+          "label": "Bank passbook",
+          "mandatory": true
+        }
+      ]
+    },
+    {
+      "id": "eshram",
+      "name": "e-Shram registration for unorganised workers",
+      "name_local": {
+        "hi": "ई-श्रम पंजीकरण",
+        "te": "ఇ-శ్రమ నమోదు"
+      },
+      "level": "central",
+      "category": "employment",
+      "summary": "Free national registration card for unorganised and gig workers, giving accident insurance cover and a single identity used to claim several other benefits.",
+      "benefit": "e-Shram card with Rs 2 lakh accident cover and access to welfare schemes",
+      "benefit_value_inr": 200000,
+      "apply_url": "https://eshram.gov.in/",
+      "portal_name": "e-Shram portal / CSC centre",
+      "apply_steps": [
+        "Keep the Aadhaar-linked mobile number and bank passbook ready.",
+        "Register on eshram.gov.in or at a CSC (nominal fee at a CSC).",
+        "Choose your occupation and skill category honestly - it decides which schemes you can be mapped to.",
+        "Download the e-Shram card and keep a printed copy.",
+        "Update the mobile number or address if it ever changes."
+      ],
+      "deadline": {
+        "type": "rolling",
+        "note": "Registration is continuous and free on the portal."
+      },
+      "verified_on": "2026-10-20",
+      "source_url": "https://eshram.gov.in/",
+      "source_name": "e-Shram official portal (Ministry of Labour & Employment)",
+      "tags": [
+        "worker",
+        "registration",
+        "insurance",
+        "central"
+      ],
+      "provenance": "EXTRACTED",
+      "rules": [
+        {
+          "id": "eshram.unorganised",
+          "field": "is_unorganised_worker",
+          "op": "true",
+          "text": "Works in the unorganised / gig / daily-wage sector",
+          "hard": true,
+          "weight": 3.0
+        },
+        {
+          "id": "eshram.age",
+          "field": "age",
+          "op": "between",
+          "value": [
+            16,
+            59
+          ],
+          "text": "Age between 16 and 59 years",
+          "hard": true,
+          "weight": 2.0
+        },
+        {
+          "id": "eshram.not-govt",
+          "field": "is_govt_employee",
+          "op": "false",
+          "text": "Not a government employee or income-tax payer",
+          "hard": true,
+          "weight": 1.0
+        },
+        {
+          "id": "eshram.bank",
+          "field": "has_bank_account",
+          "op": "true",
+          "text": "Bank account for the insurance benefit",
+          "hard": false,
+          "weight": 0.5
+        }
+      ],
+      "documents": [
+        {
+          "id": "aadhaar_masked",
+          "label": "Aadhaar linked to a mobile number",
+          "mandatory": true
+        },
+        {
+          "id": "bank_passbook",
+          "label": "Bank passbook",
+          "mandatory": true
+        },
+        {
+          "id": "mobile",
+          "label": "Mobile number for the OTP",
+          "mandatory": true
+        }
+      ]
+    },
+    {
+      "id": "pm-vishwakarma",
+      "name": "PM Vishwakarma (artisan toolkit and loan)",
+      "name_local": {
+        "hi": "पीएम विश्वकर्मा",
+        "te": "పీఎం విశ్వకర్మ"
+      },
+      "level": "central",
+      "category": "enterprise",
+      "summary": "Skill training, Rs 15,000 toolkit grant, and collateral-free loans at 5% interest for traditional artisans and craftspeople like weavers, potters, carpenters and tailors.",
+      "benefit": "Rs 15,000 toolkit voucher + loans up to Rs 3 lakh at 5% interest + daily training stipend",
+      "benefit_value_inr": 15000,
+      "apply_url": "https://pmvishwakarma.gov.in/",
+      "portal_name": "PM Vishwakarma portal / CSC / Gram Panchayat",
+      "apply_steps": [
+        "Register on pmvishwakarma.gov.in with Aadhaar and bank details (or through a CSC).",
+        "The Gram Panchayat / Urban Local Body verifies that you actually work in the trade.",
+        "Attend the basic skill training (you get a stipend for those days).",
+        "Take the toolkit voucher, then apply for the first loan tranche.",
+        "Repay on time to unlock the second loan tranche at the same low rate."
+      ],
+      "deadline": {
+        "type": "rolling",
+        "note": "Registration and verification happen continuously."
+      },
+      "verified_on": "2026-10-29",
+      "source_url": "https://pmvishwakarma.gov.in/",
+      "source_name": "PM Vishwakarma official portal",
+      "tags": [
+        "artisan",
+        "skill",
+        "loan",
+        "central"
+      ],
+      "provenance": "EXTRACTED",
+      "rules": [
+        {
+          "id": "vishwakarma.sector",
+          "field": "sector",
+          "op": "in",
+          "value": [
+            "weaving",
+            "pottery",
+            "carpentry",
+            "tailoring"
+          ],
+          "text": "Works in one of the 18 notified family-based trades",
+          "hard": true,
+          "weight": 3.0
+        },
+        {
+          "id": "vishwakarma.occupation",
+          "field": "occupation",
+          "op": "in",
+          "value": [
+            "artisan",
+            "self_employed",
+            "daily_wage"
+          ],
+          "text": "Earns a living from the craft / trade",
+          "hard": true,
+          "weight": 2.0
+        },
+        {
+          "id": "vishwakarma.age",
+          "field": "age",
+          "op": "gte",
+          "value": 18,
+          "text": "Applicant is 18 or older",
+          "hard": true,
+          "weight": 1.0
+        },
+        {
+          "id": "vishwakarma.not-govt",
+          "field": "is_govt_employee",
+          "op": "false",
+          "text": "Not a government employee (family members also excluded)",
+          "hard": true,
+          "weight": 1.0
+        },
+        {
+          "id": "vishwakarma.bank",
+          "field": "has_bank_account",
+          "op": "true",
+          "text": "Bank account for the toolkit and loan",
+          "hard": true,
+          "weight": 1.0
+        }
+      ],
+      "documents": [
+        {
+          "id": "aadhaar_masked",
+          "label": "Aadhaar (masked)",
+          "mandatory": true
+        },
+        {
+          "id": "bank_passbook",
+          "label": "Bank passbook",
+          "mandatory": true
+        },
+        {
+          "id": "trade_proof",
+          "label": "Proof of the trade (work photos, association letter)",
+          "mandatory": false,
+          "how_to_get": "A letter from the local artisans' association usually works."
+        }
+      ]
+    },
+    {
+      "id": "pmjjby",
+      "name": "PM Jeevan Jyoti Bima Yojana (life cover)",
+      "name_local": {
+        "hi": "प्रधानमंत्री जीवन ज्योति बीमा योजना",
+        "te": "పీఎం జీవన్ జ్యోతి బీమా యోజన"
+      },
+      "level": "central",
+      "category": "insurance",
+      "summary": "Life insurance cover of Rs 2 lakh for a very small yearly premium, auto-debited from the bank account - especially important for the earning member of a daily-wage family.",
+      "benefit": "Rs 2 lakh life cover for about Rs 436 per year",
+      "benefit_value_inr": 200000,
+      "apply_url": "https://jansuraksha.gov.in/",
+      "portal_name": "Your bank branch / net banking (Jan Suraksha)",
+      "apply_steps": [
+        "Ask your bank to enrol you in PMJJBY (or give consent on the form).",
+        "Keep enough balance in the account for the yearly auto-debit.",
+        "Give the nominee's name while enrolling.",
+        "On a claim, the nominee approaches the bank with the death certificate."
+      ],
+      "deadline": {
+        "type": "rolling",
+        "note": "Enrol any time; the premium is debited once a year (usually 31 May)."
+      },
+      "verified_on": "2026-10-15",
+      "source_url": "https://jansuraksha.gov.in/",
+      "source_name": "Jan Suraksha schemes portal",
+      "tags": [
+        "insurance",
+        "life_cover",
+        "central"
+      ],
+      "provenance": "EXTRACTED",
+      "rules": [
+        {
+          "id": "pmjjby.age",
+          "field": "age",
+          "op": "between",
+          "value": [
+            18,
+            50
+          ],
+          "text": "Age between 18 and 50 years",
+          "hard": true,
+          "weight": 3.0
+        },
+        {
+          "id": "pmjjby.bank",
+          "field": "has_bank_account",
+          "op": "true",
+          "text": "Savings bank account for the auto-debit",
+          "hard": true,
+          "weight": 2.0
+        },
+        {
+          "id": "pmjjby.earning",
+          "field": "is_unorganised_worker",
+          "op": "true",
+          "text": "Most valuable for the family's earning member in informal work",
+          "hard": false,
+          "weight": 1.0
+        }
+      ],
+      "documents": [
+        {
+          "id": "bank_passbook",
+          "label": "Bank passbook",
+          "mandatory": true
+        },
+        {
+          "id": "nominee_id",
+          "label": "Nominee's identity proof",
+          "mandatory": true
+        }
+      ]
+    },
+    {
+      "id": "pmsby",
+      "name": "PM Suraksha Bima Yojana (accident cover)",
+      "name_local": {
+        "hi": "प्रधानमंत्री सुरक्षा बीमा योजना",
+        "te": "పీఎం సురక్ష బీమా యోజన"
+      },
+      "level": "central",
+      "category": "insurance",
+      "summary": "Accident insurance of Rs 2 lakh (Rs 1 lakh for partial disability) for about Rs 20 a year - the cheapest cover available to a worker who rides or works with tools.",
+      "benefit": "Rs 2 lakh accident cover for about Rs 20 per year",
+      "benefit_value_inr": 200000,
+      "apply_url": "https://jansuraksha.gov.in/",
+      "portal_name": "Your bank branch / net banking (Jan Suraksha)",
+      "apply_steps": [
+        "Opt in at your bank or through net banking.",
+        "Keep a small balance for the yearly auto-debit.",
+        "For a claim, submit the accident report / FIR and hospital papers to the bank.",
+        "Claims must be filed within 30 days of the accident."
+      ],
+      "deadline": {
+        "type": "rolling",
+        "note": "Enrol any time; the premium is debited once a year."
+      },
+      "verified_on": "2026-10-15",
+      "source_url": "https://jansuraksha.gov.in/",
+      "source_name": "Jan Suraksha schemes portal",
+      "tags": [
+        "insurance",
+        "accident",
+        "central"
+      ],
+      "provenance": "EXTRACTED",
+      "rules": [
+        {
+          "id": "pmsby.age",
+          "field": "age",
+          "op": "between",
+          "value": [
+            18,
+            70
+          ],
+          "text": "Age between 18 and 70 years",
+          "hard": true,
+          "weight": 3.0
+        },
+        {
+          "id": "pmsby.bank",
+          "field": "has_bank_account",
+          "op": "true",
+          "text": "Bank account for the auto-debit",
+          "hard": true,
+          "weight": 2.0
+        },
+        {
+          "id": "pmsby.risk",
+          "field": "occupation",
+          "op": "in",
+          "value": [
+            "daily_wage",
+            "gig_worker",
+            "farm_labour"
+          ],
+          "text": "Higher-risk daily work - cover matters most",
+          "hard": false,
+          "weight": 1.0
+        },
+        {
+          "id": "pmsby.sector-risk",
+          "field": "sector",
+          "op": "in",
+          "value": [
+            "construction",
+            "driver",
+            "agriculture",
+            "domestic_work"
+          ],
+          "text": "Works in a higher-risk trade (construction, driving, farm or domestic work)",
+          "hard": false,
+          "weight": 1.0
+        },
+        {
+          "id": "pmsby.unorganised",
+          "field": "is_unorganised_worker",
+          "op": "true",
+          "text": "Informal worker without employer-provided cover",
+          "hard": false,
+          "weight": 0.5
+        }
+      ],
+      "documents": [
+        {
+          "id": "bank_passbook",
+          "label": "Bank passbook",
+          "mandatory": true
+        },
+        {
+          "id": "nominee_id",
+          "label": "Nominee's identity proof",
+          "mandatory": true
+        }
+      ]
+    },
+    {
+      "id": "ayushman-vay-vandana",
+      "name": "Ayushman Vay Vandana card (health cover for 70+)",
+      "name_local": {
+        "hi": "आयुष्मान वय वंदना कार्ड",
+        "te": "ఆయుష్మాన్ వయ వందన కార్డు"
+      },
+      "level": "central",
+      "category": "health",
+      "summary": "Cashless hospital cover of Rs 5 lakh per year for every person aged 70 and above, regardless of income, given through a simple Ayushman card.",
+      "benefit": "Rs 5 lakh per year cashless hospital cover for each person aged 70+",
+      "benefit_value_inr": 500000,
+      "apply_url": "https://beneficiary.nha.gov.in/",
+      "portal_name": "NHA beneficiary portal / CSC / Ayushman Mitra",
+      "apply_steps": [
+        "Open beneficiary.nha.gov.in and choose the 70+ (Vay Vandana) option.",
+        "Complete e-KYC with the Aadhaar-linked mobile number (no income proof needed).",
+        "Download the Ayushman card for each eligible senior in the family.",
+        "Show the card at the hospital's Ayushman desk before admission."
+      ],
+      "deadline": {
+        "type": "rolling",
+        "note": "Card generation is open through the year."
+      },
+      "verified_on": "2026-11-14",
+      "source_url": "https://nha.gov.in/PM-JAY",
+      "source_name": "National Health Authority",
+      "tags": [
+        "health",
+        "senior_citizen",
+        "central"
+      ],
+      "provenance": "EXTRACTED",
+      "rules": [
+        {
+          "id": "vayvandana.age",
+          "field": "age",
+          "op": "gte",
+          "value": 70,
+          "text": "Age 70 years or above",
+          "hard": true,
+          "weight": 3.0
+        },
+        {
+          "id": "vayvandana.mobile",
+          "field": "has_bank_account",
+          "op": "true",
+          "text": "An Aadhaar-linked mobile or bank account helps with e-KYC",
+          "hard": false,
+          "weight": 0.5
+        },
+        {
+          "id": "vayvandana.cover",
+          "field": "has_health_insurance",
+          "op": "false",
+          "text": "Adds cover even if the family has none",
+          "hard": false,
+          "weight": 0.5
+        }
+      ],
+      "documents": [
+        {
+          "id": "aadhaar_masked",
+          "label": "Aadhaar (masked) for e-KYC",
+          "mandatory": true
+        },
+        {
+          "id": "mobile",
+          "label": "Mobile number linked to Aadhaar",
+          "mandatory": true
+        }
+      ]
+    },
+    {
+      "id": "ts-overseas-vidyanidhi",
+      "name": "Telangana Overseas Vidya Nidhi (study abroad)",
+      "name_local": {
+        "hi": "तेलंगाना विदेश विद्या निधि",
+        "te": "తెలంగాణ ఓవర్సీస్ విద్యా నిధి"
+      },
+      "level": "state",
+      "category": "education",
+      "summary": "Fee reimbursement and one-time grant for SC/ST/BC/Minority students of Telangana admitted to masters courses abroad, plus a soft loan for living expenses.",
+      "benefit": "Tuition fee reimbursement (up to the scheme ceiling) plus a one-time grant and a soft loan",
+      "benefit_value_inr": 2000000,
+      "apply_url": "https://telanganaepass.cgg.gov.in/",
+      "portal_name": "Telangana ePASS (Overseas Vidya Nidhi)",
+      "apply_steps": [
+        "Get the admission letter from a recognised foreign university first.",
+        "Apply on ePASS under Overseas Vidya Nidhi with the caste and income certificates.",
+        "Attach the passport, visa, admission letter and the fee structure.",
+        "The district selection committee verifies and ranks candidates.",
+        "Keep every original receipt - the money is released against actual fee payment."
+      ],
+      "deadline": {
+        "type": "annual",
+        "month_day": "09-30",
+        "note": "Applications are called for each academic year through ePASS."
+      },
+      "verified_on": "2026-11-16",
+      "source_url": "https://telanganaepass.cgg.gov.in/",
+      "source_name": "Telangana ePASS - Overseas Vidya Nidhi",
+      "tags": [
+        "student",
+        "overseas",
+        "telangana"
+      ],
+      "provenance": "INFERRED",
+      "provenance_note": "Ceilings and category limits change with each government order; the eligibility structure is stable but amounts must be re-verified.",
+      "rules": [
+        {
+          "id": "overseas.state",
+          "field": "state",
+          "op": "in",
+          "value": [
+            "telangana",
+            "ts"
+          ],
+          "text": "Domicile of Telangana",
+          "hard": true,
+          "weight": 2.5
+        },
+        {
+          "id": "overseas.category",
+          "field": "social_category",
+          "op": "in",
+          "value": [
+            "sc",
+            "st",
+            "bc",
+            "obc",
+            "minority"
+          ],
+          "text": "SC / ST / BC / Minority student",
+          "hard": true,
+          "weight": 2.5
+        },
+        {
+          "id": "overseas.graduate",
+          "field": "education_level",
+          "op": "in",
+          "value": [
+            "graduate"
+          ],
+          "text": "Completed a degree - applying for a masters course abroad",
+          "hard": true,
+          "weight": 2.0
+        },
+        {
+          "id": "overseas.income",
+          "field": "annual_income_inr",
+          "op": "lt",
+          "value": 500000,
+          "text": "Family income within the scheme ceiling",
+          "hard": true,
+          "weight": 1.5
+        },
+        {
+          "id": "overseas.student",
+          "field": "is_student",
+          "op": "true",
+          "text": "Currently a student / just admitted",
+          "hard": false,
+          "weight": 1.0
+        }
+      ],
+      "documents": [
+        {
+          "id": "admission_letter",
+          "label": "Foreign university admission letter",
+          "mandatory": true
+        },
+        {
+          "id": "passport",
+          "label": "Passport and visa",
+          "mandatory": true
+        },
+        {
+          "id": "caste_certificate",
+          "label": "Caste certificate",
+          "mandatory": true
+        },
+        {
+          "id": "income_certificate",
+          "label": "Income certificate",
+          "mandatory": true
+        },
+        {
+          "id": "fee_structure",
+          "label": "Fee structure / I-20 or offer letter with costs",
+          "mandatory": true
+        }
+      ]
+    }
+  ]
+}

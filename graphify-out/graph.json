@@ -1,0 +1,3642 @@
+{
+  "generator": "graphify-evidence-pipeline-v1",
+  "corpus_count": 7,
+  "nodes": [
+    {
+      "id": "pm-kisan-guidelines",
+      "name": "PM-KISAN Samman Nidhi Operational Guidelines",
+      "kind": "corpus_document",
+      "source": "corpus/pm-kisan.md",
+      "provenance": "EXTRACTED",
+      "description": "Ministry of Agriculture DBT income support for landholding farming families."
+    },
+    {
+      "id": "ts-aasara-orders",
+      "name": "Telangana Aasara Pensions Government Orders & Guidelines",
+      "kind": "corpus_document",
+      "source": "corpus/ts-aasara-pensions.md",
+      "provenance": "EXTRACTED",
+      "description": "Telangana Social Security DBT pension orders for elderly, widows, disabled citizens."
+    },
+    {
+      "id": "aarogyasri-trust-charter",
+      "name": "Aarogyasri Health Care Trust Citizen Charter",
+      "kind": "corpus_document",
+      "source": "corpus/ts-aarogyasri.md",
+      "provenance": "EXTRACTED",
+      "description": "Tertiary medical care and cashless hospitalization scheme for low-income BPL households."
+    },
+    {
+      "id": "rythu-bharosa-manual",
+      "name": "Telangana Rythu Bharosa / Bandhu Operational Manual",
+      "kind": "corpus_document",
+      "source": "corpus/ts-rythu-bharosa.md",
+      "provenance": "EXTRACTED",
+      "description": "Agricultural investment support for farmers and tenant cultivators in Telangana."
+    },
+    {
+      "id": "eshram-portal-rules",
+      "name": "Ministry of Labour & Employment e-Shram Registration Rules",
+      "kind": "corpus_document",
+      "source": "corpus/eshram.md",
+      "provenance": "EXTRACTED",
+      "description": "National database and social security umbrella for unorganised daily-wage workers."
+    },
+    {
+      "id": "kalyana-lakshmi-order",
+      "name": "Telangana Kalyana Lakshmi / Shaadi Mubarak Scheme Order",
+      "kind": "corpus_document",
+      "source": "corpus/ts-kalyana-lakshmi.md",
+      "provenance": "EXTRACTED",
+      "description": "One-time financial assistance for unmarried low-income brides in Telangana."
+    },
+    {
+      "id": "post-matric-epass-rules",
+      "name": "Telangana ePASS Post-Matric Scholarship Regulations",
+      "kind": "corpus_document",
+      "source": "corpus/ts-epass-scholarships.md",
+      "provenance": "EXTRACTED",
+      "description": "Post-matric tuition fee reimbursement and maintenance allowance for SC/ST/BC/EBC students."
+    },
+    {
+      "id": "pm-kisan",
+      "name": "PM-KISAN Samman Nidhi",
+      "kind": "scheme_guideline",
+      "source": "https://pmkisan.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Direct income support of Rs 6,000 per year to landholding farmer families, paid in three instalments of Rs 2,000 into the bank account."
+    },
+    {
+      "id": "pm-kisan::kisan.landholding",
+      "name": "kisan.landholding",
+      "kind": "statutory_rule",
+      "source": "https://pmkisan.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Family must own cultivable land (landholding farmer family) (Scheme guidelines: landholding farmer families)"
+    },
+    {
+      "id": "pm-kisan::kisan.occupation",
+      "name": "kisan.occupation",
+      "kind": "statutory_rule",
+      "source": "https://pmkisan.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Main occupation is farming or farm work (Condition: occupation in ['farmer', 'farm_labour'])"
+    },
+    {
+      "id": "pm-kisan::kisan.age",
+      "name": "kisan.age",
+      "kind": "statutory_rule",
+      "source": "https://pmkisan.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Applicant is 18 years or older (Condition: age gte 18)"
+    },
+    {
+      "id": "pm-kisan::kisan.no-incometax",
+      "name": "kisan.no-incometax",
+      "kind": "statutory_rule",
+      "source": "https://pmkisan.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "No family member pays income tax (exclusion criterion) (Exclusion list in the scheme guidelines)"
+    },
+    {
+      "id": "pm-kisan::kisan.not-govt",
+      "name": "kisan.not-govt",
+      "kind": "statutory_rule",
+      "source": "https://pmkisan.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "No family member is a government employee (exclusion criterion) (Condition: is_govt_employee false)"
+    },
+    {
+      "id": "pm-kisan::kisan.bank",
+      "name": "kisan.bank",
+      "kind": "statutory_rule",
+      "source": "https://pmkisan.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Bank account in the applicant's own name (Condition: has_bank_account true)"
+    },
+    {
+      "id": "doc::pm-kisan::aadhaar_masked",
+      "name": "Aadhaar (masked / last 4 digits only - SchemeSetu never stores the number)",
+      "kind": "document_proof",
+      "source": "https://pmkisan.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Aadhaar (masked / last 4 digits only - SchemeSetu never stores the number). Download the masked Aadhaar from uidai.gov.in or use your e-Aadhaar."
+    },
+    {
+      "id": "doc::pm-kisan::land_record",
+      "name": "Land record (Pahani / RoR)",
+      "kind": "document_proof",
+      "source": "https://pmkisan.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Land record (Pahani / RoR). Download from the Telangana Dharani portal (dharani.telangana.gov.in)."
+    },
+    {
+      "id": "doc::pm-kisan::bank_passbook",
+      "name": "Bank passbook first page",
+      "kind": "document_proof",
+      "source": "https://pmkisan.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Bank passbook first page. "
+    },
+    {
+      "id": "doc::pm-kisan::ration_card",
+      "name": "Ration card / MGNREGA or UPI linkage proof",
+      "kind": "document_proof",
+      "source": "https://pmkisan.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Ration card / MGNREGA or UPI linkage proof. "
+    },
+    {
+      "id": "pmjay",
+      "name": "Ayushman Bharat PM-JAY",
+      "kind": "scheme_guideline",
+      "source": "https://nha.gov.in/PM-JAY",
+      "provenance": "EXTRACTED",
+      "description": "Cashless hospital treatment cover of Rs 5 lakh per family per year at empanelled hospitals, for families identified as deprived or holding a white ration card."
+    },
+    {
+      "id": "pmjay::pmjay.deprivation",
+      "name": "pmjay.deprivation",
+      "kind": "statutory_rule",
+      "source": "https://nha.gov.in/PM-JAY",
+      "provenance": "EXTRACTED",
+      "description": "Household falls in the deprived / low-income group used for eligibility (Condition: income_band in ['bpl', 'low'])"
+    },
+    {
+      "id": "pmjay::pmjay.ration",
+      "name": "pmjay.ration",
+      "kind": "statutory_rule",
+      "source": "https://nha.gov.in/PM-JAY",
+      "provenance": "EXTRACTED",
+      "description": "Family holds a ration card (used to identify the household) (Condition: has_ration_card true)"
+    },
+    {
+      "id": "pmjay::pmjay.no-cover-yet",
+      "name": "pmjay.no-cover-yet",
+      "kind": "statutory_rule",
+      "source": "https://nha.gov.in/PM-JAY",
+      "provenance": "EXTRACTED",
+      "description": "Helps most if the family has no other health cover yet (Condition: has_health_insurance false)"
+    },
+    {
+      "id": "pmjay::pmjay.rural",
+      "name": "pmjay.rural",
+      "kind": "statutory_rule",
+      "source": "https://nha.gov.in/PM-JAY",
+      "provenance": "EXTRACTED",
+      "description": "Rural households form the majority of the eligibility list (Condition: is_rural true)"
+    },
+    {
+      "id": "doc::pmjay::aadhaar_masked",
+      "name": "Aadhaar (masked - the portal verifies it directly)",
+      "kind": "document_proof",
+      "source": "https://nha.gov.in/PM-JAY",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Aadhaar (masked - the portal verifies it directly). "
+    },
+    {
+      "id": "doc::pmjay::ration_card",
+      "name": "Ration card",
+      "kind": "document_proof",
+      "source": "https://nha.gov.in/PM-JAY",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Ration card. "
+    },
+    {
+      "id": "doc::pmjay::mobile",
+      "name": "Mobile number registered in a family member's name for OTP",
+      "kind": "document_proof",
+      "source": "https://nha.gov.in/PM-JAY",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Mobile number registered in a family member's name for OTP. "
+    },
+    {
+      "id": "nsp-pre-matric-sc",
+      "name": "Pre-Matric Scholarship for SC students (Class 9-10)",
+      "kind": "scheme_guideline",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Scholarship for SC students in Class 9 and 10, covering a monthly maintenance allowance and books grant, to stop dropout after Class 8."
+    },
+    {
+      "id": "nsp-pre-matric-sc::prematric.student",
+      "name": "prematric.student",
+      "kind": "statutory_rule",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Applicant is currently studying (Condition: is_student true)"
+    },
+    {
+      "id": "nsp-pre-matric-sc::prematric.class",
+      "name": "prematric.class",
+      "kind": "statutory_rule",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Studying in Class 9 or Class 10 (Condition: class_level class_between [9, 10])"
+    },
+    {
+      "id": "nsp-pre-matric-sc::prematric.category",
+      "name": "prematric.category",
+      "kind": "statutory_rule",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Belongs to a Scheduled Caste (Condition: social_category in ['sc'])"
+    },
+    {
+      "id": "nsp-pre-matric-sc::prematric.income",
+      "name": "prematric.income",
+      "kind": "statutory_rule",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Parental annual income within the scheme ceiling (Rs 2.5 lakh) (Income ceiling as printed in the NSP scheme guidelines)"
+    },
+    {
+      "id": "nsp-pre-matric-sc::prematric.school-level",
+      "name": "prematric.school-level",
+      "kind": "statutory_rule",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Consistent with a school-level learner profile (Condition: education_level in ['below_8', 'class_8', 'class_10'])"
+    },
+    {
+      "id": "doc::nsp-pre-matric-sc::caste_certificate",
+      "name": "SC caste certificate",
+      "kind": "document_proof",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: SC caste certificate. Apply on the Telangana MeeSeva portal or at your district e-District office."
+    },
+    {
+      "id": "doc::nsp-pre-matric-sc::income_certificate",
+      "name": "Family income certificate",
+      "kind": "document_proof",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Family income certificate. MeeSeva / Dharani is the fastest route."
+    },
+    {
+      "id": "doc::nsp-pre-matric-sc::marksheet",
+      "name": "Previous class marksheet",
+      "kind": "document_proof",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Previous class marksheet. "
+    },
+    {
+      "id": "doc::nsp-pre-matric-sc::bonafide",
+      "name": "Bonafide certificate from the school",
+      "kind": "document_proof",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Bonafide certificate from the school. "
+    },
+    {
+      "id": "doc::nsp-pre-matric-sc::bank_passbook",
+      "name": "Bank passbook in the student's own name",
+      "kind": "document_proof",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Bank passbook in the student's own name. "
+    },
+    {
+      "id": "doc::nsp-pre-matric-sc::aadhaar_masked",
+      "name": "Aadhaar (masked)",
+      "kind": "document_proof",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Aadhaar (masked). "
+    },
+    {
+      "id": "nsp-post-matric-sc",
+      "name": "Post-Matric Scholarship for SC students",
+      "kind": "scheme_guideline",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Scholarship for SC students who passed Class 10 and are studying in Class 11, ITI, polytechnic, degree or professional courses, with maintenance, fee and book grants."
+    },
+    {
+      "id": "nsp-post-matric-sc::postmatric.category",
+      "name": "postmatric.category",
+      "kind": "statutory_rule",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Belongs to a Scheduled Caste (Condition: social_category in ['sc'])"
+    },
+    {
+      "id": "nsp-post-matric-sc::postmatric.class",
+      "name": "postmatric.class",
+      "kind": "statutory_rule",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Studying in Class 11 or above (or a post-Class-10 course) (Condition: class_level class_gte 11)"
+    },
+    {
+      "id": "nsp-post-matric-sc::postmatric.student",
+      "name": "postmatric.student",
+      "kind": "statutory_rule",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Applicant is currently studying (Condition: is_student true)"
+    },
+    {
+      "id": "nsp-post-matric-sc::postmatric.income",
+      "name": "postmatric.income",
+      "kind": "statutory_rule",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Family income within the ceiling (Rs 2.5 lakh) (Condition: annual_income_inr lt 250000)"
+    },
+    {
+      "id": "nsp-post-matric-sc::postmatric.income-band",
+      "name": "postmatric.income-band",
+      "kind": "statutory_rule",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Low-income household (Condition: income_band in ['bpl', 'low'])"
+    },
+    {
+      "id": "doc::nsp-post-matric-sc::caste_certificate",
+      "name": "SC caste certificate",
+      "kind": "document_proof",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: SC caste certificate. "
+    },
+    {
+      "id": "doc::nsp-post-matric-sc::income_certificate",
+      "name": "Family income certificate",
+      "kind": "document_proof",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Family income certificate. "
+    },
+    {
+      "id": "doc::nsp-post-matric-sc::class10_marksheet",
+      "name": "Class 10 / Class 12 marksheet",
+      "kind": "document_proof",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Class 10 / Class 12 marksheet. "
+    },
+    {
+      "id": "doc::nsp-post-matric-sc::fee_receipt",
+      "name": "Admission / fee receipt from the institute",
+      "kind": "document_proof",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Admission / fee receipt from the institute. "
+    },
+    {
+      "id": "doc::nsp-post-matric-sc::bank_passbook",
+      "name": "Bank passbook enabled for DBT",
+      "kind": "document_proof",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Bank passbook enabled for DBT. "
+    },
+    {
+      "id": "nmmss",
+      "name": "National Means-cum-Merit Scholarship (NMMSS)",
+      "kind": "scheme_guideline",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Rs 12,000 a year for meritorious Class 9-12 students from low-income families, selected through the NMMS test taken in Class 8."
+    },
+    {
+      "id": "nmmss::nmmss.student",
+      "name": "nmmss.student",
+      "kind": "statutory_rule",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Applicant is a school student (Condition: is_student true)"
+    },
+    {
+      "id": "nmmss::nmmss.class",
+      "name": "nmmss.class",
+      "kind": "statutory_rule",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Studying in Class 9 to Class 12 (Condition: class_level class_between [9, 12])"
+    },
+    {
+      "id": "nmmss::nmmss.income",
+      "name": "nmmss.income",
+      "kind": "statutory_rule",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Family income within Rs 3.5 lakh (revised ceiling) (Condition: annual_income_inr lt 350000)"
+    },
+    {
+      "id": "nmmss::nmmss.school-level",
+      "name": "nmmss.school-level",
+      "kind": "statutory_rule",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Usually a government / local-body / aided school student (Condition: education_level in ['class_8', 'class_10', 'class_12'])"
+    },
+    {
+      "id": "doc::nmmss::income_certificate",
+      "name": "Family income certificate",
+      "kind": "document_proof",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Family income certificate. "
+    },
+    {
+      "id": "doc::nmmss::class8_marksheet",
+      "name": "Class 8 marksheet showing 55% or more",
+      "kind": "document_proof",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Class 8 marksheet showing 55% or more. "
+    },
+    {
+      "id": "doc::nmmss::bonafide",
+      "name": "Bonafide certificate",
+      "kind": "document_proof",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Bonafide certificate. "
+    },
+    {
+      "id": "doc::nmmss::bank_passbook",
+      "name": "Bank passbook",
+      "kind": "document_proof",
+      "source": "https://scholarships.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Bank passbook. "
+    },
+    {
+      "id": "ts-epass-rtf",
+      "name": "Telangana ePASS - Reimbursement of Tuition Fee (RTF)",
+      "kind": "scheme_guideline",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Full tuition fee reimbursement for SC/ST/BC/EBC/Minority students of Telangana studying degree, engineering, polytechnic and other post-matric courses, plus hostel and mess charges where applicable."
+    },
+    {
+      "id": "ts-epass-rtf::rtf.state",
+      "name": "rtf.state",
+      "kind": "statutory_rule",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Student is a resident of Telangana (Condition: state in ['telangana', 'ts'])"
+    },
+    {
+      "id": "ts-epass-rtf::rtf.student",
+      "name": "rtf.student",
+      "kind": "statutory_rule",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Currently studying in a recognised institution (Condition: is_student true)"
+    },
+    {
+      "id": "ts-epass-rtf::rtf.class",
+      "name": "rtf.class",
+      "kind": "statutory_rule",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Post-matric course (Intermediate or above) (Condition: class_level class_gte 11)"
+    },
+    {
+      "id": "ts-epass-rtf::rtf.category",
+      "name": "rtf.category",
+      "kind": "statutory_rule",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "SC / ST / BC / EBC / Minority category (Condition: social_category in ['sc', 'st', 'bc', 'obc', 'minority', 'ebc'])"
+    },
+    {
+      "id": "ts-epass-rtf::rtf.income",
+      "name": "rtf.income",
+      "kind": "statutory_rule",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Family income within the RTF ceiling (Ceilings differ by course - the portal shows the applicable limit)"
+    },
+    {
+      "id": "ts-epass-rtf::rtf.income-band",
+      "name": "rtf.income-band",
+      "kind": "statutory_rule",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Low-income household (Condition: income_band in ['bpl', 'low'])"
+    },
+    {
+      "id": "doc::ts-epass-rtf::caste_certificate",
+      "name": "Caste certificate (Telangana)",
+      "kind": "document_proof",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Caste certificate (Telangana). MeeSeva service, or apply online at the e-District portal."
+    },
+    {
+      "id": "doc::ts-epass-rtf::income_certificate",
+      "name": "Income certificate (Telangana)",
+      "kind": "document_proof",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Income certificate (Telangana). "
+    },
+    {
+      "id": "doc::ts-epass-rtf::ssc_inter_marks",
+      "name": "SSC / Intermediate marks memo with hall ticket number",
+      "kind": "document_proof",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: SSC / Intermediate marks memo with hall ticket number. "
+    },
+    {
+      "id": "doc::ts-epass-rtf::admission_proof",
+      "name": "Admission letter / fee receipt",
+      "kind": "document_proof",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Admission letter / fee receipt. "
+    },
+    {
+      "id": "doc::ts-epass-rtf::bonafide",
+      "name": "Bonafide certificate from the college",
+      "kind": "document_proof",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Bonafide certificate from the college. "
+    },
+    {
+      "id": "doc::ts-epass-rtf::bank_passbook",
+      "name": "Bank passbook",
+      "kind": "document_proof",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Bank passbook. "
+    },
+    {
+      "id": "ts-aasara-oldage",
+      "name": "Telangana Aasara Pension - Old Age",
+      "kind": "scheme_guideline",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Monthly social security pension for senior citizens of Telangana who do not have another pension, credited by DBT on the first of every month."
+    },
+    {
+      "id": "ts-aasara-oldage::aasara.age",
+      "name": "aasara.age",
+      "kind": "statutory_rule",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Age 57 years or above (Telangana Aasara threshold) (Aasara old-age pension age criterion)"
+    },
+    {
+      "id": "ts-aasara-oldage::aasara.state",
+      "name": "aasara.state",
+      "kind": "statutory_rule",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Resident of Telangana (Condition: state in ['telangana', 'ts'])"
+    },
+    {
+      "id": "ts-aasara-oldage::aasara.income",
+      "name": "aasara.income",
+      "kind": "statutory_rule",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Household income within the prescribed limit (white / low-income ration card) (Condition: income_band in ['bpl', 'low'])"
+    },
+    {
+      "id": "ts-aasara-oldage::aasara.no-other-pension",
+      "name": "aasara.no-other-pension",
+      "kind": "statutory_rule",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Not already receiving another government pension (Condition: receives_other_pension false)"
+    },
+    {
+      "id": "ts-aasara-oldage::aasara.govt-exclusion",
+      "name": "aasara.govt-exclusion",
+      "kind": "statutory_rule",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Not a government employee or retired government employee (Condition: is_govt_employee false)"
+    },
+    {
+      "id": "ts-aasara-oldage::aasara.bank",
+      "name": "aasara.bank",
+      "kind": "statutory_rule",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Bank account for DBT credit (Condition: has_bank_account true)"
+    },
+    {
+      "id": "doc::ts-aasara-oldage::age_proof",
+      "name": "Age proof (Aadhaar, voter ID or school certificate)",
+      "kind": "document_proof",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Verification proof: Age proof (Aadhaar, voter ID or school certificate). "
+    },
+    {
+      "id": "doc::ts-aasara-oldage::ration_card",
+      "name": "Ration card",
+      "kind": "document_proof",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Verification proof: Ration card. "
+    },
+    {
+      "id": "doc::ts-aasara-oldage::residence_proof",
+      "name": "Residence proof of the Telangana address",
+      "kind": "document_proof",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Verification proof: Residence proof of the Telangana address. "
+    },
+    {
+      "id": "doc::ts-aasara-oldage::bank_passbook",
+      "name": "Bank passbook (DBT-enabled)",
+      "kind": "document_proof",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Verification proof: Bank passbook (DBT-enabled). "
+    },
+    {
+      "id": "doc::ts-aasara-oldage::aadhaar_masked",
+      "name": "Aadhaar (masked)",
+      "kind": "document_proof",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Verification proof: Aadhaar (masked). "
+    },
+    {
+      "id": "ts-aasara-widow",
+      "name": "Telangana Aasara Pension - Widow",
+      "kind": "scheme_guideline",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Monthly pension for widows in Telangana aged 18 and above from low-income households, credited by DBT."
+    },
+    {
+      "id": "ts-aasara-widow::widow.is-widow",
+      "name": "widow.is-widow",
+      "kind": "statutory_rule",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Applicant is a widow (Condition: is_widow true)"
+    },
+    {
+      "id": "ts-aasara-widow::widow.age",
+      "name": "widow.age",
+      "kind": "statutory_rule",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Age 18 years or above (Condition: age gte 18)"
+    },
+    {
+      "id": "ts-aasara-widow::widow.state",
+      "name": "widow.state",
+      "kind": "statutory_rule",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Resident of Telangana (Condition: state in ['telangana', 'ts'])"
+    },
+    {
+      "id": "ts-aasara-widow::widow.income",
+      "name": "widow.income",
+      "kind": "statutory_rule",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Low-income household (Condition: income_band in ['bpl', 'low'])"
+    },
+    {
+      "id": "ts-aasara-widow::widow.no-other-pension",
+      "name": "widow.no-other-pension",
+      "kind": "statutory_rule",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Not already receiving another government pension (Condition: receives_other_pension false)"
+    },
+    {
+      "id": "ts-aasara-widow::widow.bank",
+      "name": "widow.bank",
+      "kind": "statutory_rule",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Bank account for DBT credit (Condition: has_bank_account true)"
+    },
+    {
+      "id": "doc::ts-aasara-widow::death_certificate",
+      "name": "Spouse's death certificate",
+      "kind": "document_proof",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Verification proof: Spouse's death certificate. MeeSeva or the municipal registrar."
+    },
+    {
+      "id": "doc::ts-aasara-widow::age_proof",
+      "name": "Age proof",
+      "kind": "document_proof",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Verification proof: Age proof. "
+    },
+    {
+      "id": "doc::ts-aasara-widow::ration_card",
+      "name": "Ration card",
+      "kind": "document_proof",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Verification proof: Ration card. "
+    },
+    {
+      "id": "doc::ts-aasara-widow::bank_passbook",
+      "name": "Bank passbook (DBT-enabled)",
+      "kind": "document_proof",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Verification proof: Bank passbook (DBT-enabled). "
+    },
+    {
+      "id": "ts-aasara-disability",
+      "name": "Telangana Aasara Pension - Persons with Disability",
+      "kind": "scheme_guideline",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Higher-rate monthly pension for persons with disability in Telangana, plus a free bus pass and other concessions, credited by DBT."
+    },
+    {
+      "id": "ts-aasara-disability::disability.percent",
+      "name": "disability.percent",
+      "kind": "statutory_rule",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Disability assessed at 40% or more (SADAREM) (SADAREM certificate is the proof)"
+    },
+    {
+      "id": "ts-aasara-disability::disability.age",
+      "name": "disability.age",
+      "kind": "statutory_rule",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Age 18 years or above (Condition: age gte 18)"
+    },
+    {
+      "id": "ts-aasara-disability::disability.state",
+      "name": "disability.state",
+      "kind": "statutory_rule",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Resident of Telangana (Condition: state in ['telangana', 'ts'])"
+    },
+    {
+      "id": "ts-aasara-disability::disability.income",
+      "name": "disability.income",
+      "kind": "statutory_rule",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Low-income household (Condition: income_band in ['bpl', 'low'])"
+    },
+    {
+      "id": "ts-aasara-disability::disability.bank",
+      "name": "disability.bank",
+      "kind": "statutory_rule",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Bank account for DBT credit (Condition: has_bank_account true)"
+    },
+    {
+      "id": "doc::ts-aasara-disability::sadarem_certificate",
+      "name": "SADAREM disability certificate",
+      "kind": "document_proof",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Verification proof: SADAREM disability certificate. Attend a SADAREM assessment camp at the district hospital."
+    },
+    {
+      "id": "doc::ts-aasara-disability::age_proof",
+      "name": "Age proof",
+      "kind": "document_proof",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Verification proof: Age proof. "
+    },
+    {
+      "id": "doc::ts-aasara-disability::ration_card",
+      "name": "Ration card",
+      "kind": "document_proof",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Verification proof: Ration card. "
+    },
+    {
+      "id": "doc::ts-aasara-disability::bank_passbook",
+      "name": "Bank passbook (DBT-enabled)",
+      "kind": "document_proof",
+      "source": "https://pension.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Verification proof: Bank passbook (DBT-enabled). "
+    },
+    {
+      "id": "ts-kalyana-lakshmi",
+      "name": "Kalyana Lakshmi / Shaadi Mubarak marriage assistance",
+      "kind": "scheme_guideline",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "One-time financial assistance for the marriage of a bride from a poor household in Telangana, paid to the bride's bank account through the ePASS portal."
+    },
+    {
+      "id": "ts-kalyana-lakshmi::kalyana.bride",
+      "name": "kalyana.bride",
+      "kind": "statutory_rule",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Assistance is for the bride (Condition: gender in ['female'])"
+    },
+    {
+      "id": "ts-kalyana-lakshmi::kalyana.age",
+      "name": "kalyana.age",
+      "kind": "statutory_rule",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Bride is 18 years or above (legal marriage age) (Condition: age gte 18)"
+    },
+    {
+      "id": "ts-kalyana-lakshmi::kalyana.unmarried",
+      "name": "kalyana.unmarried",
+      "kind": "statutory_rule",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "First marriage - not already married (Condition: marital_status in ['single'])"
+    },
+    {
+      "id": "ts-kalyana-lakshmi::kalyana.planned",
+      "name": "kalyana.planned",
+      "kind": "statutory_rule",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "A marriage is being planned now (apply before the wedding) (Condition: marriage_planned true)"
+    },
+    {
+      "id": "ts-kalyana-lakshmi::kalyana.state",
+      "name": "kalyana.state",
+      "kind": "statutory_rule",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Bride's family resides in Telangana (Condition: state in ['telangana', 'ts'])"
+    },
+    {
+      "id": "ts-kalyana-lakshmi::kalyana.income",
+      "name": "kalyana.income",
+      "kind": "statutory_rule",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Household income within the scheme limit (Condition: income_band in ['bpl', 'low'])"
+    },
+    {
+      "id": "ts-kalyana-lakshmi::kalyana.income-cert",
+      "name": "kalyana.income-cert",
+      "kind": "statutory_rule",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "White ration card / BPL household, or income proof within the limit (Condition: annual_income_inr lt 200000)"
+    },
+    {
+      "id": "doc::ts-kalyana-lakshmi::age_proof",
+      "name": "Bride's age proof (SSC certificate / Aadhaar / voter ID)",
+      "kind": "document_proof",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Bride's age proof (SSC certificate / Aadhaar / voter ID). "
+    },
+    {
+      "id": "doc::ts-kalyana-lakshmi::wedding_invitation",
+      "name": "Wedding invitation card or the marriage registration proof",
+      "kind": "document_proof",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Wedding invitation card or the marriage registration proof. "
+    },
+    {
+      "id": "doc::ts-kalyana-lakshmi::income_certificate",
+      "name": "Family income certificate or white ration card",
+      "kind": "document_proof",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Family income certificate or white ration card. "
+    },
+    {
+      "id": "doc::ts-kalyana-lakshmi::caste_certificate",
+      "name": "Caste certificate (for SC/ST/BC/Minority categories)",
+      "kind": "document_proof",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Caste certificate (for SC/ST/BC/Minority categories). "
+    },
+    {
+      "id": "doc::ts-kalyana-lakshmi::bank_passbook",
+      "name": "Bank passbook in the bride's own name",
+      "kind": "document_proof",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Bank passbook in the bride's own name. "
+    },
+    {
+      "id": "ts-rythu-bharosa",
+      "name": "Rythu Bharosa investment support (Telangana)",
+      "kind": "scheme_guideline",
+      "source": "https://rythubandhu.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Season-wise investment support paid by the Telangana government to farmer families for every acre they cultivate, credited directly before the sowing season."
+    },
+    {
+      "id": "ts-rythu-bharosa::rb.state",
+      "name": "rb.state",
+      "kind": "statutory_rule",
+      "source": "https://rythubandhu.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Farmer family is in Telangana (Condition: state in ['telangana', 'ts'])"
+    },
+    {
+      "id": "ts-rythu-bharosa::rb.land",
+      "name": "rb.land",
+      "kind": "statutory_rule",
+      "source": "https://rythubandhu.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Cultivates land (owner or recorded lease) (Condition: land_acres gt 0)"
+    },
+    {
+      "id": "ts-rythu-bharosa::rb.occupation",
+      "name": "rb.occupation",
+      "kind": "statutory_rule",
+      "source": "https://rythubandhu.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Occupation is farming (Condition: occupation in ['farmer', 'farm_labour'])"
+    },
+    {
+      "id": "ts-rythu-bharosa::rb.bank",
+      "name": "rb.bank",
+      "kind": "statutory_rule",
+      "source": "https://rythubandhu.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Bank account for the DBT credit (Condition: has_bank_account true)"
+    },
+    {
+      "id": "ts-rythu-bharosa::rb.no-incometax",
+      "name": "rb.no-incometax",
+      "kind": "statutory_rule",
+      "source": "https://rythubandhu.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Not an income-tax paying household (exclusion rule) (Condition: income_tax_payer false)"
+    },
+    {
+      "id": "doc::ts-rythu-bharosa::land_record",
+      "name": "Pahani / land record from Dharani",
+      "kind": "document_proof",
+      "source": "https://rythubandhu.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Verification proof: Pahani / land record from Dharani. dharani.telangana.gov.in."
+    },
+    {
+      "id": "doc::ts-rythu-bharosa::bank_passbook",
+      "name": "Bank passbook showing the DBT credit",
+      "kind": "document_proof",
+      "source": "https://rythubandhu.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Verification proof: Bank passbook showing the DBT credit. "
+    },
+    {
+      "id": "doc::ts-rythu-bharosa::aadhaar_masked",
+      "name": "Aadhaar (masked) linked to the bank account",
+      "kind": "document_proof",
+      "source": "https://rythubandhu.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Verification proof: Aadhaar (masked) linked to the bank account. "
+    },
+    {
+      "id": "doc::ts-rythu-bharosa::lease_agreement",
+      "name": "Lease agreement (only if you cultivate leased-in land)",
+      "kind": "document_proof",
+      "source": "https://rythubandhu.telangana.gov.in/",
+      "provenance": "AMBIGUOUS",
+      "description": "Verification proof: Lease agreement (only if you cultivate leased-in land). "
+    },
+    {
+      "id": "arogyasri-te",
+      "name": "Telangana Aarogyasri health scheme",
+      "kind": "scheme_guideline",
+      "source": "https://aarogyasri.telangana.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Cashless treatment for listed diseases and surgeries at network hospitals for white ration card families of Telangana, beyond the PM-JAY cover."
+    },
+    {
+      "id": "arogyasri-te::aarogyasri.state",
+      "name": "aarogyasri.state",
+      "kind": "statutory_rule",
+      "source": "https://aarogyasri.telangana.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Family is a resident of Telangana (Condition: state in ['telangana', 'ts'])"
+    },
+    {
+      "id": "arogyasri-te::aarogyasri.ration",
+      "name": "aarogyasri.ration",
+      "kind": "statutory_rule",
+      "source": "https://aarogyasri.telangana.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Holds a ration card (white / low-income card is required) (Condition: has_ration_card true)"
+    },
+    {
+      "id": "arogyasri-te::aarogyasri.income",
+      "name": "aarogyasri.income",
+      "kind": "statutory_rule",
+      "source": "https://aarogyasri.telangana.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Low-income household (Condition: income_band in ['bpl', 'low'])"
+    },
+    {
+      "id": "arogyasri-te::aarogyasri.family-size",
+      "name": "aarogyasri.family-size",
+      "kind": "statutory_rule",
+      "source": "https://aarogyasri.telangana.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Cover applies to the whole family (Condition: family_size gte 1)"
+    },
+    {
+      "id": "doc::arogyasri-te::ration_card",
+      "name": "White ration card",
+      "kind": "document_proof",
+      "source": "https://aarogyasri.telangana.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: White ration card. "
+    },
+    {
+      "id": "doc::arogyasri-te::aarogyasri_card",
+      "name": "Aarogyasri / Ayushman card",
+      "kind": "document_proof",
+      "source": "https://aarogyasri.telangana.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Aarogyasri / Ayushman card. Generate at the nearest Aarogyasri office or MeeSeva with the ration card."
+    },
+    {
+      "id": "doc::arogyasri-te::hospital_referral",
+      "name": "Doctor's referral or investigation reports",
+      "kind": "document_proof",
+      "source": "https://aarogyasri.telangana.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Doctor's referral or investigation reports. "
+    },
+    {
+      "id": "pmfby",
+      "name": "Pradhan Mantri Fasal Bima Yojana (crop insurance)",
+      "kind": "scheme_guideline",
+      "source": "https://pmfby.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Low-premium crop insurance for farmers: if the crop fails because of drought, flood, pests or unseasonal rain, the claim is paid to the bank account."
+    },
+    {
+      "id": "pmfby::pmfby.land",
+      "name": "pmfby.land",
+      "kind": "statutory_rule",
+      "source": "https://pmfby.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Cultivates a notified crop (owner, tenant or sharecropper) (Condition: land_acres gt 0)"
+    },
+    {
+      "id": "pmfby::pmfby.occupation",
+      "name": "pmfby.occupation",
+      "kind": "statutory_rule",
+      "source": "https://pmfby.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Occupation is farming (Condition: occupation in ['farmer', 'farm_labour'])"
+    },
+    {
+      "id": "pmfby::pmfby.rural",
+      "name": "pmfby.rural",
+      "kind": "statutory_rule",
+      "source": "https://pmfby.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Farming household in a rural area (Condition: is_rural true)"
+    },
+    {
+      "id": "pmfby::pmfby.bank",
+      "name": "pmfby.bank",
+      "kind": "statutory_rule",
+      "source": "https://pmfby.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Bank account for claim settlement (Condition: has_bank_account true)"
+    },
+    {
+      "id": "doc::pmfby::land_record",
+      "name": "Land record - Pahani / RoR",
+      "kind": "document_proof",
+      "source": "https://pmfby.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Land record - Pahani / RoR. "
+    },
+    {
+      "id": "doc::pmfby::sowing_certificate",
+      "name": "Sowing certificate from the village agriculture officer",
+      "kind": "document_proof",
+      "source": "https://pmfby.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Sowing certificate from the village agriculture officer. "
+    },
+    {
+      "id": "doc::pmfby::bank_passbook",
+      "name": "Bank passbook linked for the claim",
+      "kind": "document_proof",
+      "source": "https://pmfby.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Bank passbook linked for the claim. "
+    },
+    {
+      "id": "doc::pmfby::crop_loan",
+      "name": "Crop loan / KCC papers (if enrolled through the bank)",
+      "kind": "document_proof",
+      "source": "https://pmfby.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Crop loan / KCC papers (if enrolled through the bank). "
+    },
+    {
+      "id": "pmayg",
+      "name": "Pradhan Mantri Awaas Yojana - Gramin (rural housing)",
+      "kind": "scheme_guideline",
+      "source": "https://pmayg.nic.in/",
+      "provenance": "EXTRACTED",
+      "description": "Financial help in instalments to build a pucca house for rural households that have no house or only a kucha house, with toilet and water connection support."
+    },
+    {
+      "id": "pmayg::pmayg.rural",
+      "name": "pmayg.rural",
+      "kind": "statutory_rule",
+      "source": "https://pmayg.nic.in/",
+      "provenance": "EXTRACTED",
+      "description": "Rural household (Condition: is_rural true)"
+    },
+    {
+      "id": "pmayg::pmayg.no-house",
+      "name": "pmayg.no-house",
+      "kind": "statutory_rule",
+      "source": "https://pmayg.nic.in/",
+      "provenance": "EXTRACTED",
+      "description": "Does not already own a pucca house (Condition: has_pucca_house false)"
+    },
+    {
+      "id": "pmayg::pmayg.income",
+      "name": "pmayg.income",
+      "kind": "statutory_rule",
+      "source": "https://pmayg.nic.in/",
+      "provenance": "EXTRACTED",
+      "description": "Low-income / deprived household (Condition: income_band in ['bpl', 'low'])"
+    },
+    {
+      "id": "pmayg::pmayg.house-type",
+      "name": "pmayg.house-type",
+      "kind": "statutory_rule",
+      "source": "https://pmayg.nic.in/",
+      "provenance": "EXTRACTED",
+      "description": "Currently homeless, in a kucha house or renting (Condition: house_type in ['homeless', 'kucha', 'rented'])"
+    },
+    {
+      "id": "pmayg::pmayg.bank",
+      "name": "pmayg.bank",
+      "kind": "statutory_rule",
+      "source": "https://pmayg.nic.in/",
+      "provenance": "EXTRACTED",
+      "description": "Bank account for the instalments (Condition: has_bank_account true)"
+    },
+    {
+      "id": "doc::pmayg::job_card",
+      "name": "MGNREGA job card",
+      "kind": "document_proof",
+      "source": "https://pmayg.nic.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: MGNREGA job card. "
+    },
+    {
+      "id": "doc::pmayg::bank_passbook",
+      "name": "Bank passbook (Aadhaar-seeded)",
+      "kind": "document_proof",
+      "source": "https://pmayg.nic.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Bank passbook (Aadhaar-seeded). "
+    },
+    {
+      "id": "doc::pmayg::ration_card",
+      "name": "Ration card / SECC deprivation proof",
+      "kind": "document_proof",
+      "source": "https://pmayg.nic.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Ration card / SECC deprivation proof. "
+    },
+    {
+      "id": "ts-2bhk",
+      "name": "Telangana Double Bedroom Housing (2BHK)",
+      "kind": "scheme_guideline",
+      "source": "https://housing.telangana.gov.in/",
+      "provenance": "INFERRED",
+      "description": "Free 2BHK flats in multi-storey colonies for poor and homeless families of Telangana, allotted by the housing department through a draw."
+    },
+    {
+      "id": "ts-2bhk::ts2bhk.state",
+      "name": "ts2bhk.state",
+      "kind": "statutory_rule",
+      "source": "https://housing.telangana.gov.in/",
+      "provenance": "INFERRED",
+      "description": "Resident of Telangana (Condition: state in ['telangana', 'ts'])"
+    },
+    {
+      "id": "ts-2bhk::ts2bhk.no-house",
+      "name": "ts2bhk.no-house",
+      "kind": "statutory_rule",
+      "source": "https://housing.telangana.gov.in/",
+      "provenance": "INFERRED",
+      "description": "Does not own a pucca house (Condition: has_pucca_house false)"
+    },
+    {
+      "id": "ts-2bhk::ts2bhk.income",
+      "name": "ts2bhk.income",
+      "kind": "statutory_rule",
+      "source": "https://housing.telangana.gov.in/",
+      "provenance": "INFERRED",
+      "description": "Poor / low-income household (Condition: income_band in ['bpl', 'low'])"
+    },
+    {
+      "id": "ts-2bhk::ts2bhk.house-type",
+      "name": "ts2bhk.house-type",
+      "kind": "statutory_rule",
+      "source": "https://housing.telangana.gov.in/",
+      "provenance": "INFERRED",
+      "description": "Homeless, in a kucha house or renting (Condition: house_type in ['homeless', 'kucha', 'rented'])"
+    },
+    {
+      "id": "ts-2bhk::ts2bhk.ration",
+      "name": "ts2bhk.ration",
+      "kind": "statutory_rule",
+      "source": "https://housing.telangana.gov.in/",
+      "provenance": "INFERRED",
+      "description": "Ration card in the family (Condition: has_ration_card true)"
+    },
+    {
+      "id": "doc::ts-2bhk::ration_card",
+      "name": "Ration card",
+      "kind": "document_proof",
+      "source": "https://housing.telangana.gov.in/",
+      "provenance": "INFERRED",
+      "description": "Verification proof: Ration card. "
+    },
+    {
+      "id": "doc::ts-2bhk::income_certificate",
+      "name": "Income certificate",
+      "kind": "document_proof",
+      "source": "https://housing.telangana.gov.in/",
+      "provenance": "INFERRED",
+      "description": "Verification proof: Income certificate. "
+    },
+    {
+      "id": "doc::ts-2bhk::bank_passbook",
+      "name": "Bank passbook (Aadhaar-seeded)",
+      "kind": "document_proof",
+      "source": "https://housing.telangana.gov.in/",
+      "provenance": "INFERRED",
+      "description": "Verification proof: Bank passbook (Aadhaar-seeded). "
+    },
+    {
+      "id": "doc::ts-2bhk::residence_proof",
+      "name": "Residence proof of the ward / village",
+      "kind": "document_proof",
+      "source": "https://housing.telangana.gov.in/",
+      "provenance": "INFERRED",
+      "description": "Verification proof: Residence proof of the ward / village. "
+    },
+    {
+      "id": "nsap-ignoaps",
+      "name": "Indira Gandhi National Old Age Pension (NSAP)",
+      "kind": "scheme_guideline",
+      "source": "https://nsap.nic.in/",
+      "provenance": "EXTRACTED",
+      "description": "Central monthly pension for BPL persons aged 60 and above, in addition to any state top-up, credited to the bank account."
+    },
+    {
+      "id": "nsap-ignoaps::ignoaps.age",
+      "name": "ignoaps.age",
+      "kind": "statutory_rule",
+      "source": "https://nsap.nic.in/",
+      "provenance": "EXTRACTED",
+      "description": "Age 60 years or above (Condition: age gte 60)"
+    },
+    {
+      "id": "nsap-ignoaps::ignoaps.bpl",
+      "name": "ignoaps.bpl",
+      "kind": "statutory_rule",
+      "source": "https://nsap.nic.in/",
+      "provenance": "EXTRACTED",
+      "description": "Household below the poverty line (Condition: income_band in ['bpl', 'low'])"
+    },
+    {
+      "id": "nsap-ignoaps::ignoaps.no-other-pension",
+      "name": "ignoaps.no-other-pension",
+      "kind": "statutory_rule",
+      "source": "https://nsap.nic.in/",
+      "provenance": "EXTRACTED",
+      "description": "Not already drawing another government pension for the same purpose (Condition: receives_other_pension false)"
+    },
+    {
+      "id": "nsap-ignoaps::ignoaps.ration",
+      "name": "ignoaps.ration",
+      "kind": "statutory_rule",
+      "source": "https://nsap.nic.in/",
+      "provenance": "EXTRACTED",
+      "description": "BPL / ration card proof (Condition: has_ration_card true)"
+    },
+    {
+      "id": "nsap-ignoaps::ignoaps.bank",
+      "name": "ignoaps.bank",
+      "kind": "statutory_rule",
+      "source": "https://nsap.nic.in/",
+      "provenance": "EXTRACTED",
+      "description": "Bank or post-office account for DBT (Condition: has_bank_account true)"
+    },
+    {
+      "id": "doc::nsap-ignoaps::age_proof",
+      "name": "Age proof",
+      "kind": "document_proof",
+      "source": "https://nsap.nic.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Age proof. "
+    },
+    {
+      "id": "doc::nsap-ignoaps::bpl_proof",
+      "name": "BPL / white ration card",
+      "kind": "document_proof",
+      "source": "https://nsap.nic.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: BPL / white ration card. "
+    },
+    {
+      "id": "doc::nsap-ignoaps::bank_passbook",
+      "name": "Bank passbook",
+      "kind": "document_proof",
+      "source": "https://nsap.nic.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Bank passbook. "
+    },
+    {
+      "id": "ssy",
+      "name": "Sukanya Samriddhi Yojana (girl child savings)",
+      "kind": "scheme_guideline",
+      "source": "https://www.indiapost.gov.in/Financial/Pages/Content/Post-Office-Saving-Schemes.aspx",
+      "provenance": "EXTRACTED",
+      "description": "Small-savings account for a girl child below 10 years, with the highest government-set interest rate and tax-free maturity for her education or marriage."
+    },
+    {
+      "id": "ssy::ssy.girl-child",
+      "name": "ssy.girl-child",
+      "kind": "statutory_rule",
+      "source": "https://www.indiapost.gov.in/Financial/Pages/Content/Post-Office-Saving-Schemes.aspx",
+      "provenance": "EXTRACTED",
+      "description": "A daughter below 10 years in the family (Condition: children_girl_under10 gte 1)"
+    },
+    {
+      "id": "ssy::ssy.bank",
+      "name": "ssy.bank",
+      "kind": "statutory_rule",
+      "source": "https://www.indiapost.gov.in/Financial/Pages/Content/Post-Office-Saving-Schemes.aspx",
+      "provenance": "EXTRACTED",
+      "description": "An account in the child's or guardian's name to manage it (Condition: has_bank_account true)"
+    },
+    {
+      "id": "ssy::ssy.income",
+      "name": "ssy.income",
+      "kind": "statutory_rule",
+      "source": "https://www.indiapost.gov.in/Financial/Pages/Content/Post-Office-Saving-Schemes.aspx",
+      "provenance": "EXTRACTED",
+      "description": "Most useful for households that can save a little each year (Condition: income_band in ['bpl', 'low', 'middle'])"
+    },
+    {
+      "id": "doc::ssy::birth_certificate",
+      "name": "Girl's birth certificate",
+      "kind": "document_proof",
+      "source": "https://www.indiapost.gov.in/Financial/Pages/Content/Post-Office-Saving-Schemes.aspx",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Girl's birth certificate. "
+    },
+    {
+      "id": "doc::ssy::guardian_id",
+      "name": "Guardian's Aadhaar (masked) or voter ID",
+      "kind": "document_proof",
+      "source": "https://www.indiapost.gov.in/Financial/Pages/Content/Post-Office-Saving-Schemes.aspx",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Guardian's Aadhaar (masked) or voter ID. "
+    },
+    {
+      "id": "doc::ssy::photo",
+      "name": "Passport-size photographs",
+      "kind": "document_proof",
+      "source": "https://www.indiapost.gov.in/Financial/Pages/Content/Post-Office-Saving-Schemes.aspx",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Passport-size photographs. "
+    },
+    {
+      "id": "pmuy",
+      "name": "Pradhan Mantri Ujjwala Yojana (free LPG connection)",
+      "kind": "scheme_guideline",
+      "source": "https://www.pmuy.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "A free LPG gas connection with the first refill and stove subsidy for women from poor households, so cooking does not happen on firewood."
+    },
+    {
+      "id": "pmuy::pmuy.no-lpg",
+      "name": "pmuy.no-lpg",
+      "kind": "statutory_rule",
+      "source": "https://www.pmuy.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Household does not already have an LPG connection (Condition: has_lpg_connection false)"
+    },
+    {
+      "id": "pmuy::pmuy.income",
+      "name": "pmuy.income",
+      "kind": "statutory_rule",
+      "source": "https://www.pmuy.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Poor household (BPL / SECC list) (Condition: income_band in ['bpl', 'low'])"
+    },
+    {
+      "id": "pmuy::pmuy.woman",
+      "name": "pmuy.woman",
+      "kind": "statutory_rule",
+      "source": "https://www.pmuy.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Connection is issued in a woman's name (Condition: gender in ['female'])"
+    },
+    {
+      "id": "pmuy::pmuy.ration",
+      "name": "pmuy.ration",
+      "kind": "statutory_rule",
+      "source": "https://www.pmuy.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Ration card / family identity (Condition: has_ration_card true)"
+    },
+    {
+      "id": "doc::pmuy::ration_card",
+      "name": "Ration card or family identity proof",
+      "kind": "document_proof",
+      "source": "https://www.pmuy.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Ration card or family identity proof. "
+    },
+    {
+      "id": "doc::pmuy::aadhaar_masked",
+      "name": "Aadhaar (masked) of the woman applicant",
+      "kind": "document_proof",
+      "source": "https://www.pmuy.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Aadhaar (masked) of the woman applicant. "
+    },
+    {
+      "id": "doc::pmuy::bank_passbook",
+      "name": "Bank passbook for the subsidy",
+      "kind": "document_proof",
+      "source": "https://www.pmuy.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Bank passbook for the subsidy. "
+    },
+    {
+      "id": "mudra-shishu",
+      "name": "Pradhan Mantri MUDRA Yojana - Shishu loan",
+      "kind": "scheme_guideline",
+      "source": "https://www.mudra.org.in/",
+      "provenance": "EXTRACTED",
+      "description": "Collateral-free bank loan up to Rs 50,000 for a small shop, tailoring unit, food cart or any micro-enterprise, with no processing fee in the Shishu category."
+    },
+    {
+      "id": "mudra-shishu::mudra.wants-loan",
+      "name": "mudra.wants-loan",
+      "kind": "statutory_rule",
+      "source": "https://www.mudra.org.in/",
+      "provenance": "EXTRACTED",
+      "description": "Looking for a loan for a business or shop (Condition: wants_loan true)"
+    },
+    {
+      "id": "mudra-shishu::mudra.income",
+      "name": "mudra.income",
+      "kind": "statutory_rule",
+      "source": "https://www.mudra.org.in/",
+      "provenance": "EXTRACTED",
+      "description": "Targets micro and small borrowers (Condition: income_band in ['bpl', 'low', 'middle'])"
+    },
+    {
+      "id": "mudra-shishu::mudra.age",
+      "name": "mudra.age",
+      "kind": "statutory_rule",
+      "source": "https://www.mudra.org.in/",
+      "provenance": "EXTRACTED",
+      "description": "Applicant is 18 or older (Condition: age gte 18)"
+    },
+    {
+      "id": "mudra-shishu::mudra.not-default",
+      "name": "mudra.not-default",
+      "kind": "statutory_rule",
+      "source": "https://www.mudra.org.in/",
+      "provenance": "EXTRACTED",
+      "description": "Not restricted to salaried government staff (income-generating activity required) (Condition: is_govt_employee false)"
+    },
+    {
+      "id": "mudra-shishu::mudra.bank",
+      "name": "mudra.bank",
+      "kind": "statutory_rule",
+      "source": "https://www.mudra.org.in/",
+      "provenance": "EXTRACTED",
+      "description": "Bank account in the applicant's name (Condition: has_bank_account true)"
+    },
+    {
+      "id": "doc::mudra-shishu::id_proof",
+      "name": "Identity proof (Aadhaar masked, voter ID)",
+      "kind": "document_proof",
+      "source": "https://www.mudra.org.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Identity proof (Aadhaar masked, voter ID). "
+    },
+    {
+      "id": "doc::mudra-shishu::address_proof",
+      "name": "Address proof",
+      "kind": "document_proof",
+      "source": "https://www.mudra.org.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Address proof. "
+    },
+    {
+      "id": "doc::mudra-shishu::quotation",
+      "name": "Quotation for stock, machine or equipment",
+      "kind": "document_proof",
+      "source": "https://www.mudra.org.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Quotation for stock, machine or equipment. "
+    },
+    {
+      "id": "doc::mudra-shishu::bank_passbook",
+      "name": "Bank statement / passbook",
+      "kind": "document_proof",
+      "source": "https://www.mudra.org.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Bank statement / passbook. "
+    },
+    {
+      "id": "pm-svanidhi",
+      "name": "PM SVANidhi - street vendor working capital loan",
+      "kind": "scheme_guideline",
+      "source": "https://pmsvanidhi.mohua.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Working-capital loan of Rs 10,000 (then Rs 20,000 and Rs 50,000 on timely repayment) for street vendors, with interest subsidy and digital-transaction cashback."
+    },
+    {
+      "id": "pm-svanidhi::svanidhi.vendor",
+      "name": "svanidhi.vendor",
+      "kind": "statutory_rule",
+      "source": "https://pmsvanidhi.mohua.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Works as a street vendor / hawker (Condition: occupation in ['street_vendor', 'self_employed'])"
+    },
+    {
+      "id": "pm-svanidhi::svanidhi.wants-loan",
+      "name": "svanidhi.wants-loan",
+      "kind": "statutory_rule",
+      "source": "https://pmsvanidhi.mohua.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Needs working capital for the business (Condition: wants_loan true)"
+    },
+    {
+      "id": "pm-svanidhi::svanidhi.age",
+      "name": "svanidhi.age",
+      "kind": "statutory_rule",
+      "source": "https://pmsvanidhi.mohua.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Applicant is 18 or older (Condition: age gte 18)"
+    },
+    {
+      "id": "pm-svanidhi::svanidhi.bank",
+      "name": "svanidhi.bank",
+      "kind": "statutory_rule",
+      "source": "https://pmsvanidhi.mohua.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Bank account for the loan (Condition: has_bank_account true)"
+    },
+    {
+      "id": "doc::pm-svanidhi::vending_certificate",
+      "name": "Certificate of vending / letter of recommendation",
+      "kind": "document_proof",
+      "source": "https://pmsvanidhi.mohua.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Certificate of vending / letter of recommendation. Apply at your municipality or the vendors' association."
+    },
+    {
+      "id": "doc::pm-svanidhi::id_proof",
+      "name": "Identity proof",
+      "kind": "document_proof",
+      "source": "https://pmsvanidhi.mohua.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Identity proof. "
+    },
+    {
+      "id": "doc::pm-svanidhi::bank_passbook",
+      "name": "Bank passbook",
+      "kind": "document_proof",
+      "source": "https://pmsvanidhi.mohua.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Bank passbook. "
+    },
+    {
+      "id": "eshram",
+      "name": "e-Shram registration for unorganised workers",
+      "kind": "scheme_guideline",
+      "source": "https://eshram.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Free national registration card for unorganised and gig workers, giving accident insurance cover and a single identity used to claim several other benefits."
+    },
+    {
+      "id": "eshram::eshram.unorganised",
+      "name": "eshram.unorganised",
+      "kind": "statutory_rule",
+      "source": "https://eshram.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Works in the unorganised / gig / daily-wage sector (Condition: is_unorganised_worker true)"
+    },
+    {
+      "id": "eshram::eshram.age",
+      "name": "eshram.age",
+      "kind": "statutory_rule",
+      "source": "https://eshram.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Age between 16 and 59 years (Condition: age between [16, 59])"
+    },
+    {
+      "id": "eshram::eshram.not-govt",
+      "name": "eshram.not-govt",
+      "kind": "statutory_rule",
+      "source": "https://eshram.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Not a government employee or income-tax payer (Condition: is_govt_employee false)"
+    },
+    {
+      "id": "eshram::eshram.bank",
+      "name": "eshram.bank",
+      "kind": "statutory_rule",
+      "source": "https://eshram.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Bank account for the insurance benefit (Condition: has_bank_account true)"
+    },
+    {
+      "id": "doc::eshram::aadhaar_masked",
+      "name": "Aadhaar linked to a mobile number",
+      "kind": "document_proof",
+      "source": "https://eshram.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Aadhaar linked to a mobile number. "
+    },
+    {
+      "id": "doc::eshram::bank_passbook",
+      "name": "Bank passbook",
+      "kind": "document_proof",
+      "source": "https://eshram.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Bank passbook. "
+    },
+    {
+      "id": "doc::eshram::mobile",
+      "name": "Mobile number for the OTP",
+      "kind": "document_proof",
+      "source": "https://eshram.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Mobile number for the OTP. "
+    },
+    {
+      "id": "pm-vishwakarma",
+      "name": "PM Vishwakarma (artisan toolkit and loan)",
+      "kind": "scheme_guideline",
+      "source": "https://pmvishwakarma.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Skill training, Rs 15,000 toolkit grant, and collateral-free loans at 5% interest for traditional artisans and craftspeople like weavers, potters, carpenters and tailors."
+    },
+    {
+      "id": "pm-vishwakarma::vishwakarma.sector",
+      "name": "vishwakarma.sector",
+      "kind": "statutory_rule",
+      "source": "https://pmvishwakarma.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Works in one of the 18 notified family-based trades (Condition: sector in ['weaving', 'pottery', 'carpentry', 'tailoring'])"
+    },
+    {
+      "id": "pm-vishwakarma::vishwakarma.occupation",
+      "name": "vishwakarma.occupation",
+      "kind": "statutory_rule",
+      "source": "https://pmvishwakarma.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Earns a living from the craft / trade (Condition: occupation in ['artisan', 'self_employed', 'daily_wage'])"
+    },
+    {
+      "id": "pm-vishwakarma::vishwakarma.age",
+      "name": "vishwakarma.age",
+      "kind": "statutory_rule",
+      "source": "https://pmvishwakarma.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Applicant is 18 or older (Condition: age gte 18)"
+    },
+    {
+      "id": "pm-vishwakarma::vishwakarma.not-govt",
+      "name": "vishwakarma.not-govt",
+      "kind": "statutory_rule",
+      "source": "https://pmvishwakarma.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Not a government employee (family members also excluded) (Condition: is_govt_employee false)"
+    },
+    {
+      "id": "pm-vishwakarma::vishwakarma.bank",
+      "name": "vishwakarma.bank",
+      "kind": "statutory_rule",
+      "source": "https://pmvishwakarma.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Bank account for the toolkit and loan (Condition: has_bank_account true)"
+    },
+    {
+      "id": "doc::pm-vishwakarma::aadhaar_masked",
+      "name": "Aadhaar (masked)",
+      "kind": "document_proof",
+      "source": "https://pmvishwakarma.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Aadhaar (masked). "
+    },
+    {
+      "id": "doc::pm-vishwakarma::bank_passbook",
+      "name": "Bank passbook",
+      "kind": "document_proof",
+      "source": "https://pmvishwakarma.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Bank passbook. "
+    },
+    {
+      "id": "doc::pm-vishwakarma::trade_proof",
+      "name": "Proof of the trade (work photos, association letter)",
+      "kind": "document_proof",
+      "source": "https://pmvishwakarma.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Proof of the trade (work photos, association letter). A letter from the local artisans' association usually works."
+    },
+    {
+      "id": "pmjjby",
+      "name": "PM Jeevan Jyoti Bima Yojana (life cover)",
+      "kind": "scheme_guideline",
+      "source": "https://jansuraksha.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Life insurance cover of Rs 2 lakh for a very small yearly premium, auto-debited from the bank account - especially important for the earning member of a daily-wage family."
+    },
+    {
+      "id": "pmjjby::pmjjby.age",
+      "name": "pmjjby.age",
+      "kind": "statutory_rule",
+      "source": "https://jansuraksha.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Age between 18 and 50 years (Condition: age between [18, 50])"
+    },
+    {
+      "id": "pmjjby::pmjjby.bank",
+      "name": "pmjjby.bank",
+      "kind": "statutory_rule",
+      "source": "https://jansuraksha.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Savings bank account for the auto-debit (Condition: has_bank_account true)"
+    },
+    {
+      "id": "pmjjby::pmjjby.earning",
+      "name": "pmjjby.earning",
+      "kind": "statutory_rule",
+      "source": "https://jansuraksha.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Most valuable for the family's earning member in informal work (Condition: is_unorganised_worker true)"
+    },
+    {
+      "id": "doc::pmjjby::bank_passbook",
+      "name": "Bank passbook",
+      "kind": "document_proof",
+      "source": "https://jansuraksha.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Bank passbook. "
+    },
+    {
+      "id": "doc::pmjjby::nominee_id",
+      "name": "Nominee's identity proof",
+      "kind": "document_proof",
+      "source": "https://jansuraksha.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Nominee's identity proof. "
+    },
+    {
+      "id": "pmsby",
+      "name": "PM Suraksha Bima Yojana (accident cover)",
+      "kind": "scheme_guideline",
+      "source": "https://jansuraksha.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Accident insurance of Rs 2 lakh (Rs 1 lakh for partial disability) for about Rs 20 a year - the cheapest cover available to a worker who rides or works with tools."
+    },
+    {
+      "id": "pmsby::pmsby.age",
+      "name": "pmsby.age",
+      "kind": "statutory_rule",
+      "source": "https://jansuraksha.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Age between 18 and 70 years (Condition: age between [18, 70])"
+    },
+    {
+      "id": "pmsby::pmsby.bank",
+      "name": "pmsby.bank",
+      "kind": "statutory_rule",
+      "source": "https://jansuraksha.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Bank account for the auto-debit (Condition: has_bank_account true)"
+    },
+    {
+      "id": "pmsby::pmsby.risk",
+      "name": "pmsby.risk",
+      "kind": "statutory_rule",
+      "source": "https://jansuraksha.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Higher-risk daily work - cover matters most (Condition: occupation in ['daily_wage', 'gig_worker', 'farm_labour'])"
+    },
+    {
+      "id": "pmsby::pmsby.sector-risk",
+      "name": "pmsby.sector-risk",
+      "kind": "statutory_rule",
+      "source": "https://jansuraksha.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Works in a higher-risk trade (construction, driving, farm or domestic work) (Condition: sector in ['construction', 'driver', 'agriculture', 'domestic_work'])"
+    },
+    {
+      "id": "pmsby::pmsby.unorganised",
+      "name": "pmsby.unorganised",
+      "kind": "statutory_rule",
+      "source": "https://jansuraksha.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Informal worker without employer-provided cover (Condition: is_unorganised_worker true)"
+    },
+    {
+      "id": "doc::pmsby::bank_passbook",
+      "name": "Bank passbook",
+      "kind": "document_proof",
+      "source": "https://jansuraksha.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Bank passbook. "
+    },
+    {
+      "id": "doc::pmsby::nominee_id",
+      "name": "Nominee's identity proof",
+      "kind": "document_proof",
+      "source": "https://jansuraksha.gov.in/",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Nominee's identity proof. "
+    },
+    {
+      "id": "ayushman-vay-vandana",
+      "name": "Ayushman Vay Vandana card (health cover for 70+)",
+      "kind": "scheme_guideline",
+      "source": "https://nha.gov.in/PM-JAY",
+      "provenance": "EXTRACTED",
+      "description": "Cashless hospital cover of Rs 5 lakh per year for every person aged 70 and above, regardless of income, given through a simple Ayushman card."
+    },
+    {
+      "id": "ayushman-vay-vandana::vayvandana.age",
+      "name": "vayvandana.age",
+      "kind": "statutory_rule",
+      "source": "https://nha.gov.in/PM-JAY",
+      "provenance": "EXTRACTED",
+      "description": "Age 70 years or above (Condition: age gte 70)"
+    },
+    {
+      "id": "ayushman-vay-vandana::vayvandana.mobile",
+      "name": "vayvandana.mobile",
+      "kind": "statutory_rule",
+      "source": "https://nha.gov.in/PM-JAY",
+      "provenance": "EXTRACTED",
+      "description": "An Aadhaar-linked mobile or bank account helps with e-KYC (Condition: has_bank_account true)"
+    },
+    {
+      "id": "ayushman-vay-vandana::vayvandana.cover",
+      "name": "vayvandana.cover",
+      "kind": "statutory_rule",
+      "source": "https://nha.gov.in/PM-JAY",
+      "provenance": "EXTRACTED",
+      "description": "Adds cover even if the family has none (Condition: has_health_insurance false)"
+    },
+    {
+      "id": "doc::ayushman-vay-vandana::aadhaar_masked",
+      "name": "Aadhaar (masked) for e-KYC",
+      "kind": "document_proof",
+      "source": "https://nha.gov.in/PM-JAY",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Aadhaar (masked) for e-KYC. "
+    },
+    {
+      "id": "doc::ayushman-vay-vandana::mobile",
+      "name": "Mobile number linked to Aadhaar",
+      "kind": "document_proof",
+      "source": "https://nha.gov.in/PM-JAY",
+      "provenance": "EXTRACTED",
+      "description": "Verification proof: Mobile number linked to Aadhaar. "
+    },
+    {
+      "id": "ts-overseas-vidyanidhi",
+      "name": "Telangana Overseas Vidya Nidhi (study abroad)",
+      "kind": "scheme_guideline",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "INFERRED",
+      "description": "Fee reimbursement and one-time grant for SC/ST/BC/Minority students of Telangana admitted to masters courses abroad, plus a soft loan for living expenses."
+    },
+    {
+      "id": "ts-overseas-vidyanidhi::overseas.state",
+      "name": "overseas.state",
+      "kind": "statutory_rule",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "INFERRED",
+      "description": "Domicile of Telangana (Condition: state in ['telangana', 'ts'])"
+    },
+    {
+      "id": "ts-overseas-vidyanidhi::overseas.category",
+      "name": "overseas.category",
+      "kind": "statutory_rule",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "INFERRED",
+      "description": "SC / ST / BC / Minority student (Condition: social_category in ['sc', 'st', 'bc', 'obc', 'minority'])"
+    },
+    {
+      "id": "ts-overseas-vidyanidhi::overseas.graduate",
+      "name": "overseas.graduate",
+      "kind": "statutory_rule",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "INFERRED",
+      "description": "Completed a degree - applying for a masters course abroad (Condition: education_level in ['graduate'])"
+    },
+    {
+      "id": "ts-overseas-vidyanidhi::overseas.income",
+      "name": "overseas.income",
+      "kind": "statutory_rule",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "INFERRED",
+      "description": "Family income within the scheme ceiling (Condition: annual_income_inr lt 500000)"
+    },
+    {
+      "id": "ts-overseas-vidyanidhi::overseas.student",
+      "name": "overseas.student",
+      "kind": "statutory_rule",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "INFERRED",
+      "description": "Currently a student / just admitted (Condition: is_student true)"
+    },
+    {
+      "id": "doc::ts-overseas-vidyanidhi::admission_letter",
+      "name": "Foreign university admission letter",
+      "kind": "document_proof",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "INFERRED",
+      "description": "Verification proof: Foreign university admission letter. "
+    },
+    {
+      "id": "doc::ts-overseas-vidyanidhi::passport",
+      "name": "Passport and visa",
+      "kind": "document_proof",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "INFERRED",
+      "description": "Verification proof: Passport and visa. "
+    },
+    {
+      "id": "doc::ts-overseas-vidyanidhi::caste_certificate",
+      "name": "Caste certificate",
+      "kind": "document_proof",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "INFERRED",
+      "description": "Verification proof: Caste certificate. "
+    },
+    {
+      "id": "doc::ts-overseas-vidyanidhi::income_certificate",
+      "name": "Income certificate",
+      "kind": "document_proof",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "INFERRED",
+      "description": "Verification proof: Income certificate. "
+    },
+    {
+      "id": "doc::ts-overseas-vidyanidhi::fee_structure",
+      "name": "Fee structure / I-20 or offer letter with costs",
+      "kind": "document_proof",
+      "source": "https://telanganaepass.cgg.gov.in/",
+      "provenance": "INFERRED",
+      "description": "Verification proof: Fee structure / I-20 or offer letter with costs. "
+    }
+  ],
+  "links": [
+    {
+      "source": "pm-kisan-guidelines",
+      "target": "pm-kisan",
+      "rel": "stipulates_scheme",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Official guidelines published on 2026-11-12 stipulate PM-KISAN Samman Nidhi."
+    },
+    {
+      "source": "pm-kisan",
+      "target": "pm-kisan::kisan.landholding",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule kisan.landholding derived from official criteria: Family must own cultivable land (landholding farmer family)"
+    },
+    {
+      "source": "pm-kisan",
+      "target": "pm-kisan::kisan.occupation",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule kisan.occupation derived from official criteria: Main occupation is farming or farm work"
+    },
+    {
+      "source": "pm-kisan",
+      "target": "pm-kisan::kisan.age",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule kisan.age derived from official criteria: Applicant is 18 years or older"
+    },
+    {
+      "source": "pm-kisan",
+      "target": "pm-kisan::kisan.no-incometax",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule kisan.no-incometax derived from official criteria: No family member pays income tax (exclusion criterion)"
+    },
+    {
+      "source": "pm-kisan",
+      "target": "pm-kisan::kisan.not-govt",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule kisan.not-govt derived from official criteria: No family member is a government employee (exclusion criterion)"
+    },
+    {
+      "source": "pm-kisan",
+      "target": "pm-kisan::kisan.bank",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule kisan.bank derived from official criteria: Bank account in the applicant's own name"
+    },
+    {
+      "source": "pm-kisan",
+      "target": "doc::pm-kisan::aadhaar_masked",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Aadhaar (masked / last 4 digits only - SchemeSetu never stores the number) for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pm-kisan",
+      "target": "doc::pm-kisan::land_record",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Land record (Pahani / RoR) for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pm-kisan",
+      "target": "doc::pm-kisan::bank_passbook",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Bank passbook first page for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pm-kisan",
+      "target": "doc::pm-kisan::ration_card",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Ration card / MGNREGA or UPI linkage proof for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pmjay",
+      "target": "pmjay::pmjay.deprivation",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmjay.deprivation derived from official criteria: Household falls in the deprived / low-income group used for eligibility"
+    },
+    {
+      "source": "pmjay",
+      "target": "pmjay::pmjay.ration",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmjay.ration derived from official criteria: Family holds a ration card (used to identify the household)"
+    },
+    {
+      "source": "pmjay",
+      "target": "pmjay::pmjay.no-cover-yet",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmjay.no-cover-yet derived from official criteria: Helps most if the family has no other health cover yet"
+    },
+    {
+      "source": "pmjay",
+      "target": "pmjay::pmjay.rural",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmjay.rural derived from official criteria: Rural households form the majority of the eligibility list"
+    },
+    {
+      "source": "pmjay",
+      "target": "doc::pmjay::aadhaar_masked",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Aadhaar (masked - the portal verifies it directly) for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pmjay",
+      "target": "doc::pmjay::ration_card",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Ration card for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pmjay",
+      "target": "doc::pmjay::mobile",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Mobile number registered in a family member's name for OTP for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "nsp-pre-matric-sc",
+      "target": "nsp-pre-matric-sc::prematric.student",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule prematric.student derived from official criteria: Applicant is currently studying"
+    },
+    {
+      "source": "nsp-pre-matric-sc",
+      "target": "nsp-pre-matric-sc::prematric.class",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule prematric.class derived from official criteria: Studying in Class 9 or Class 10"
+    },
+    {
+      "source": "nsp-pre-matric-sc",
+      "target": "nsp-pre-matric-sc::prematric.category",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule prematric.category derived from official criteria: Belongs to a Scheduled Caste"
+    },
+    {
+      "source": "nsp-pre-matric-sc",
+      "target": "nsp-pre-matric-sc::prematric.income",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule prematric.income derived from official criteria: Parental annual income within the scheme ceiling (Rs 2.5 lakh)"
+    },
+    {
+      "source": "nsp-pre-matric-sc",
+      "target": "nsp-pre-matric-sc::prematric.school-level",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule prematric.school-level derived from official criteria: Consistent with a school-level learner profile"
+    },
+    {
+      "source": "nsp-pre-matric-sc",
+      "target": "doc::nsp-pre-matric-sc::caste_certificate",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present SC caste certificate for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "nsp-pre-matric-sc",
+      "target": "doc::nsp-pre-matric-sc::income_certificate",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Family income certificate for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "nsp-pre-matric-sc",
+      "target": "doc::nsp-pre-matric-sc::marksheet",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Previous class marksheet for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "nsp-pre-matric-sc",
+      "target": "doc::nsp-pre-matric-sc::bonafide",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Bonafide certificate from the school for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "nsp-pre-matric-sc",
+      "target": "doc::nsp-pre-matric-sc::bank_passbook",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Bank passbook in the student's own name for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "nsp-pre-matric-sc",
+      "target": "doc::nsp-pre-matric-sc::aadhaar_masked",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Aadhaar (masked) for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "nsp-post-matric-sc",
+      "target": "nsp-post-matric-sc::postmatric.category",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule postmatric.category derived from official criteria: Belongs to a Scheduled Caste"
+    },
+    {
+      "source": "nsp-post-matric-sc",
+      "target": "nsp-post-matric-sc::postmatric.class",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule postmatric.class derived from official criteria: Studying in Class 11 or above (or a post-Class-10 course)"
+    },
+    {
+      "source": "nsp-post-matric-sc",
+      "target": "nsp-post-matric-sc::postmatric.student",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule postmatric.student derived from official criteria: Applicant is currently studying"
+    },
+    {
+      "source": "nsp-post-matric-sc",
+      "target": "nsp-post-matric-sc::postmatric.income",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule postmatric.income derived from official criteria: Family income within the ceiling (Rs 2.5 lakh)"
+    },
+    {
+      "source": "nsp-post-matric-sc",
+      "target": "nsp-post-matric-sc::postmatric.income-band",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule postmatric.income-band derived from official criteria: Low-income household"
+    },
+    {
+      "source": "nsp-post-matric-sc",
+      "target": "doc::nsp-post-matric-sc::caste_certificate",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present SC caste certificate for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "nsp-post-matric-sc",
+      "target": "doc::nsp-post-matric-sc::income_certificate",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Family income certificate for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "nsp-post-matric-sc",
+      "target": "doc::nsp-post-matric-sc::class10_marksheet",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Class 10 / Class 12 marksheet for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "nsp-post-matric-sc",
+      "target": "doc::nsp-post-matric-sc::fee_receipt",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Admission / fee receipt from the institute for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "nsp-post-matric-sc",
+      "target": "doc::nsp-post-matric-sc::bank_passbook",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Bank passbook enabled for DBT for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "nmmss",
+      "target": "nmmss::nmmss.student",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule nmmss.student derived from official criteria: Applicant is a school student"
+    },
+    {
+      "source": "nmmss",
+      "target": "nmmss::nmmss.class",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule nmmss.class derived from official criteria: Studying in Class 9 to Class 12"
+    },
+    {
+      "source": "nmmss",
+      "target": "nmmss::nmmss.income",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule nmmss.income derived from official criteria: Family income within Rs 3.5 lakh (revised ceiling)"
+    },
+    {
+      "source": "nmmss",
+      "target": "nmmss::nmmss.school-level",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule nmmss.school-level derived from official criteria: Usually a government / local-body / aided school student"
+    },
+    {
+      "source": "nmmss",
+      "target": "doc::nmmss::income_certificate",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Family income certificate for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "nmmss",
+      "target": "doc::nmmss::class8_marksheet",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Class 8 marksheet showing 55% or more for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "nmmss",
+      "target": "doc::nmmss::bonafide",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Bonafide certificate for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "nmmss",
+      "target": "doc::nmmss::bank_passbook",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Bank passbook for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-epass-rtf",
+      "target": "ts-epass-rtf::rtf.state",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule rtf.state derived from official criteria: Student is a resident of Telangana"
+    },
+    {
+      "source": "ts-epass-rtf",
+      "target": "ts-epass-rtf::rtf.student",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule rtf.student derived from official criteria: Currently studying in a recognised institution"
+    },
+    {
+      "source": "ts-epass-rtf",
+      "target": "ts-epass-rtf::rtf.class",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule rtf.class derived from official criteria: Post-matric course (Intermediate or above)"
+    },
+    {
+      "source": "ts-epass-rtf",
+      "target": "ts-epass-rtf::rtf.category",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule rtf.category derived from official criteria: SC / ST / BC / EBC / Minority category"
+    },
+    {
+      "source": "ts-epass-rtf",
+      "target": "ts-epass-rtf::rtf.income",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule rtf.income derived from official criteria: Family income within the RTF ceiling"
+    },
+    {
+      "source": "ts-epass-rtf",
+      "target": "ts-epass-rtf::rtf.income-band",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule rtf.income-band derived from official criteria: Low-income household"
+    },
+    {
+      "source": "ts-epass-rtf",
+      "target": "doc::ts-epass-rtf::caste_certificate",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Caste certificate (Telangana) for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-epass-rtf",
+      "target": "doc::ts-epass-rtf::income_certificate",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Income certificate (Telangana) for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-epass-rtf",
+      "target": "doc::ts-epass-rtf::ssc_inter_marks",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present SSC / Intermediate marks memo with hall ticket number for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-epass-rtf",
+      "target": "doc::ts-epass-rtf::admission_proof",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Admission letter / fee receipt for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-epass-rtf",
+      "target": "doc::ts-epass-rtf::bonafide",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Bonafide certificate from the college for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-epass-rtf",
+      "target": "doc::ts-epass-rtf::bank_passbook",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Bank passbook for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-aasara-orders",
+      "target": "ts-aasara-oldage",
+      "rel": "stipulates_scheme",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Official guidelines published on 2026-11-05 stipulate Telangana Aasara Pension - Old Age."
+    },
+    {
+      "source": "ts-aasara-oldage",
+      "target": "ts-aasara-oldage::aasara.age",
+      "rel": "enforces_condition",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Rule aasara.age derived from official criteria: Age 57 years or above (Telangana Aasara threshold)"
+    },
+    {
+      "source": "ts-aasara-oldage",
+      "target": "ts-aasara-oldage::aasara.state",
+      "rel": "enforces_condition",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Rule aasara.state derived from official criteria: Resident of Telangana"
+    },
+    {
+      "source": "ts-aasara-oldage",
+      "target": "ts-aasara-oldage::aasara.income",
+      "rel": "enforces_condition",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Rule aasara.income derived from official criteria: Household income within the prescribed limit (white / low-income ration card)"
+    },
+    {
+      "source": "ts-aasara-oldage",
+      "target": "ts-aasara-oldage::aasara.no-other-pension",
+      "rel": "enforces_condition",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Rule aasara.no-other-pension derived from official criteria: Not already receiving another government pension"
+    },
+    {
+      "source": "ts-aasara-oldage",
+      "target": "ts-aasara-oldage::aasara.govt-exclusion",
+      "rel": "enforces_condition",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Rule aasara.govt-exclusion derived from official criteria: Not a government employee or retired government employee"
+    },
+    {
+      "source": "ts-aasara-oldage",
+      "target": "ts-aasara-oldage::aasara.bank",
+      "rel": "enforces_condition",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Rule aasara.bank derived from official criteria: Bank account for DBT credit"
+    },
+    {
+      "source": "ts-aasara-oldage",
+      "target": "doc::ts-aasara-oldage::age_proof",
+      "rel": "requires_verification",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Applicant must present Age proof (Aadhaar, voter ID or school certificate) for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-aasara-oldage",
+      "target": "doc::ts-aasara-oldage::ration_card",
+      "rel": "requires_verification",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Applicant must present Ration card for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-aasara-oldage",
+      "target": "doc::ts-aasara-oldage::residence_proof",
+      "rel": "requires_verification",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Applicant must present Residence proof of the Telangana address for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-aasara-oldage",
+      "target": "doc::ts-aasara-oldage::bank_passbook",
+      "rel": "requires_verification",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Applicant must present Bank passbook (DBT-enabled) for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-aasara-oldage",
+      "target": "doc::ts-aasara-oldage::aadhaar_masked",
+      "rel": "requires_verification",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Applicant must present Aadhaar (masked) for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-aasara-orders",
+      "target": "ts-aasara-widow",
+      "rel": "stipulates_scheme",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Official guidelines published on 2026-11-05 stipulate Telangana Aasara Pension - Widow."
+    },
+    {
+      "source": "ts-aasara-widow",
+      "target": "ts-aasara-widow::widow.is-widow",
+      "rel": "enforces_condition",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Rule widow.is-widow derived from official criteria: Applicant is a widow"
+    },
+    {
+      "source": "ts-aasara-widow",
+      "target": "ts-aasara-widow::widow.age",
+      "rel": "enforces_condition",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Rule widow.age derived from official criteria: Age 18 years or above"
+    },
+    {
+      "source": "ts-aasara-widow",
+      "target": "ts-aasara-widow::widow.state",
+      "rel": "enforces_condition",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Rule widow.state derived from official criteria: Resident of Telangana"
+    },
+    {
+      "source": "ts-aasara-widow",
+      "target": "ts-aasara-widow::widow.income",
+      "rel": "enforces_condition",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Rule widow.income derived from official criteria: Low-income household"
+    },
+    {
+      "source": "ts-aasara-widow",
+      "target": "ts-aasara-widow::widow.no-other-pension",
+      "rel": "enforces_condition",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Rule widow.no-other-pension derived from official criteria: Not already receiving another government pension"
+    },
+    {
+      "source": "ts-aasara-widow",
+      "target": "ts-aasara-widow::widow.bank",
+      "rel": "enforces_condition",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Rule widow.bank derived from official criteria: Bank account for DBT credit"
+    },
+    {
+      "source": "ts-aasara-widow",
+      "target": "doc::ts-aasara-widow::death_certificate",
+      "rel": "requires_verification",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Applicant must present Spouse's death certificate for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-aasara-widow",
+      "target": "doc::ts-aasara-widow::age_proof",
+      "rel": "requires_verification",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Applicant must present Age proof for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-aasara-widow",
+      "target": "doc::ts-aasara-widow::ration_card",
+      "rel": "requires_verification",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Applicant must present Ration card for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-aasara-widow",
+      "target": "doc::ts-aasara-widow::bank_passbook",
+      "rel": "requires_verification",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Applicant must present Bank passbook (DBT-enabled) for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-aasara-orders",
+      "target": "ts-aasara-disability",
+      "rel": "stipulates_scheme",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Official guidelines published on 2026-11-05 stipulate Telangana Aasara Pension - Persons with Disability."
+    },
+    {
+      "source": "ts-aasara-disability",
+      "target": "ts-aasara-disability::disability.percent",
+      "rel": "enforces_condition",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Rule disability.percent derived from official criteria: Disability assessed at 40% or more (SADAREM)"
+    },
+    {
+      "source": "ts-aasara-disability",
+      "target": "ts-aasara-disability::disability.age",
+      "rel": "enforces_condition",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Rule disability.age derived from official criteria: Age 18 years or above"
+    },
+    {
+      "source": "ts-aasara-disability",
+      "target": "ts-aasara-disability::disability.state",
+      "rel": "enforces_condition",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Rule disability.state derived from official criteria: Resident of Telangana"
+    },
+    {
+      "source": "ts-aasara-disability",
+      "target": "ts-aasara-disability::disability.income",
+      "rel": "enforces_condition",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Rule disability.income derived from official criteria: Low-income household"
+    },
+    {
+      "source": "ts-aasara-disability",
+      "target": "ts-aasara-disability::disability.bank",
+      "rel": "enforces_condition",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Rule disability.bank derived from official criteria: Bank account for DBT credit"
+    },
+    {
+      "source": "ts-aasara-disability",
+      "target": "doc::ts-aasara-disability::sadarem_certificate",
+      "rel": "requires_verification",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Applicant must present SADAREM disability certificate for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-aasara-disability",
+      "target": "doc::ts-aasara-disability::age_proof",
+      "rel": "requires_verification",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Applicant must present Age proof for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-aasara-disability",
+      "target": "doc::ts-aasara-disability::ration_card",
+      "rel": "requires_verification",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Applicant must present Ration card for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-aasara-disability",
+      "target": "doc::ts-aasara-disability::bank_passbook",
+      "rel": "requires_verification",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Applicant must present Bank passbook (DBT-enabled) for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "kalyana-lakshmi-order",
+      "target": "ts-kalyana-lakshmi",
+      "rel": "stipulates_scheme",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Official guidelines published on 2026-11-16 stipulate Kalyana Lakshmi / Shaadi Mubarak marriage assistance."
+    },
+    {
+      "source": "ts-kalyana-lakshmi",
+      "target": "ts-kalyana-lakshmi::kalyana.bride",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule kalyana.bride derived from official criteria: Assistance is for the bride"
+    },
+    {
+      "source": "ts-kalyana-lakshmi",
+      "target": "ts-kalyana-lakshmi::kalyana.age",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule kalyana.age derived from official criteria: Bride is 18 years or above (legal marriage age)"
+    },
+    {
+      "source": "ts-kalyana-lakshmi",
+      "target": "ts-kalyana-lakshmi::kalyana.unmarried",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule kalyana.unmarried derived from official criteria: First marriage - not already married"
+    },
+    {
+      "source": "ts-kalyana-lakshmi",
+      "target": "ts-kalyana-lakshmi::kalyana.planned",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule kalyana.planned derived from official criteria: A marriage is being planned now (apply before the wedding)"
+    },
+    {
+      "source": "ts-kalyana-lakshmi",
+      "target": "ts-kalyana-lakshmi::kalyana.state",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule kalyana.state derived from official criteria: Bride's family resides in Telangana"
+    },
+    {
+      "source": "ts-kalyana-lakshmi",
+      "target": "ts-kalyana-lakshmi::kalyana.income",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule kalyana.income derived from official criteria: Household income within the scheme limit"
+    },
+    {
+      "source": "ts-kalyana-lakshmi",
+      "target": "ts-kalyana-lakshmi::kalyana.income-cert",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule kalyana.income-cert derived from official criteria: White ration card / BPL household, or income proof within the limit"
+    },
+    {
+      "source": "ts-kalyana-lakshmi",
+      "target": "doc::ts-kalyana-lakshmi::age_proof",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Bride's age proof (SSC certificate / Aadhaar / voter ID) for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-kalyana-lakshmi",
+      "target": "doc::ts-kalyana-lakshmi::wedding_invitation",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Wedding invitation card or the marriage registration proof for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-kalyana-lakshmi",
+      "target": "doc::ts-kalyana-lakshmi::income_certificate",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Family income certificate or white ration card for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-kalyana-lakshmi",
+      "target": "doc::ts-kalyana-lakshmi::caste_certificate",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Caste certificate (for SC/ST/BC/Minority categories) for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-kalyana-lakshmi",
+      "target": "doc::ts-kalyana-lakshmi::bank_passbook",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Bank passbook in the bride's own name for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "rythu-bharosa-manual",
+      "target": "ts-rythu-bharosa",
+      "rel": "stipulates_scheme",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Official guidelines published on 2026-11-10 stipulate Rythu Bharosa investment support (Telangana)."
+    },
+    {
+      "source": "ts-rythu-bharosa",
+      "target": "ts-rythu-bharosa::rb.state",
+      "rel": "enforces_condition",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Rule rb.state derived from official criteria: Farmer family is in Telangana"
+    },
+    {
+      "source": "ts-rythu-bharosa",
+      "target": "ts-rythu-bharosa::rb.land",
+      "rel": "enforces_condition",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Rule rb.land derived from official criteria: Cultivates land (owner or recorded lease)"
+    },
+    {
+      "source": "ts-rythu-bharosa",
+      "target": "ts-rythu-bharosa::rb.occupation",
+      "rel": "enforces_condition",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Rule rb.occupation derived from official criteria: Occupation is farming"
+    },
+    {
+      "source": "ts-rythu-bharosa",
+      "target": "ts-rythu-bharosa::rb.bank",
+      "rel": "enforces_condition",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Rule rb.bank derived from official criteria: Bank account for the DBT credit"
+    },
+    {
+      "source": "ts-rythu-bharosa",
+      "target": "ts-rythu-bharosa::rb.no-incometax",
+      "rel": "enforces_condition",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Rule rb.no-incometax derived from official criteria: Not an income-tax paying household (exclusion rule)"
+    },
+    {
+      "source": "ts-rythu-bharosa",
+      "target": "doc::ts-rythu-bharosa::land_record",
+      "rel": "requires_verification",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Applicant must present Pahani / land record from Dharani for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-rythu-bharosa",
+      "target": "doc::ts-rythu-bharosa::bank_passbook",
+      "rel": "requires_verification",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Applicant must present Bank passbook showing the DBT credit for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-rythu-bharosa",
+      "target": "doc::ts-rythu-bharosa::aadhaar_masked",
+      "rel": "requires_verification",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Applicant must present Aadhaar (masked) linked to the bank account for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-rythu-bharosa",
+      "target": "doc::ts-rythu-bharosa::lease_agreement",
+      "rel": "requires_verification",
+      "provenance": "AMBIGUOUS",
+      "evidence_text": "Applicant must present Lease agreement (only if you cultivate leased-in land) for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "arogyasri-te",
+      "target": "arogyasri-te::aarogyasri.state",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule aarogyasri.state derived from official criteria: Family is a resident of Telangana"
+    },
+    {
+      "source": "arogyasri-te",
+      "target": "arogyasri-te::aarogyasri.ration",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule aarogyasri.ration derived from official criteria: Holds a ration card (white / low-income card is required)"
+    },
+    {
+      "source": "arogyasri-te",
+      "target": "arogyasri-te::aarogyasri.income",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule aarogyasri.income derived from official criteria: Low-income household"
+    },
+    {
+      "source": "arogyasri-te",
+      "target": "arogyasri-te::aarogyasri.family-size",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule aarogyasri.family-size derived from official criteria: Cover applies to the whole family"
+    },
+    {
+      "source": "arogyasri-te",
+      "target": "doc::arogyasri-te::ration_card",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present White ration card for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "arogyasri-te",
+      "target": "doc::arogyasri-te::aarogyasri_card",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Aarogyasri / Ayushman card for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "arogyasri-te",
+      "target": "doc::arogyasri-te::hospital_referral",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Doctor's referral or investigation reports for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pmfby",
+      "target": "pmfby::pmfby.land",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmfby.land derived from official criteria: Cultivates a notified crop (owner, tenant or sharecropper)"
+    },
+    {
+      "source": "pmfby",
+      "target": "pmfby::pmfby.occupation",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmfby.occupation derived from official criteria: Occupation is farming"
+    },
+    {
+      "source": "pmfby",
+      "target": "pmfby::pmfby.rural",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmfby.rural derived from official criteria: Farming household in a rural area"
+    },
+    {
+      "source": "pmfby",
+      "target": "pmfby::pmfby.bank",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmfby.bank derived from official criteria: Bank account for claim settlement"
+    },
+    {
+      "source": "pmfby",
+      "target": "doc::pmfby::land_record",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Land record - Pahani / RoR for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pmfby",
+      "target": "doc::pmfby::sowing_certificate",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Sowing certificate from the village agriculture officer for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pmfby",
+      "target": "doc::pmfby::bank_passbook",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Bank passbook linked for the claim for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pmfby",
+      "target": "doc::pmfby::crop_loan",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Crop loan / KCC papers (if enrolled through the bank) for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pmayg",
+      "target": "pmayg::pmayg.rural",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmayg.rural derived from official criteria: Rural household"
+    },
+    {
+      "source": "pmayg",
+      "target": "pmayg::pmayg.no-house",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmayg.no-house derived from official criteria: Does not already own a pucca house"
+    },
+    {
+      "source": "pmayg",
+      "target": "pmayg::pmayg.income",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmayg.income derived from official criteria: Low-income / deprived household"
+    },
+    {
+      "source": "pmayg",
+      "target": "pmayg::pmayg.house-type",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmayg.house-type derived from official criteria: Currently homeless, in a kucha house or renting"
+    },
+    {
+      "source": "pmayg",
+      "target": "pmayg::pmayg.bank",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmayg.bank derived from official criteria: Bank account for the instalments"
+    },
+    {
+      "source": "pmayg",
+      "target": "doc::pmayg::job_card",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present MGNREGA job card for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pmayg",
+      "target": "doc::pmayg::bank_passbook",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Bank passbook (Aadhaar-seeded) for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pmayg",
+      "target": "doc::pmayg::ration_card",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Ration card / SECC deprivation proof for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-2bhk",
+      "target": "ts-2bhk::ts2bhk.state",
+      "rel": "enforces_condition",
+      "provenance": "INFERRED",
+      "evidence_text": "Rule ts2bhk.state derived from official criteria: Resident of Telangana"
+    },
+    {
+      "source": "ts-2bhk",
+      "target": "ts-2bhk::ts2bhk.no-house",
+      "rel": "enforces_condition",
+      "provenance": "INFERRED",
+      "evidence_text": "Rule ts2bhk.no-house derived from official criteria: Does not own a pucca house"
+    },
+    {
+      "source": "ts-2bhk",
+      "target": "ts-2bhk::ts2bhk.income",
+      "rel": "enforces_condition",
+      "provenance": "INFERRED",
+      "evidence_text": "Rule ts2bhk.income derived from official criteria: Poor / low-income household"
+    },
+    {
+      "source": "ts-2bhk",
+      "target": "ts-2bhk::ts2bhk.house-type",
+      "rel": "enforces_condition",
+      "provenance": "INFERRED",
+      "evidence_text": "Rule ts2bhk.house-type derived from official criteria: Homeless, in a kucha house or renting"
+    },
+    {
+      "source": "ts-2bhk",
+      "target": "ts-2bhk::ts2bhk.ration",
+      "rel": "enforces_condition",
+      "provenance": "INFERRED",
+      "evidence_text": "Rule ts2bhk.ration derived from official criteria: Ration card in the family"
+    },
+    {
+      "source": "ts-2bhk",
+      "target": "doc::ts-2bhk::ration_card",
+      "rel": "requires_verification",
+      "provenance": "INFERRED",
+      "evidence_text": "Applicant must present Ration card for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-2bhk",
+      "target": "doc::ts-2bhk::income_certificate",
+      "rel": "requires_verification",
+      "provenance": "INFERRED",
+      "evidence_text": "Applicant must present Income certificate for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-2bhk",
+      "target": "doc::ts-2bhk::bank_passbook",
+      "rel": "requires_verification",
+      "provenance": "INFERRED",
+      "evidence_text": "Applicant must present Bank passbook (Aadhaar-seeded) for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-2bhk",
+      "target": "doc::ts-2bhk::residence_proof",
+      "rel": "requires_verification",
+      "provenance": "INFERRED",
+      "evidence_text": "Applicant must present Residence proof of the ward / village for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-aasara-orders",
+      "target": "nsap-ignoaps",
+      "rel": "stipulates_scheme",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Official guidelines published on 2026-10-28 stipulate Indira Gandhi National Old Age Pension (NSAP)."
+    },
+    {
+      "source": "nsap-ignoaps",
+      "target": "nsap-ignoaps::ignoaps.age",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule ignoaps.age derived from official criteria: Age 60 years or above"
+    },
+    {
+      "source": "nsap-ignoaps",
+      "target": "nsap-ignoaps::ignoaps.bpl",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule ignoaps.bpl derived from official criteria: Household below the poverty line"
+    },
+    {
+      "source": "nsap-ignoaps",
+      "target": "nsap-ignoaps::ignoaps.no-other-pension",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule ignoaps.no-other-pension derived from official criteria: Not already drawing another government pension for the same purpose"
+    },
+    {
+      "source": "nsap-ignoaps",
+      "target": "nsap-ignoaps::ignoaps.ration",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule ignoaps.ration derived from official criteria: BPL / ration card proof"
+    },
+    {
+      "source": "nsap-ignoaps",
+      "target": "nsap-ignoaps::ignoaps.bank",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule ignoaps.bank derived from official criteria: Bank or post-office account for DBT"
+    },
+    {
+      "source": "nsap-ignoaps",
+      "target": "doc::nsap-ignoaps::age_proof",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Age proof for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "nsap-ignoaps",
+      "target": "doc::nsap-ignoaps::bpl_proof",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present BPL / white ration card for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "nsap-ignoaps",
+      "target": "doc::nsap-ignoaps::bank_passbook",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Bank passbook for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ssy",
+      "target": "ssy::ssy.girl-child",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule ssy.girl-child derived from official criteria: A daughter below 10 years in the family"
+    },
+    {
+      "source": "ssy",
+      "target": "ssy::ssy.bank",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule ssy.bank derived from official criteria: An account in the child's or guardian's name to manage it"
+    },
+    {
+      "source": "ssy",
+      "target": "ssy::ssy.income",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule ssy.income derived from official criteria: Most useful for households that can save a little each year"
+    },
+    {
+      "source": "ssy",
+      "target": "doc::ssy::birth_certificate",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Girl's birth certificate for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ssy",
+      "target": "doc::ssy::guardian_id",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Guardian's Aadhaar (masked) or voter ID for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ssy",
+      "target": "doc::ssy::photo",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Passport-size photographs for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pmuy",
+      "target": "pmuy::pmuy.no-lpg",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmuy.no-lpg derived from official criteria: Household does not already have an LPG connection"
+    },
+    {
+      "source": "pmuy",
+      "target": "pmuy::pmuy.income",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmuy.income derived from official criteria: Poor household (BPL / SECC list)"
+    },
+    {
+      "source": "pmuy",
+      "target": "pmuy::pmuy.woman",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmuy.woman derived from official criteria: Connection is issued in a woman's name"
+    },
+    {
+      "source": "pmuy",
+      "target": "pmuy::pmuy.ration",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmuy.ration derived from official criteria: Ration card / family identity"
+    },
+    {
+      "source": "pmuy",
+      "target": "doc::pmuy::ration_card",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Ration card or family identity proof for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pmuy",
+      "target": "doc::pmuy::aadhaar_masked",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Aadhaar (masked) of the woman applicant for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pmuy",
+      "target": "doc::pmuy::bank_passbook",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Bank passbook for the subsidy for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "mudra-shishu",
+      "target": "mudra-shishu::mudra.wants-loan",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule mudra.wants-loan derived from official criteria: Looking for a loan for a business or shop"
+    },
+    {
+      "source": "mudra-shishu",
+      "target": "mudra-shishu::mudra.income",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule mudra.income derived from official criteria: Targets micro and small borrowers"
+    },
+    {
+      "source": "mudra-shishu",
+      "target": "mudra-shishu::mudra.age",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule mudra.age derived from official criteria: Applicant is 18 or older"
+    },
+    {
+      "source": "mudra-shishu",
+      "target": "mudra-shishu::mudra.not-default",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule mudra.not-default derived from official criteria: Not restricted to salaried government staff (income-generating activity required)"
+    },
+    {
+      "source": "mudra-shishu",
+      "target": "mudra-shishu::mudra.bank",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule mudra.bank derived from official criteria: Bank account in the applicant's name"
+    },
+    {
+      "source": "mudra-shishu",
+      "target": "doc::mudra-shishu::id_proof",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Identity proof (Aadhaar masked, voter ID) for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "mudra-shishu",
+      "target": "doc::mudra-shishu::address_proof",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Address proof for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "mudra-shishu",
+      "target": "doc::mudra-shishu::quotation",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Quotation for stock, machine or equipment for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "mudra-shishu",
+      "target": "doc::mudra-shishu::bank_passbook",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Bank statement / passbook for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pm-svanidhi",
+      "target": "pm-svanidhi::svanidhi.vendor",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule svanidhi.vendor derived from official criteria: Works as a street vendor / hawker"
+    },
+    {
+      "source": "pm-svanidhi",
+      "target": "pm-svanidhi::svanidhi.wants-loan",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule svanidhi.wants-loan derived from official criteria: Needs working capital for the business"
+    },
+    {
+      "source": "pm-svanidhi",
+      "target": "pm-svanidhi::svanidhi.age",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule svanidhi.age derived from official criteria: Applicant is 18 or older"
+    },
+    {
+      "source": "pm-svanidhi",
+      "target": "pm-svanidhi::svanidhi.bank",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule svanidhi.bank derived from official criteria: Bank account for the loan"
+    },
+    {
+      "source": "pm-svanidhi",
+      "target": "doc::pm-svanidhi::vending_certificate",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Certificate of vending / letter of recommendation for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pm-svanidhi",
+      "target": "doc::pm-svanidhi::id_proof",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Identity proof for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pm-svanidhi",
+      "target": "doc::pm-svanidhi::bank_passbook",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Bank passbook for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "eshram-portal-rules",
+      "target": "eshram",
+      "rel": "stipulates_scheme",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Official guidelines published on 2026-10-20 stipulate e-Shram registration for unorganised workers."
+    },
+    {
+      "source": "eshram",
+      "target": "eshram::eshram.unorganised",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule eshram.unorganised derived from official criteria: Works in the unorganised / gig / daily-wage sector"
+    },
+    {
+      "source": "eshram",
+      "target": "eshram::eshram.age",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule eshram.age derived from official criteria: Age between 16 and 59 years"
+    },
+    {
+      "source": "eshram",
+      "target": "eshram::eshram.not-govt",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule eshram.not-govt derived from official criteria: Not a government employee or income-tax payer"
+    },
+    {
+      "source": "eshram",
+      "target": "eshram::eshram.bank",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule eshram.bank derived from official criteria: Bank account for the insurance benefit"
+    },
+    {
+      "source": "eshram",
+      "target": "doc::eshram::aadhaar_masked",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Aadhaar linked to a mobile number for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "eshram",
+      "target": "doc::eshram::bank_passbook",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Bank passbook for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "eshram",
+      "target": "doc::eshram::mobile",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Mobile number for the OTP for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pm-vishwakarma",
+      "target": "pm-vishwakarma::vishwakarma.sector",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule vishwakarma.sector derived from official criteria: Works in one of the 18 notified family-based trades"
+    },
+    {
+      "source": "pm-vishwakarma",
+      "target": "pm-vishwakarma::vishwakarma.occupation",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule vishwakarma.occupation derived from official criteria: Earns a living from the craft / trade"
+    },
+    {
+      "source": "pm-vishwakarma",
+      "target": "pm-vishwakarma::vishwakarma.age",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule vishwakarma.age derived from official criteria: Applicant is 18 or older"
+    },
+    {
+      "source": "pm-vishwakarma",
+      "target": "pm-vishwakarma::vishwakarma.not-govt",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule vishwakarma.not-govt derived from official criteria: Not a government employee (family members also excluded)"
+    },
+    {
+      "source": "pm-vishwakarma",
+      "target": "pm-vishwakarma::vishwakarma.bank",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule vishwakarma.bank derived from official criteria: Bank account for the toolkit and loan"
+    },
+    {
+      "source": "pm-vishwakarma",
+      "target": "doc::pm-vishwakarma::aadhaar_masked",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Aadhaar (masked) for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pm-vishwakarma",
+      "target": "doc::pm-vishwakarma::bank_passbook",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Bank passbook for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pm-vishwakarma",
+      "target": "doc::pm-vishwakarma::trade_proof",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Proof of the trade (work photos, association letter) for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pmjjby",
+      "target": "pmjjby::pmjjby.age",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmjjby.age derived from official criteria: Age between 18 and 50 years"
+    },
+    {
+      "source": "pmjjby",
+      "target": "pmjjby::pmjjby.bank",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmjjby.bank derived from official criteria: Savings bank account for the auto-debit"
+    },
+    {
+      "source": "pmjjby",
+      "target": "pmjjby::pmjjby.earning",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmjjby.earning derived from official criteria: Most valuable for the family's earning member in informal work"
+    },
+    {
+      "source": "pmjjby",
+      "target": "doc::pmjjby::bank_passbook",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Bank passbook for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pmjjby",
+      "target": "doc::pmjjby::nominee_id",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Nominee's identity proof for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pmsby",
+      "target": "pmsby::pmsby.age",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmsby.age derived from official criteria: Age between 18 and 70 years"
+    },
+    {
+      "source": "pmsby",
+      "target": "pmsby::pmsby.bank",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmsby.bank derived from official criteria: Bank account for the auto-debit"
+    },
+    {
+      "source": "pmsby",
+      "target": "pmsby::pmsby.risk",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmsby.risk derived from official criteria: Higher-risk daily work - cover matters most"
+    },
+    {
+      "source": "pmsby",
+      "target": "pmsby::pmsby.sector-risk",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmsby.sector-risk derived from official criteria: Works in a higher-risk trade (construction, driving, farm or domestic work)"
+    },
+    {
+      "source": "pmsby",
+      "target": "pmsby::pmsby.unorganised",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule pmsby.unorganised derived from official criteria: Informal worker without employer-provided cover"
+    },
+    {
+      "source": "pmsby",
+      "target": "doc::pmsby::bank_passbook",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Bank passbook for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "pmsby",
+      "target": "doc::pmsby::nominee_id",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Nominee's identity proof for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "aarogyasri-trust-charter",
+      "target": "ayushman-vay-vandana",
+      "rel": "stipulates_scheme",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Official guidelines published on 2026-11-14 stipulate Ayushman Vay Vandana card (health cover for 70+)."
+    },
+    {
+      "source": "ayushman-vay-vandana",
+      "target": "ayushman-vay-vandana::vayvandana.age",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule vayvandana.age derived from official criteria: Age 70 years or above"
+    },
+    {
+      "source": "ayushman-vay-vandana",
+      "target": "ayushman-vay-vandana::vayvandana.mobile",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule vayvandana.mobile derived from official criteria: An Aadhaar-linked mobile or bank account helps with e-KYC"
+    },
+    {
+      "source": "ayushman-vay-vandana",
+      "target": "ayushman-vay-vandana::vayvandana.cover",
+      "rel": "enforces_condition",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Rule vayvandana.cover derived from official criteria: Adds cover even if the family has none"
+    },
+    {
+      "source": "ayushman-vay-vandana",
+      "target": "doc::ayushman-vay-vandana::aadhaar_masked",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Aadhaar (masked) for e-KYC for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ayushman-vay-vandana",
+      "target": "doc::ayushman-vay-vandana::mobile",
+      "rel": "requires_verification",
+      "provenance": "EXTRACTED",
+      "evidence_text": "Applicant must present Mobile number linked to Aadhaar for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "post-matric-epass-rules",
+      "target": "ts-overseas-vidyanidhi",
+      "rel": "stipulates_scheme",
+      "provenance": "INFERRED",
+      "evidence_text": "Official guidelines published on 2026-11-16 stipulate Telangana Overseas Vidya Nidhi (study abroad)."
+    },
+    {
+      "source": "ts-overseas-vidyanidhi",
+      "target": "ts-overseas-vidyanidhi::overseas.state",
+      "rel": "enforces_condition",
+      "provenance": "INFERRED",
+      "evidence_text": "Rule overseas.state derived from official criteria: Domicile of Telangana"
+    },
+    {
+      "source": "ts-overseas-vidyanidhi",
+      "target": "ts-overseas-vidyanidhi::overseas.category",
+      "rel": "enforces_condition",
+      "provenance": "INFERRED",
+      "evidence_text": "Rule overseas.category derived from official criteria: SC / ST / BC / Minority student"
+    },
+    {
+      "source": "ts-overseas-vidyanidhi",
+      "target": "ts-overseas-vidyanidhi::overseas.graduate",
+      "rel": "enforces_condition",
+      "provenance": "INFERRED",
+      "evidence_text": "Rule overseas.graduate derived from official criteria: Completed a degree - applying for a masters course abroad"
+    },
+    {
+      "source": "ts-overseas-vidyanidhi",
+      "target": "ts-overseas-vidyanidhi::overseas.income",
+      "rel": "enforces_condition",
+      "provenance": "INFERRED",
+      "evidence_text": "Rule overseas.income derived from official criteria: Family income within the scheme ceiling"
+    },
+    {
+      "source": "ts-overseas-vidyanidhi",
+      "target": "ts-overseas-vidyanidhi::overseas.student",
+      "rel": "enforces_condition",
+      "provenance": "INFERRED",
+      "evidence_text": "Rule overseas.student derived from official criteria: Currently a student / just admitted"
+    },
+    {
+      "source": "ts-overseas-vidyanidhi",
+      "target": "doc::ts-overseas-vidyanidhi::admission_letter",
+      "rel": "requires_verification",
+      "provenance": "INFERRED",
+      "evidence_text": "Applicant must present Foreign university admission letter for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-overseas-vidyanidhi",
+      "target": "doc::ts-overseas-vidyanidhi::passport",
+      "rel": "requires_verification",
+      "provenance": "INFERRED",
+      "evidence_text": "Applicant must present Passport and visa for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-overseas-vidyanidhi",
+      "target": "doc::ts-overseas-vidyanidhi::caste_certificate",
+      "rel": "requires_verification",
+      "provenance": "INFERRED",
+      "evidence_text": "Applicant must present Caste certificate for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-overseas-vidyanidhi",
+      "target": "doc::ts-overseas-vidyanidhi::income_certificate",
+      "rel": "requires_verification",
+      "provenance": "INFERRED",
+      "evidence_text": "Applicant must present Income certificate for verification at MeeSeva/CSC counter."
+    },
+    {
+      "source": "ts-overseas-vidyanidhi",
+      "target": "doc::ts-overseas-vidyanidhi::fee_structure",
+      "rel": "requires_verification",
+      "provenance": "INFERRED",
+      "evidence_text": "Applicant must present Fee structure / I-20 or offer letter with costs for verification at MeeSeva/CSC counter."
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "note": "Ready-made households for a fast, repeatable demo. `text` goes through the real intake pipeline (rules + LLM); `form` pre-fills facts the sentence does not state. These are fictional people.",
+  "samples": [
+    {
+      "id": "widow-warangal",
+      "title": "Widow, 58, Warangal - pension + health cover",
+      "language": "en",
+      "text": "I am 58 years old, a widow in Warangal. We have a white ration card and 2 acres of land. My son studies in class 9 and we have a bank account.",
+      "form": { "state": "Telangana", "district": "Warangal", "family_size": 3, "is_rural": true }
+    },
+    {
+      "id": "farmer-khammam",
+      "title": "Farmer, 45, Khammam - income support + crop insurance",
+      "language": "te",
+      "text": "నేను 45 ఏళ్ల రైతు, ఖమ్మం జిల్లా. మాకు 3 ఎకరాల భూమి ఉంది, రేషన్ కార్డు ఉంది. ఆదాయం సంవత్సరానికి 80000. బ్యాంకు ఖాతా ఉంది. సొంత పక్కా ఇల్లు ఉంది.",
+      "form": { "occupation": "farmer", "is_rural": true, "has_pucca_house": true, "income_tax_payer": false, "is_govt_employee": false }
+    },
+    {
+      "id": "student-hyderabad",
+      "title": "SC student, 16, Hyderabad - scholarships + fee reimbursement",
+      "language": "en",
+      "text": "I am 16 years old and I study in class 10 in Hyderabad. We are a scheduled caste family with a ration card and my father's income is about 1.2 lakh a year. I have a bank account in my name.",
+      "form": { "social_category": "sc", "is_student": true, "class_level": "Class 10", "gender": "male", "annual_income_inr": 120000, "income_band": "low", "education_level": "class_8" }
+    },
+    {
+      "id": "daily-wage-nizamabad",
+      "title": "Daily-wage worker, 32, Nizamabad - e-Shram + MUDRA + LPG",
+      "language": "en",
+      "text": "I am 32, I do daily wage construction work in Nizamabad. No PF and no payslip. We have no gas connection at home and I want a loan to start a small shop. Household income is about 60 thousand a year.",
+      "form": { "occupation": "daily_wage", "sector": "construction", "is_unorganised_worker": true, "wants_loan": true, "business_type": "small grocery shop", "income_band": "bpl", "has_lpg_connection": false, "is_rural": false }
+    },
+    {
+      "id": "mother-karimnagar",
+      "title": "New mother, 24, Karimnagar - maternity benefit + nutrition",
+      "language": "en",
+      "text": "I am 24 years old, pregnant, living in Karimnagar. We have a ration card. My husband is a farm labourer with no income tax. There is no health insurance in the family yet.",
+      "form": { "gender": "female", "is_pregnant_or_lactating": true, "marital_status": "married", "occupation": "homemaker", "family_size": 4 }
+    }
+  ]
+}

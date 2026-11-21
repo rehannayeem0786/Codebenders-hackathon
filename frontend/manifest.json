@@ -1,0 +1,15 @@
+{
+  "name": "SchemeSetu — Claim What's Yours",
+  "short_name": "SchemeSetu",
+  "description": "Every government scheme your family can claim, with proof of why.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070b18",
+  "theme_color": "#3b82f6",
+  "icons": [
+    { "src": "/static/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ],
+  "categories": ["government", "social", "utilities"],
+  "lang": "en",
+  "orientation": "portrait-primary"
+}

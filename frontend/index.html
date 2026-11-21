@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SchemeSetu - every scheme your family can claim</title>
+<link rel="stylesheet" href="/static/styles.css" />
+<link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
+<link rel="manifest" href="/static/manifest.json" />
+<meta name="theme-color" content="#3b82f6" />
+<meta name="description" content="SchemeSetu: Every government scheme your Telangana family can claim, with proof of why." />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">◆</span>
+    <div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <h1>SchemeSetu</h1>
+        <span class="pill ok" style="font-size:11px;padding:2px 8px;font-weight:600;">Telangana · PS5</span>
+      </div>
+      <p class="tagline" data-i18n="app.tagline">Tell us about your family. We will find every government scheme you can claim, and show you why.</p>
+    </div>
+  </div>
+  <div class="controls">
+    <div class="mode-switch">
+      <button id="btn-mode-citizen" class="chip active" data-mode="citizen" title="Simplified, voice-friendly citizen view">👤 <span data-i18n="mode.citizen">Citizen Mode</span></button>
+      <button id="btn-mode-kiosk" class="chip" data-mode="kiosk" title="MeeSeva / CSC Operator Kiosk with citizen slip & QR">🏢 <span data-i18n="mode.kiosk">MeeSeva Kiosk</span></button>
+    </div>
+    <button id="btn-anti-middleman" class="chip" title="Official Government Fees & Middleman Protection">🛡️ Govt Fees</button>
+    <button id="btn-business-model" class="chip" title="Sustainable Deployment & Who Pays">💼 Who Pays</button>
+    <button id="btn-theme-toggle" class="ghost" title="Toggle Light / Dark Theme">🌙</button>
+    <button id="btn-senior-mode" class="ghost" title="High Contrast & Senior Citizen Friendly Font">👁️ A+</button>
+    <label class="sr" for="lang">Language</label>
+    <select id="lang" title="Language"></select>
+    <button id="speak" class="ghost" title="Read the results aloud">🔊</button>
+    <button id="reload" class="ghost" title="Reload the scheme data and graph">⟳</button>
+  </div>
+</header>
+
+<div id="statusbar" class="statusbar" role="status" aria-live="polite"><span class="pill muted">loading…</span></div>
+
+<nav class="tabs" id="tabs">
+  <button class="tab active" data-tab="intake" data-i18n="nav.intake">Tell us</button>
+  <button class="tab" data-tab="results" data-i18n="nav.results">Your schemes</button>
+  <button class="tab" data-tab="graph" data-i18n="nav.graph">Why it matched</button>
+  <button class="tab" data-tab="tracker" data-i18n="nav.tracker">Applications</button>
+  <button class="tab" data-tab="studio" data-i18n="nav.studio">Rule Studio</button>
+  <button class="tab" data-tab="privacy" data-i18n="nav.privacy">Your privacy</button>
+</nav>
+
+<main>
+  <section id="panel-intake" class="panel active">
+    <div id="kiosk-banner" class="kiosk-banner" style="display:none;">
+      <div class="kiosk-badge">🏢 TELANGANA MEESEVA CITIZEN FACILITATION COUNTER</div>
+      <div class="kiosk-meta">
+        <span>Citizen Token: <b id="kiosk-token">TS-MEESEVA-2026-DEMO</b></span>
+        <span>Center: <b>MeeSeva Centre #48 (Warangal)</b></span>
+        <span>Operator: <b>Village Facilitator</b></span>
+      </div>
+    </div>
+    <div class="card">
+      <h2 data-i18n="intake.title">Speak or type, in your own words</h2>
+      <p class="muted small" data-i18n="common.not_guarantee">Likely eligible means our checks passed - it is not a guarantee.</p>
+      <div class="samples" id="samples"></div>
+      <label class="sr" for="intake-text">Your situation</label>
+      <textarea id="intake-text" rows="4" data-i18n-placeholder="intake.placeholder" spellcheck="false"></textarea>
+      <div class="row wrap align-center">
+        <button id="btn-voice" class="ghost" data-i18n="intake.voice">🎤 Speak instead</button>
+        <span id="voice-hint" class="muted small" data-i18n="intake.voice_note">Record a voice note and we will transcribe it.</span>
+        <div id="voice-visualizer" class="voice-visualizer" style="display:none;">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
+          <span class="vtext">Listening in Telugu, Hindi or English…</span>
+        </div>
+      </div>
+      <div class="row wrap presets-row">
+        <span class="small muted">Try voice sample:</span>
+        <button type="button" class="chip sample-voice" data-text="నేను 58 ఏళ్ల విధవరాలిని, వరంగల్. తెల్ల రేషన్ కార్డు, 2 ఎకరాల భూమి ఉంది. బ్యాంకు ఖాతా ఉంది." data-lang="te">🔊 Telugu: విధవరాలు, 58</button>
+        <button type="button" class="chip sample-voice" data-text="मैं 45 साल का किसान हूँ, खम्मम से। 3 एकड़ ज़मीन है, सफ़ेद राशन कार्ड है।" data-lang="hi">🔊 Hindi: किसान, 45</button>
+        <button type="button" class="chip sample-voice" data-text="I am 16, an SC student in class 10 in Hyderabad. Family income is under 1.2 lakh." data-lang="en">🔊 English: SC Student, 16</button>
+      </div>
+      <div class="row wrap" id="quick-facts"></div>
+      <div class="row wrap">
+        <button id="btn-analyse" class="primary" data-i18n="intake.analyse">Find my schemes</button>
+        <label class="check"><input type="checkbox" id="use-llm" checked /> let the model read my words too</label>
+        <label class="check"><input type="checkbox" id="save-profile" checked /> save this household</label>
+        <label class="check"><input type="checkbox" id="consent-agree" checked /> <span data-i18n="consent.agree">I agree to these details being used to check my eligibility</span></label>
+      </div>
+      <div id="intake-log" class="log" aria-live="polite"></div>
+    </div>
+
+    <div class="card" id="questions-card">
+      <h2 data-i18n="questions.title">Answer these first - they unlock the most</h2>
+      <div id="questions" class="questions"></div>
+    </div>
+  </section>
+
+  <section id="panel-results" class="panel">
+    <div id="hero-dashboard" class="hero-dashboard">
+      <div class="kpi-card kpi-cash">
+        <div class="kpi-icon">💰</div>
+        <div class="kpi-body">
+          <div class="kpi-label">Direct Cash / DBT Support</div>
+          <div class="kpi-val" id="kpi-cash-val">₹0</div>
+          <div class="kpi-sub">Transferred directly to bank account</div>
+        </div>
+      </div>
+      <div class="kpi-card kpi-cover">
+        <div class="kpi-icon">🛡️</div>
+        <div class="kpi-body">
+          <div class="kpi-label">Health & Emergency Cover</div>
+          <div class="kpi-val" id="kpi-cover-val">₹0</div>
+          <div class="kpi-sub">Cashless hospital & risk insurance</div>
+        </div>
+      </div>
+      <div class="kpi-card kpi-schemes">
+        <div class="kpi-icon">🎯</div>
+        <div class="kpi-body">
+          <div class="kpi-label">Actionable Schemes</div>
+          <div class="kpi-val" id="kpi-schemes-val">0</div>
+          <div class="kpi-sub" id="kpi-schemes-sub">Likely eligible matches</div>
+        </div>
+      </div>
+      <div class="kpi-card kpi-action">
+        <div class="kpi-icon">⚡</div>
+        <div class="kpi-body">
+          <div class="kpi-label">Highest-Impact Answer</div>
+          <div class="kpi-val" id="kpi-action-val" style="font-size:15px;line-height:1.3;">-</div>
+          <div class="kpi-sub" id="kpi-action-sub">Top fact to answer</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 data-i18n="results.title">Schemes you can claim</h2>
+      <p id="headline" class="headline">-</p>
+      <div class="row wrap" id="filters">
+        <button class="chip active" data-verdict="all">All</button>
+        <button class="chip" data-verdict="likely_eligible">Likely eligible</button>
+        <button class="chip" data-verdict="possible">Possible</button>
+        <button class="chip" data-verdict="needs_info">Need answers</button>
+        <button class="chip" data-verdict="not_eligible">Not eligible</button>
+        <input id="filter-text" placeholder="filter by name or keyword" />
+      </div>
+      <div class="row wrap no-print action-bar">
+        <button id="btn-whatsapp" class="primary btn-whatsapp" data-i18n="results.whatsapp_share">📲 Send to WhatsApp</button>
+        <button id="btn-qr" class="ghost" data-i18n="results.qr_code">📱 QR Code for Mobile</button>
+        <button id="btn-checklist" class="ghost" data-i18n="results.checklist">🖨️ Print / save checklist</button>
+        <button id="btn-copy-checklist" class="ghost" data-i18n="results.copy">📋 Copy text</button>
+        <button id="btn-calendar" class="ghost" data-i18n="results.calendar">📅 Add deadlines to calendar</button>
+      </div>
+    </div>
+    <div id="print-area" class="print-only"></div>
+    <div id="matches" class="matches"></div>
+
+    <!-- QR Code / Mobile Handover Modal -->
+    <div id="modal-qr" class="modal" style="display:none;" role="dialog" aria-modal="true">
+      <div class="modal-backdrop"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>📱 Scan & Carry on Phone</h3>
+          <button id="modal-close-qr" class="ghost close-btn">&times;</button>
+        </div>
+        <div class="modal-body text-center">
+          <div id="qr-container" class="qr-box"></div>
+          <p class="muted small">Scan with any phone camera or Google Lens to view the complete checklist on WhatsApp or web.</p>
+          <div class="row wrap justify-center" style="margin-top:14px;">
+            <a id="modal-wa-link" href="#" target="_blank" rel="noopener" class="primary btn-whatsapp" style="text-decoration:none;display:inline-block;padding:10px 16px;border-radius:10px;">📲 Open in WhatsApp</a>
+            <button id="modal-copy-link" class="ghost">Copy WhatsApp Text</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="panel-graph" class="panel">
+    <div class="card">
+      <h2 data-i18n="nav.graph">Why it matched</h2>
+      <p class="muted small">Every line is a real path: your fact → the rule it satisfies → the scheme it unlocks. Green passes, red blocks, dashed means we still need that detail. Click a node to explore its neighbourhood.</p>
+      <div class="row wrap justify-between">
+        <div class="row wrap">
+          <span class="legend"><i class="dot pass"></i> pass</span>
+          <span class="legend"><i class="dot fail"></i> fail</span>
+          <span class="legend"><i class="dot unknown"></i> unknown</span>
+          <span class="legend"><i class="dot fact"></i> your fact</span>
+          <span class="legend"><i class="dot scheme"></i> scheme</span>
+        </div>
+        <div class="row wrap graph-controls">
+          <input id="graph-search" placeholder="search nodes in graph..." style="padding:6px 10px;font-size:13px;" />
+          <button id="btn-graph-reset" class="ghost small">Reset View</button>
+        </div>
+      </div>
+      <div class="canvas-wrap"><svg id="graph-svg" viewBox="0 0 1000 620" role="img" aria-label="reasoning graph"></svg></div>
+      <div id="node-detail" class="node-detail muted">Nothing selected yet. Click any node in the graph.</div>
+    </div>
+    <div class="card">
+      <h3>Reasoning paths - fact → rule → scheme</h3>
+      <div id="paths" class="paths"></div>
+    </div>
+  </section>
+
+  <section id="panel-tracker" class="panel">
+    <div class="card">
+      <h2 data-i18n="tracker.title">Where each application stands</h2>
+      <div class="row wrap">
+        <select id="tracker-profile"></select>
+        <button id="btn-plan" class="ghost" data-i18n="tracker.reminder">Remind me</button>
+        <button id="btn-preview-wa-alert" class="ghost" data-i18n="tracker.whatsapp_preview">📱 Preview WhatsApp Reminder</button>
+        <button id="btn-refresh" class="ghost">Refresh</button>
+      </div>
+      <div id="applications" class="apps"></div>
+    </div>
+    <div class="card">
+      <h3>Reminders queued</h3>
+      <p class="muted small">Deterministic deadline nudges - the same household and date is never queued twice. In production these go out over WhatsApp or SMS.</p>
+      <div id="reminders" class="reminders"></div>
+    </div>
+
+    <!-- WhatsApp Alert Preview Modal -->
+    <div id="modal-wa-alert" class="modal" style="display:none;" role="dialog" aria-modal="true">
+      <div class="modal-backdrop"></div>
+      <div class="modal-content" style="max-width:440px;">
+        <div class="modal-header">
+          <h3>📱 WhatsApp Nudge Preview</h3>
+          <button id="modal-close-wa" class="ghost close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="phone-frame">
+            <div class="phone-topbar">
+              <span>🔔 SchemeSetu · MeeSeva Alert</span>
+              <span class="phone-time">10:00 AM</span>
+            </div>
+            <div class="wa-chat-bubble" id="wa-chat-bubble">
+              <div class="wa-sender">SchemeSetu Official Verified</div>
+              <div class="wa-msg-body" id="wa-msg-body">
+                Namaste! 🔔 Reminder for your Rythu Bharosa application.<br><br>
+                Your deadline cut-off is in <b>10 days</b>. Please verify your land Pahani at your nearest MeeSeva or Gram Panchayat office.<br><br>
+                Official portal: <a href="https://rythubharosa.telangana.gov.in" target="_blank" rel="noopener">rythubharosa.telangana.gov.in</a><br>
+                <span class="small muted">SchemeSetu never asks for OTP or Aadhaar numbers.</span>
+              </div>
+              <div class="wa-time">10:00 AM ✓✓</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="panel-studio" class="panel">
+    <div class="card">
+      <h2 data-i18n="studio.title">Rule Studio - change a rule, watch the result move</h2>
+      <p class="muted small">Edit any rule from the curated data, press Simulate, and the same deterministic engine recomputes every affected verdict. Press Apply to write it back to <code>data/schemes.json</code> (a <code>.bak</code> is kept and the scheme is re-tagged INFERRED, because a human just overrode the official source).</p>
+      <div class="row wrap">
+        <select id="studio-scheme"></select>
+        <select id="studio-profile"></select>
+        <button id="btn-simulate" class="primary" data-i18n="studio.simulate">Simulate</button>
+        <button id="btn-apply" class="ghost">Apply to data file</button>
+      </div>
+      <div id="studio-rules" class="rules"></div>
+      <div id="studio-result" class="studio-result"></div>
+    </div>
+  </section>
+
+  <section id="panel-privacy" class="panel">
+    <div class="card">
+      <h2 data-i18n="privacy.title">Your privacy is a feature here</h2>
+      <p data-i18n="privacy.line">We never ask for your Aadhaar number, PAN, full bank account or OTP.</p>
+      <div id="privacy-report" class="privacy"></div>
+    </div>
+    <div class="card">
+      <h3 data-i18n="privacy.rights_title">Your data, your rights</h3>
+      <p class="muted small" id="consent-notice" data-i18n="privacy.notice_loading">Loading the consent notice...</p>
+      <div class="row wrap">
+        <button id="btn-export" class="ghost" data-i18n="privacy.export">Download my data (JSON)</button>
+        <button id="btn-erase" class="ghost danger" data-i18n="privacy.erase">Delete this household</button>
+        <button id="btn-sweep" class="ghost" data-i18n="privacy.sweep">Run the retention sweep</button>
+      </div>
+      <div id="data-rights" class="privacy"></div>
+    </div>
+    <div class="card">
+      <h3>What the system knows about itself</h3>
+      <pre id="health-json" class="code">loading…</pre>
+    </div>
+  </section>
+</main>
+
+<!-- Official Fees & Anti-Middleman Protection Modal -->
+<div id="modal-fees" class="modal" style="display:none;" role="dialog" aria-modal="true">
+  <div class="modal-backdrop"></div>
+  <div class="modal-content" style="max-width:560px;">
+    <div class="modal-header">
+      <h3>🛡️ Official Govt Fees & Anti-Middleman Shield</h3>
+      <button id="modal-close-fees" class="ghost close-btn">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div style="background:rgba(244,63,94,0.12);border:1px solid rgba(244,63,94,0.3);border-radius:10px;padding:12px;margin-bottom:14px;font-size:13.5px;color:#fecdd3;">
+        ⚠️ <b>Zero Toleration for Middlemen:</b> All government welfare scheme applications are <b>100% FREE</b>. Never pay agent cuts or bribes. Only official statutory fees set by Govt of Telangana (G.O.Ms.No. 4) apply:
+      </div>
+      <table style="width:100%;font-size:13.5px;border-collapse:collapse;margin-bottom:14px;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--line);text-align:left;color:var(--muted);">
+            <th style="padding:6px;">Service</th>
+            <th style="padding:6px;">Govt Fee</th>
+            <th style="padding:6px;">Issuing Dept</th>
+            <th style="padding:6px;">Max SLA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px dashed var(--line);">
+            <td style="padding:6px;">Income Certificate</td>
+            <td style="padding:6px;"><b style="color:#a7f3d0;">₹45</b></td>
+            <td style="padding:6px;">Tahsildar</td>
+            <td style="padding:6px;">7 Days</td>
+          </tr>
+          <tr style="border-bottom:1px dashed var(--line);">
+            <td style="padding:6px;">Caste Certificate</td>
+            <td style="padding:6px;"><b style="color:#a7f3d0;">₹45</b></td>
+            <td style="padding:6px;">Revenue</td>
+            <td style="padding:6px;">15 Days</td>
+          </tr>
+          <tr style="border-bottom:1px dashed var(--line);">
+            <td style="padding:6px;">Residence / Nativity</td>
+            <td style="padding:6px;"><b style="color:#a7f3d0;">₹45</b></td>
+            <td style="padding:6px;">Tahsildar</td>
+            <td style="padding:6px;">7 Days</td>
+          </tr>
+          <tr style="border-bottom:1px dashed var(--line);">
+            <td style="padding:6px;">PM-KISAN Biometric e-KYC</td>
+            <td style="padding:6px;"><b style="color:#a7f3d0;">₹15</b></td>
+            <td style="padding:6px;">CSC Centre</td>
+            <td style="padding:6px;">Instant</td>
+          </tr>
+          <tr>
+            <td style="padding:6px;">Aasara / Kalyana Lakshmi Application</td>
+            <td style="padding:6px;"><b style="color:#a7f3d0;">FREE</b></td>
+            <td style="padding:6px;">Welfare Dept</td>
+            <td style="padding:6px;">Direct DBT</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="font-size:12.5px;color:var(--muted);">
+        📞 <b>Official Helplines:</b> MeeSeva Telangana: <b>1100</b> / <b>1800-425-1110</b> · Anti-Corruption Bureau (ACB): <b>1064</b>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Sustainable Operating Model ("Who Pays?") Modal -->
+<div id="modal-model" class="modal" style="display:none;" role="dialog" aria-modal="true">
+  <div class="modal-backdrop"></div>
+  <div class="modal-content" style="max-width:580px;">
+    <div class="modal-header">
+      <h3>💼 Sustainable Deployment & Funding Model</h3>
+      <button id="modal-close-model" class="ghost close-btn">&times;</button>
+    </div>
+    <div class="modal-body" style="font-size:14px;line-height:1.6;">
+      <p class="muted small" style="margin-top:0;">Answering the hackathon challenge: <i>"Who pays: NGOs, CSR funds, banks, local service centres or state governments?"</i></p>
+      <div style="display:grid;gap:12px;margin-top:12px;">
+        <div style="background:rgba(255,255,255,0.02);border:1px solid var(--line);border-radius:10px;padding:12px;">
+          <b style="color:#60a5fa;">1. MeeSeva & CSC Kiosk Franchisees (B2B Assisted Civic Tech)</b>
+          <div class="small muted">Village Level Entrepreneurs (VLEs) earn ₹20–₹40 per assisted application under CSC guidelines. SchemeSetu cuts triage time from 25 minutes to 3 minutes, tripling operator daily revenue.</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.02);border:1px solid var(--line);border-radius:10px;padding:12px;">
+          <b style="color:#34d399;">2. Rural Banks & Business Correspondents (BCs)</b>
+          <div class="small muted">Banks (SBI, Telangana Grameena Bank) sponsor SchemeSetu kiosks because DBT schemes deposit hundreds of crores directly into savings and PMJDY accounts, earning BCs transaction commissions.</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.02);border:1px solid var(--line);border-radius:10px;padding:12px;">
+          <b style="color:#fbbf24;">3. CSR Funds & Foundations (Tata Trusts, ITC Mission Sunehra Kal)</b>
+          <div class="small muted">Corporate Social Responsibility grants fund frontline deployment to achieve 100% social security saturation across aspirational tribal and rural mandals.</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.02);border:1px solid var(--line);border-radius:10px;padding:12px;">
+          <b style="color:#c084fc;">4. State Government (B2G Digital Telangana)</b>
+          <div class="small muted">Department of ITE&C integrates SchemeSetu as the official citizen intelligence layer on Telangana's portal, preventing fraudulent claims and reducing physical counter congestion.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="shortcuts-tooltip" id="shortcuts-tooltip">
+  <h4>⌨️ Keyboard Shortcuts</h4>
+  <dl>
+    <dt><kbd class="kbd">Enter</kbd></dt><dd>Submit intake</dd>
+    <dt><kbd class="kbd">Esc</kbd></dt><dd>Close modal</dd>
+    <dt><kbd class="kbd">?</kbd></dt><dd>Toggle this panel</dd>
+  </dl>
+</div>
+
+<footer class="footer" id="app-footer">
+  <span>SchemeSetu v2.0 · Codebenders ACE Builders Hackathon 2026 · PS5 — "Claim What's Yours" · <span id="footer-stats" class="muted small"></span></span>
+  <span class="muted small">Rules are curated from public official sources on the dates shown. Always confirm on the official portal before applying.</span>
+</footer>
+
+<script src="/static/qr.js"></script>
+<script src="/static/app.js"></script>
+<script>
+// Service Worker Registration
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/sw.js", { scope: "/" })
+    .then(function(r) { console.log("SW registered:", r.scope); })
+    .catch(function(e) { console.warn("SW failed:", e); });
+}
+</script>
+</body>
+</html>

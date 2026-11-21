@@ -1,0 +1,16 @@
+# SchemeSetu - runtime dependencies (all already standard for this env)
+fastapi==0.115.0
+uvicorn==0.54.0
+pydantic==2.13.5
+python-dotenv==1.0.1
+httpx==0.27.0
+networkx==3.6.1
+python-multipart==0.0.12
+streamlit>=1.35.0
+
+# test-only
+pytest==9.0.2
+
+# Optional, enables `scripts/graphify_build.ps1` (knowledge-graph extraction
+# from corpus/ - markdown + PDF). Not required to run the app.
+# graphifyy==0.9.114

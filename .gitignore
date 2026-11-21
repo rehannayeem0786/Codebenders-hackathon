@@ -1,0 +1,24 @@
+# SchemeSetu - never commit secrets or generated state
+.env
+.env.local
+*.env.local
+
+# runtime state
+data/app.db
+data/app.db-journal
+data/*.json.bak
+*.log
+_ps_text/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# graphify output (regenerate with scripts/graphify_build.ps1)
+graphify-out/cache/
+graphify-out/*.html
+
+# IDE state
+.codebenders/
+.vscode/
